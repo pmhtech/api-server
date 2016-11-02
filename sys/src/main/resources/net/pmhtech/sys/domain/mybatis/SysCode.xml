@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysCode">
+
+	<insert id="insert" parameterType="sysCode">
+	/*	SysCode.insert	*/
+	
+	INSERT INTO SYS_CODE(
+		COMPANY
+		,PRE_CD
+		,CODE
+		,CODE_NM
+		,REF1
+		,REF2
+		,REF3
+		,REF4
+		,REF5
+		,SORT
+		,USE_YN
+		,MEMO
+		,CREATER
+		,CREATE_DT
+		,CHANGER
+		,CHANGE_DT
+		,CHANGE_IP
+	
+	)VALUES(
+		,#{COMPANY}
+		,#{PRE_CD}
+		,#{CODE}
+		,#{CODE_NM}
+		,#{REF1}
+		,#{REF2}
+		,#{REF3}
+		,#{REF4}
+		,#{REF5}
+		,#{SORT}
+		,#{USE_YN}
+		,#{MEMO}
+		,#{CREATER}
+		,#{CREATE_DT}
+		,#{CHANGER}
+		,#{CHANGE_DT}
+		,#{CHANGE_IP}
+	)
+	
+	
+	</insert>
+	
+	<update id="update" parameterType="sysCode">
+	/*	SysCode.update	*/
+	UPDATE  SYS_CODE
+	SET		CODE_NM		= #{CODE_NM}
+			,REF1		= #{REF1}
+			,REF2		= #{REF2}
+			,REF3		= #{REF3}
+			,REF4		= #{REF4}
+			,REF5		= #{REF5}
+			,SORT		= #{SORT}
+			,USE_YN		= #{USE_YN}
+			,MEMO		= #{MEMO}
+			,CHANGER	= #{CHANGER}
+			,CHANGE_DT	= SYSDATE()
+			,CHANGE_IP	= #{CHANGE_IP}
+	WHERE	COMPANY	= #{COMPANY}
+	AND		PRE_CD	= #{PRE_CD}
+	AND		CODE	= #{CODE}
+	</update>
+	
+	<delete id="delete" parameterType="paramMap">
+	/*	SysCode.delete	*/
+	DELETE FROM SYS_CODE
+	WHERE	COMPANY	= #{COMPANY}
+	AND		PRE_CD	= #{PRE_CD}
+	AND		CODE	= #{CODE}
+	</delete>
+
+	<select id="selectList" parameterType="paramMap" resultType="resultMap">
+	/*	SysCode.selectList	*/
+	SELECT	A.COMPANY
+			,A.PRE_CD
+			,A.CODE
+			,A.CODE_NM
+			,A.REF1
+			,A.REF2
+			,A.REF3
+			,A.REF4
+			,A.REF5
+			,A.SORT
+			,A.USE_YN
+			,A.MEMO
+			,A.CREATER
+			,A.CREATE_DT
+			,A.CHANGER
+			,A.CHANGE_DT
+			,A.CHANGE_IP
+	FROM	SYS_CODE A
+	</select>
+	
+	<select id="selectGroupList" parameterType="paramMap" resultType="resultMap">
+	/*	SysCode.selectGroupList	*/
+	SELECT	A.COMPANY
+			,A.PRE_CD
+			,IF(A.CODE='0000000000','ALL',A.CODE) AS CODE
+			,IF(A.CODE='0000000000','전체',A.CODE_NM) AS CODE_NM
+			,A.REF1
+			,A.REF2
+			,A.REF3
+			,A.REF4
+			,A.REF5
+			,A.SORT
+			,A.USE_YN
+			,A.MEMO
+			,A.CREATER
+			,A.CREATE_DT
+			,A.CHANGER
+			,A.CHANGE_DT
+			,A.CHANGE_IP
+	FROM	SYS_CODE A
+	</select>
+</mapper> 

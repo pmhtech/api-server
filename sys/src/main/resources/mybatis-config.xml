@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="callSettersOnNulls" value="true"/>
+		<setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+	
+	<typeAliases>
+		<typeAlias alias="sysCode"			type="net.pmhtech.sys.domain.SysCode"/>
+		<typeAlias alias="sysMenu"			type="net.pmhtech.sys.domain.SysMenu"/>
+		<typeAlias alias="userMst"			type="net.pmhtech.user.domain.UserMst"/>
+		
+		<typeAlias alias="resultMap"		type="java.util.HashMap"/>
+		<typeAlias alias="paramMap"			type="java.util.HashMap"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="net/pmhtech/sys/domain/mybatis/SysCode.xml"/>
+		<mapper resource="net/pmhtech/user/domain/mybatis/UserMst.xml"/>
+		<mapper resource="net/pmhtech/sys/domain/mybatis/SysMenu.xml"/>
+		
+	</mappers> 
+</configuration> 

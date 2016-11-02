@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysMenu">
+
+	<insert id="insert" parameterType="sysMenu">
+	/*	SysMenu.insert	*/
+	
+	INSERT INTO SYS_CODE(
+		SYSTEM
+		,MENU_ID
+		,PRE_MENU_ID
+		,MENU_NM
+		,MENU_LVL
+		,CLASS_NM
+		,WIDGET_NM
+		,MENU_AUTH
+		,SORT
+		,USE_YN
+		,MEMO
+		,CREATER
+		,CREATE_DT
+		,CHANGER
+		,CHANGE_DT
+		,CHANGE_IP
+	
+	)VALUES(
+		#{SYSTEM}
+		,#{MENU_ID}
+		,#{PRE_MENU_ID}
+		,#{MENU_NM}
+		,#{MENU_LVL}
+		,#{CLASS_NM}
+		,#{WIDGET_NM}
+		,#{MENU_AUTH}
+		,#{SORT}
+		,#{USE_YN}
+		,#{MEMO}
+		,#{CREATER}
+		,#{CREATE_DT}
+		,#{CHANGER}
+		,#{CHANGE_DT}
+		,#{CHANGE_IP}
+	)
+	
+	
+	</insert>
+	
+	<update id="update" parameterType="sysMenu">
+	/*	SysMenu.update	*/
+	UPDATE  SYS_MENU
+	SET		PRE_MENU_ID	= #{PRE_MENU_ID}
+			,MENU_NM		= #{MENU_NM}
+			,MENU_LVL		= #{MENU_LVL}
+			,CLASS_NM		= #{CLASS_NM}
+			,WIDGET_NM		= #{WIDGET_NM}
+			,MENU_AUTH		= #{MENU_AUTH}
+			,SORT			= #{SORT}
+			,USE_YN			= #{USE_YN}
+			,MEMO			= #{MEMO}
+			,CHANGER		= #{CHANGER}
+			,CHANGE_DT		= #{CHANGE_DT}
+			,CHANGE_IP		= #{CHANGE_IP}
+	WHERE	SYSTEM		= #{SYSTEM}
+	AND		MENU_ID		= #{MENU_ID}
+	</update>
+	
+	<delete id="delete" parameterType="paramMap">
+	/*	SysMenu.delete	*/
+	DELETE FROM SYS_MENU
+	WHERE	SYSTEM		= #{SYSTEM}
+	AND		MENU_ID		= #{MENU_ID}
+	</delete>
+
+	<select id="selectList" parameterType="paramMap" resultType="resultMap">
+	/*	SysMenu.selectList	*/
+	SELECT	A.SYSTEM
+			,A.MENU_ID
+			,A.PRE_MENU_ID
+			,A.MENU_NM
+			,A.MENU_LVL
+			,A.CLASS_NM
+			,A.WIDGET_NM
+			,A.MENU_AUTH
+			,A.SORT
+			,A.USE_YN
+			,A.MEMO
+			,A.CREATER
+			,A.CREATE_DT
+			,A.CHANGER
+			,A.CHANGE_DT
+			,A.CHANGE_IP
+	FROM	SYS_MENU A
+	</select>
+</mapper> 

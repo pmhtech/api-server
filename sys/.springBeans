@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.7.3.201602250914-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/main/resources/pmhtech-transaction-jpa.xml</config>
+	</configs>
+	<autoconfigs>
+		<config>src/main/resources/pmhtech-servlet.xml</config>
+		<config>src/main/resources/pmhtech-restful.xml</config>
+		<config>src/main/resources/pmhtech-views.xml</config>
+		<config>src/main/resources/pmhtech-data.xml</config>
+		<config>src/main/resources/pmhtech-data-mybatis.xml</config>
+		<config>src/main/resources/pmhtech-fileupload.xml</config>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

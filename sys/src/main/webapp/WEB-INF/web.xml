@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xmlns="http://java.sun.com/xml/ns/j2ee"
+ 			xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
+  			xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-app_2_4.xsd"
+			version="2.4">
+ 	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:pmhtech-servlet.xml
+			classpath:pmhtech-restful.xml
+			classpath:pmhtech-views.xml	
+			classpath:pmhtech-data.xml
+			classpath:pmhtech-data-mybatis.xml
+						
+		</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+	
+	<servlet>
+		<servlet-name>sys</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:pmhtech-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<filter>
+    	<filter-name>httpPutFormContentFilter</filter-name>
+    	<filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+    	<filter-name>httpPutFormContentFilter</filter-name>
+    	<servlet-name>sys</servlet-name>
+	</filter-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>sys</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
+	
+	<error-page>
+ <error-code>400</error-code>
+ <location>/errorStatus</location>
+</error-page>
+<error-page>
+ <error-code>403</error-code>
+ <location>/errorStatus</location>
+</error-page>
+<error-page>
+ <error-code>404</error-code>
+ <location>/errorStatus</location>
+</error-page>
+<error-page>
+ <error-code>500</error-code>
+ <location>/errorStatus</location>
+</error-page>
+<error-page>
+ <error-code>503</error-code>
+ <location>/errorStatus</location>
+</error-page>
+</web-app>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysSequence">
+
+	<insert id="insert" parameterType="sysCode">
+	/*	SysCode.insert	*/
+	
+	INSERT INTO SYS_SEQUENCE(
+		COMPANY
+		,TABLE_PK
+		,SEQUENCE
+		,TABLE_NAME
+		,PK1
+		,PK2
+		,PK3
+		,PK4
+		,PK5
+		,CREATER
+		,CREATE_DT
+		,CREATE_IP
+	)
+	SELECT  #{COMPANY}
+			,CONCAT(A.REF1,'_',LPAD(IFNULL(MAX(B.SEQUENCE),0)+1,6,'0')) AS TABLE_PK
+			, IFNULL(MAX(B.SEQUENCE),0)+1 AS SEQUENCE
+			, #{TABLE_NAME}
+			, #{PK1}
+			, #{PK2}
+			, #{PK3}
+			, #{PK4}
+			, #{PK5}
+			, #{CREATER}
+			, SYSDATE()
+			, #{CREATE_IP}
+	FROM	SYS_CODE A
+		      LEFT OUTER JOIN(
+		        SELECT	A.COMPANY
+		                ,A.SEQUENCE
+		                ,A.TABLE_NAME
+		                ,A.PK1
+		                ,A.PK2
+		                ,A.PK3
+		                ,A.PK4
+		                ,A.PK5
+		        FROM    SYS_SEQUENCE A 
+		      )B ON(B.COMPANY = #{COMPANY} AND B.TABLE_NAME = #{TABLE_NAME})        
+		WHERE	A.COMPANY	= #{COMPANY}	
+		AND		A.PRE_CD	='COM_000100'
+		AND		A.CODE		= #{TABLE_NAME}
+		<if test="!( PK1 == ''	||	PK5 == null)">
+		AND		B.PK1		= #{PK1}
+		</if>
+		<if test="!( PK2 == ''	||	PK5 == null)">
+		AND		B.PK2		= #{PK2}
+		</if>
+		<if test="!( PK3 == ''	||	PK5 == null)">
+		AND		B.PK3		= #{PK3}
+		</if>
+		<if test="!( PK4 == ''	||	PK5 == null)">
+		AND		B.PK4		= #{PK4}
+		</if>
+		<if test="!( PK5 == ''	||	PK5 == null)">
+		AND		B.PK5		= #{PK5}
+		</if>
+	</insert>
+
+	<select id="selectMaxSequence" parameterType="paramMap" resultType="string">
+	/*	SysSequence.selectMaxSequence	*/
+		SELECT	MAX(TABLE_PK) AS PK
+		FROM	SYS_SEQUENCE A
+		WHERE	A.COMPANY	= #{COMPANY}
+		AND		A.TABLE_NAME = #{TABLE_NAME}	
+		<if test="!( PK1 == ''	||	PK5 == null)">
+		AND		A.PK1		= #{PK1}
+		</if>
+		<if test="!( PK2 == ''	||	PK5 == null)">
+		AND		A.PK2		= #{PK2}
+		</if>
+		<if test="!( PK3 == ''	||	PK5 == null)">
+		AND		A.PK3		= #{PK3}
+		</if>
+		<if test="!( PK4 == ''	||	PK5 == null)">
+		AND		A.PK4		= #{PK4}
+		</if>
+		<if test="!( PK5 == ''	||	PK5 == null)">
+		AND		A.PK5		= #{PK5}
+		</if>
+	</select>
+</mapper> 
