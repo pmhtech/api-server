@@ -70,53 +70,85 @@
 	
 	<delete id="delete" parameterType="paramMap">
 	/*	SysCode.delete	*/
-	DELETE FROM SYS_CODE
-	WHERE	COMPANY	= #{COMPANY}
+	DELETE FROM SYS_CODE A
+	WHERE	A.COMPANY	= #{COMPANY}
 	AND		PRE_CD	= #{PRE_CD}
 	AND		CODE	= #{CODE}
 	</delete>
 
 	<select id="selectList" parameterType="paramMap" resultType="resultMap">
 	/*	SysCode.selectList	*/
-	SELECT	A.COMPANY
-			,A.PRE_CD
-			,A.CODE
-			,A.CODE_NM
-			,A.REF1
-			,A.REF2
-			,A.REF3
-			,A.REF4
-			,A.REF5
-			,A.SORT
-			,A.USE_YN
-			,A.MEMO
-			,A.CREATER
-			,A.CREATE_DT
-			,A.CHANGER
-			,A.CHANGE_DT
-			,A.CHANGE_IP
-	FROM	SYS_CODE A
+		SELECT	A.COMPANY
+				,A.PRE_CD
+				,A.CODE
+				,B.CODE_NM
+				,A.REF1
+				,A.REF2
+				,A.REF4
+				,A.REF5
+				,B.MEMO
+				,B.CREATER
+				,B.CREATE_DT
+				,B.CHANGER
+				,B.CHANGE_DT
+				,B.CHANGE_IP
+		FROM	SYS_CODE A
+				LEFT OUTER JOIN(
+					SELECT	A.COMPANY
+							,A.PRE_CD
+							,A.CODE
+							,A.LOCALE_CD
+							,A.CODE_NM
+							,A.REF1
+							,A.REF2
+							,A.REF4
+							,A.REF5
+							,A.MEMO
+							,A.CREATER
+							,A.CREATE_DT
+							,A.CHANGER
+							,A.CHANGE_DT
+							,A.CHANGE_IP
+					FROM	SYS_CODE_LOCALE A
+					WHERE 	A.LOCALE_CD = 'KOR'
+				) B ON(B.COMPANY= A.COMPANY AND B.PRE_CD = A.PRE_CD AND B.CODE = A.CODE)
 	</select>
 	
 	<select id="selectGroupList" parameterType="paramMap" resultType="resultMap">
 	/*	SysCode.selectGroupList	*/
-	SELECT	A.COMPANY
-			,A.PRE_CD
-			,IF(A.CODE='0000000000','ALL',A.CODE) AS CODE
-			,IF(A.CODE='0000000000','전체',A.CODE_NM) AS CODE_NM
-			,A.REF1
-			,A.REF2
-			,A.REF3
-			,A.REF4
-			,A.REF5
-			,A.SORT
-			,A.USE_YN
-			,A.MEMO
-			,A.CREATER
-			,A.CREATE_DT
-			,A.CHANGER
-			,A.CHANGE_DT
-			,A.CHANGE_IP
-	FROM	SYS_CODE A
+		SELECT	A.COMPANY
+				,A.PRE_CD
+				,A.CODE
+				,B.CODE_NM
+				,A.REF1
+				,A.REF2
+				,A.REF4
+				,A.REF5
+				,B.MEMO
+				,B.CREATER
+				,B.CREATE_DT
+				,B.CHANGER
+				,B.CHANGE_DT
+				,B.CHANGE_IP
+		FROM	SYS_CODE A
+				LEFT OUTER JOIN(
+					SELECT	A.COMPANY
+							,A.PRE_CD
+							,A.CODE
+							,A.LOCALE_CD
+							,A.CODE_NM
+							,A.REF1
+							,A.REF2
+							,A.REF4
+							,A.REF5
+							,A.MEMO
+							,A.CREATER
+							,A.CREATE_DT
+							,A.CHANGER
+							,A.CHANGE_DT
+							,A.CHANGE_IP
+					FROM	SYS_CODE_LOCALE A
+					WHERE 	A.LOCALE_CD = 'KOR'
+				) B ON(B.COMPANY= A.COMPANY AND B.PRE_CD = A.PRE_CD AND B.CODE = A.CODE)
 	</select>
 </mapper> 

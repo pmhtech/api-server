@@ -39,6 +39,11 @@ public class SysCodeServiceImpl implements SysCodeService{
 	public List<Map<String, ?>> selectList(Map<String, ?> paramMap) throws Exception {
 		return sysCodeDAO.selectList(paramMap);
 	}
+	
+	@Override
+	public List<Map<String, ?>> selectGroupList(Map<String, ?> paramMap) throws Exception {
+		return sysCodeDAO.selectGroupList(paramMap);
+	}	
 
 	@Override
 	public Map<String,?> selectSysCodeGroup(Map<String, ?> paramMap) throws Exception {
@@ -71,5 +76,5 @@ public class SysCodeServiceImpl implements SysCodeService{
 			}
 		}
 		return sysCodeMap;
-	}	
+	}
 }

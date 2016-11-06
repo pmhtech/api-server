@@ -39,6 +39,9 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
+	
+	
+	
 	<filter>
     	<filter-name>httpPutFormContentFilter</filter-name>
     	<filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
@@ -57,26 +60,4 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
-	
-	
-	<error-page>
- <error-code>400</error-code>
- <location>/errorStatus</location>
-</error-page>
-<error-page>
- <error-code>403</error-code>
- <location>/errorStatus</location>
-</error-page>
-<error-page>
- <error-code>404</error-code>
- <location>/errorStatus</location>
-</error-page>
-<error-page>
- <error-code>500</error-code>
- <location>/errorStatus</location>
-</error-page>
-<error-page>
- <error-code>503</error-code>
- <location>/errorStatus</location>
-</error-page>
 </web-app>

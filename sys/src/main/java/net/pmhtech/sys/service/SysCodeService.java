@@ -13,5 +13,6 @@ public interface SysCodeService {
 	public int update(SysCode sysCode) throws Exception;
 	public int delete(Map<String,?> paramMap) throws Exception;
 	public List<Map<String,?>> selectList(Map<String,?> paramMap) throws Exception;
+	public List<Map<String,?>> selectGroupList(Map<String,?> paramMap) throws Exception;
 	public Map<String,?> selectSysCodeGroup(Map<String,?> paramMap) throws Exception;
 }

@@ -319,15 +319,15 @@
 	   	<version>5.1.0.Final</version>
 	   </dependency>
 	   <dependency>
-	   	<groupId>com.mangofactory</groupId>
-	   	<artifactId>swagger-springmvc</artifactId>
-	   	<version>1.0.2</version>
-	   </dependency>
-	   <dependency>
-	   	<groupId>org.webjars</groupId>
-	   	<artifactId>swagger-ui</artifactId>
-	   	<version>2.1.4</version>
-	   </dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <version>2.2.2</version>
+</dependency>
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger-ui</artifactId>
+    <version>2.2.2</version>
+</dependency>
 	   <dependency>
 	   	<groupId>org.springframework.boot</groupId>
 	   	<artifactId>spring-boot-autoconfigure</artifactId>

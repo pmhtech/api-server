@@ -1,25 +1,23 @@
 package net.pmhtech.configure;
 
-
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
-import com.mangofactory.swagger.models.dto.ApiInfo;
-import com.mangofactory.swagger.plugin.EnableSwagger;
-import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
- 
+
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @Configuration
-@EnableSwagger
-public class SwaggerConfig {
- 
-    @Autowired private SpringSwaggerConfig springSwaggerConfig;
- 
+@EnableSwagger2
+public class SwaggerConfig {                                    
     @Bean
-    public SwaggerSpringMvcPlugin swaggerSpringMvcPlugin() {
-        return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
-                .apiInfo(new ApiInfo("spring-boot-swagger", null, null, null, null, null))
-                .useDefaultResponseMessages(false)
-                .includePatterns("/sys/codes");
+    public Docket api() { 
+        return new Docket(DocumentationType.SWAGGER_2)  
+          .select()                                  
+          .apis(RequestHandlerSelectors.any())              
+          .paths(PathSelectors.any())                          
+          .build();                                           
     }
 }
