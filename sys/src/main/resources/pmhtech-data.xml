@@ -14,7 +14,7 @@
     </bean>
     
     <!-- Mandarin DataSource -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  destroy-method="close">
+	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource"  destroy-method="close">
 		<property name="driverClassName"	value = "${jdbc.driverClassName}"	/> 
 		<property name="url"				value = "${jdbc.url}"		/>
 		<property name="username"			value = "${jdbc.username}"	/>
@@ -29,4 +29,15 @@
 		<property name="testOnBorrow" value="true" />
 		<property name="testOnReturn" value="true" />
 	</bean>
+	
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+        <constructor-arg ref="dataSourceSpied" />
+        <property name="logFormatter">
+            <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+                <property name="loggingType" value="MULTI_LINE" />
+                <!-- <property name="margin" value=19 /> -->
+                <property name="sqlPrefix" value="SQL:::" />
+            </bean>
+        </property>
+    </bean>
 </beans>
