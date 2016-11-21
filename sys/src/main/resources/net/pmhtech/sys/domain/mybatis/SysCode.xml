@@ -76,10 +76,53 @@
 	AND		CODE	= #{CODE}
 	</delete>
 
+	<select id="selectMaster" parameterType="paramMap" resultType="resultMap">
+		/*	SysCode.selectMaster	*/
+		SELECT	A.COMPANY
+				,A.PRE_CD
+				,B.LOCALE_CD
+				, IF(A.CODE='0000000000',C.REF2,A.CODE) AS CODE
+				, IF(A.CODE='0000000000',C.CODE_NM,B.CODE_NM) AS CODE_NM
+				,B.REF1
+				,B.REF2
+				,B.REF4
+				,B.REF5
+				,B.SORT
+				,B.MEMO
+				,B.CREATER
+				,B.CREATE_DT
+				,B.CHANGER
+				,B.CHANGE_DT
+				,B.CHANGE_IP
+		FROM	SYS_CODE A
+				LEFT OUTER JOIN(
+					SELECT	A.COMPANY
+							,A.PRE_CD
+							,A.CODE
+							,A.LOCALE_CD
+							,A.CODE_NM
+							,A.REF1
+							,A.REF2
+							,A.REF4
+							,A.REF5
+							,A.SORT
+							,A.MEMO
+							,A.CREATER
+							,A.CREATE_DT
+							,A.CHANGER
+							,A.CHANGE_DT
+							,A.CHANGE_IP
+					FROM	SYS_CODE_LOCALE A
+					WHERE 	A.LOCALE_CD = 'KOR'
+				) B ON(B.COMPANY= A.COMPANY AND B.PRE_CD = A.PRE_CD AND B.CODE = A.CODE)
+				LEFT OUTER JOIN SYS_CODE_LOCALE C ON(C.COMPANY=A.COMPANY AND C.PRE_CD = 'COM_000005' AND C.REF1 =A.CODE AND C.LOCALE_CD='KOR')
+				ORDER BY B.PRE_CD, B.SORT
+	</select>
 	<select id="selectList" parameterType="paramMap" resultType="resultMap">
 	/*	SysCode.selectList	*/
 		SELECT	A.COMPANY
 				,A.PRE_CD
+				,B.LOCALE_CD
 				,A.CODE
 				,B.CODE_NM
 				,A.REF1
@@ -111,13 +154,26 @@
 							,A.CHANGE_IP
 					FROM	SYS_CODE_LOCALE A
 					WHERE 	A.LOCALE_CD = 'KOR'
+					<if test="!(PRE_CD == ''	||	PRE_CD == null)">
+					AND		A.PRE_CD = #{PRE_CD}
+					</if>
+					AND		A.CODE!='0000000000'
 				) B ON(B.COMPANY= A.COMPANY AND B.PRE_CD = A.PRE_CD AND B.CODE = A.CODE)
+		WHERE	1=1
+		<if test="!(LOCALE_CD == ''	||	LOCALE_CD == null)">
+		AND		B.LOCALE_CD = #{LOCALE_CD}
+		</if>
+		<if test="!(PRE_CD == ''	||	PRE_CD == null)">
+		AND		A.PRE_CD = #{PRE_CD}
+		</if>
+		AND		A.CODE!='0000000000'
 	</select>
 	
 	<select id="selectGroupList" parameterType="paramMap" resultType="resultMap">
 	/*	SysCode.selectGroupList	*/
 		SELECT	A.COMPANY
 				,A.PRE_CD
+				,B.LOCALE_CD
 				,A.CODE
 				,B.CODE_NM
 				,A.REF1

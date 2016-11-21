@@ -10,6 +10,8 @@ public interface SysCodeDAO {
 	int insert(SysCode sysCode) throws Exception;
 	int update(SysCode sysCode) throws Exception;
 	int delete(Map<String,?> paramMap) throws Exception;
+	
+	List<Map<String,?>> selectMaster(Map<String,?> paramMap) throws Exception;
 	List<Map<String,?>> selectList(Map<String,?> paramMap) throws Exception;
 	List<Map<String,?>> selectGroupList(Map<String,?> paramMap) throws Exception;
 	

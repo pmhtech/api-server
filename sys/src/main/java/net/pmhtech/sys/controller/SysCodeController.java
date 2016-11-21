@@ -34,7 +34,7 @@ public class SysCodeController {
 	@Resource(name="sysCodeService")
 	private SysCodeService sysCodeService;
 	   	
-	@ApiOperation(value = "공통코드그룹목록 조회", notes = "언어설정에 따른 공통코드그룹목록 조회")
+	@ApiOperation(value = "공통코드그룹목록 조회", notes = "언어설정ddddddddd에 따른 공통코드그룹목록 조회")
 	@RequestMapping(value="/{LOCALE_CD}",method = RequestMethod.GET)
     public @ResponseBody Map<String,?> selectSysCodeGroup(
     		HttpServletRequest request, HttpServletResponse response,
@@ -58,14 +58,22 @@ public class SysCodeController {
    
 	@ApiOperation(value = "공통코드 상세조회", notes = "언어코드에 따른공통코드상세 조회")
 	@RequestMapping(value="/{LOCALE_CD}/{PRE_CD}",method = RequestMethod.GET)
-    public ResponseEntity<?> selectSysCode(HttpServletRequest request, HttpServletResponse response,
+    public @ResponseBody Map<String,?> selectSysCode(HttpServletRequest request, HttpServletResponse response,
     		@ApiParam(value="언어코드", name="LOCALE_CD", required=true) @PathVariable("LOCALE_CD") String LOCALE_CD,
-    		@ApiParam(value="코드그룹명", name="LOCALE_CD", required=true) @PathVariable("PRE_CD") String PRE_CD
+    		@ApiParam(value="코드그룹명", name="PRE_CD", required=true) @PathVariable("PRE_CD") String PRE_CD
     		) throws Exception {
-        Map<String, String> datas = new HashMap<>();
-        datas.put("hello", "spring");
- 
-        return ResponseEntity.ok(datas);
+		Map<String,Object> returnMap = new HashMap<String,Object>();
+		
+		
+	    
+		Map<String,Object > paramMap = new HashMap<String,Object>();
+		paramMap.put("LOCALE_CD", LOCALE_CD);
+		paramMap.put("PRE_CD", PRE_CD);
+        List<Map<String,?>> sysCodeList = sysCodeService.selectList(paramMap); 
+        
+        returnMap.put("sysCode", sysCodeList);
+        
+        return returnMap;
     }
 	
 	@ApiOperation(value = "공통코드그룹 추가", notes = "공통코드그룹 추가")

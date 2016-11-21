@@ -49,7 +49,7 @@ public class SysCodeServiceImpl implements SysCodeService{
 	public Map<String,?> selectSysCodeGroup(Map<String, ?> paramMap) throws Exception {
 		
 		
-		List<Map<String,?>> sysCodeList =sysCodeDAO.selectGroupList(paramMap);
+		List<Map<String,?>> sysCodeList =sysCodeDAO.selectMaster(paramMap);
 		List<Map<String,?>> tempList = new ArrayList<Map<String,?>>(); 
 		Map<String,List<?>> sysCodeMap = new HashMap<String,List<?>>();
 		

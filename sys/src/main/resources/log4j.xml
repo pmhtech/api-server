@@ -49,14 +49,14 @@
      
     <!-- 특정 패키지 출력 설정 -->
     <logger name="org.apache.ibatis">
-        <level value="DEBUG"/>
+        <level value="INFO"/>
     </logger>
     <logger name="org.springframework">
-        <level value="DEBUG"/>
+        <level value="INFO"/>
         <appender-ref ref="springFile" />
     </logger>
     <logger name="java.sql">
-        <level value="DEBUG"/>
+        <level value="INFO"/>
     </logger>
  
     <!-- 기본 출력 설정 -->

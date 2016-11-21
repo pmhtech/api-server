@@ -38,5 +38,8 @@ public class SysCodeMyBatis extends SysMyBatisDAO implements SysCodeDAO{
 		return this.getSqlSession().selectList("SysCode.selectGroupList",paramMap);
 	}
 
-
+	@Override
+	public List<Map<String, ?>> selectMaster(Map<String, ?> paramMap) throws Exception {
+		return this.getSqlSession().selectList("SysCode.selectMaster",paramMap);
+	}
 }
