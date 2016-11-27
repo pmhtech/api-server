@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysCodeGroup">
+
+	<insert id="insert" parameterType="sysCodeGroup">
+	/*	SysCodeGroup.insert	*/
+	
+	INSERT INTO SYS_CODE_GROUP(
+		PRE_CD
+		, REF1_CONFIG
+		, REF2_CONFIG
+		, REF3_CONFIG
+		, REF4_CONFIG
+		, REF5_CONFIG
+		, USE_YN
+		, COM_YN
+		, MEMO
+		, CREATER
+		, CREATE_DT
+		, CHANGER
+		, CHANGE_DT
+		, CHANGE_IP
+	
+	)VALUES(
+		#{PRE_CD}
+		,#{REF1_CONFIG}
+		,#{REF2_CONFIG}
+		,#{REF3_CONFIG}
+		,#{REF4_CONFIG}
+		,#{REF5_CONFIG}
+		,#{USE_YN}
+		,#{COM_YN}
+		,#{MEMO}
+		,#{CREATER}
+		,#{CREATE_DT}
+		,#{CHANGER}
+		,#{CHANGE_DT}
+		,#{CHANGE_IP}
+	)
+	
+	
+	</insert>
+	
+	<update id="update" parameterType="sysCode">
+	/*	SysCodeGroup.update	*/
+	UPDATE  SYS_CODE_GROUP
+	SET		REF1_CONFIG	= #{REF1_CONFIG}
+			, REF2_CONFIG	= #{REF2_CONFIG}
+			, REF3_CONFIG	= #{REF3_CONFIG}
+			, REF4_CONFIG	= #{REF4_CONFIG}
+			, REF5_CONFIG	= #{REF5_CONFIG}
+			, USE_YN	= #{USE_YN}
+			, COM_YN	= #{COM_YN}
+			, MEMO	= #{MEMO}
+			, CREATER	= #{CREATER}
+			, CREATE_DT	= #{CREATE_DT}
+			, CHANGER	= #{CHANGER}
+			, CHANGE_DT	= #{CHANGE_DT}
+			, CHANGE_IP	= #{CHANGE_IP}
+	WHERE	PRE_CD	= #{PRE_CD}
+	</update>
+	
+	<select id="select" parameterType="paramMap" resultType="resultMap">
+	/*	SysCodeGroup.select	*/
+		SELECT	A.PRE_CD
+				,B.CODE_NM
+				,A.REF1_CONFIG
+				,A.REF2_CONFIG
+				,A.REF4_CONFIG
+				,A.REF5_CONFIG
+				,A.USE_YN
+				,A.COM_YN
+				,A.MEMO
+				,A.CREATER
+				,A.CREATE_DT
+				,A.CHANGER
+				,A.CHANGE_DT
+				,A.CHANGE_IP
+		FROM	SYS_CODE_GROUP A
+				LEFT OUTER JOIN(
+					SELECT PRE_CD,CODE_NM FROM SYS_CODE_LOCALE
+					WHERE CODE ='0000000000'
+					AND LOCALE_CD IN(
+									SELECT	REF1 FROM SYS_CODE
+									WHERE	PRE_CD='COM_000003' 
+									AND		CODE ='DEFAULT'
+					)	
+				)B ON(B.PRE_CD = A.PRE_CD)
+	</select>
+</mapper> 

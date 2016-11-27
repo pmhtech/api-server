@@ -24,22 +24,7 @@ public class SysCodeMyBatis extends SysMyBatisDAO implements SysCodeDAO{
 	}
 
 	@Override
-	public int delete(Map<String, ?> paramMap) throws Exception {
-		return this.getSqlSession().delete("SysCode.delete",paramMap);
-	}
-
-	@Override
-	public List<Map<String, ?>> selectList(Map<String, ?> paramMap) throws Exception { 
-		return this.getSqlSession().selectList("SysCode.selectList",paramMap);
-	}
-
-	@Override
-	public List<Map<String, ?>> selectGroupList(Map<String, ?> paramMap) throws Exception {
-		return this.getSqlSession().selectList("SysCode.selectGroupList",paramMap);
-	}
-
-	@Override
-	public List<Map<String, ?>> selectMaster(Map<String, ?> paramMap) throws Exception {
-		return this.getSqlSession().selectList("SysCode.selectMaster",paramMap);
+	public List<Map<String, ?>> select(Map<String, ?> paramMap) throws Exception { 
+		return this.getSqlSession().selectList("SysCode.select",paramMap);
 	}
 }

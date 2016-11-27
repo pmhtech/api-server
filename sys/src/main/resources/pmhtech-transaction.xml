@@ -58,7 +58,10 @@
 				*Impl 은 파일명이   Impl로 끝나는 모든 클래스가 해당되고
 				*(..) 거기에 속한   모든 함수가 포함이 된다.
 	 	-->
-		<aop:pointcut id="requiredTx"	expression="execution(* com..service.impl.*Impl.create*(..))" />
+		<aop:pointcut id="requiredTx"	expression="execution(* com..service.impl.*Impl.create*(..)) 
+		|| execution(* com..service.impl.*Impl.create*(..))
+		|| execution(* com..service.impl.*Impl.create*(..))
+		" />
 		
 		<!-- 
 			즉 정리하자면

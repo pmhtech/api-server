@@ -52,7 +52,7 @@ public class AuthController {
 			isLogined=true;
 		}
 		String dataJson = request.getParameter("dataJson");
-		Map<String,Object > paramMap = JsonConvertor.convertJsonToMap(dataJson);
+		Map<String,? > paramMap = JsonConvertor.convertJsonToMap(dataJson);
 		returnMap = authService.loginProcess(paramMap,isLogined);
 		request.getSession().setAttribute("USER_ID", paramMap.get("USER_ID"));
         return returnMap;

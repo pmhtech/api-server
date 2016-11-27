@@ -46,7 +46,7 @@ public class UserMstController {
 	
 		String dataJson = request.getParameter("dataJson");
 	    
-		Map<String,Object > paramMap = JsonConvertor.convertJsonToMap(dataJson);
+		Map<String,? > paramMap = JsonConvertor.convertJsonToMap(dataJson);
 		
 		UserMst userMst = new UserMst();
 		

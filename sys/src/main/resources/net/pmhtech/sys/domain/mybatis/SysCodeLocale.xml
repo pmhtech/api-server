@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="SysCode">
+<mapper namespace="SysCodeLocale">
 
-	<insert id="insert" parameterType="sysCode">
-	/*	SysCode.insert	*/
+	<insert id="insert" parameterType="sysCodeLocale">
+	/*	SysCodeLocale.insert	*/
 	
-	INSERT INTO SYS_CODE(
+	INSERT INTO SYS_CODE_LOCALE(
 		COMPANY
 		, PRE_CD
+		, LOCALE_CD
 		, CODE
+		, CODE_NM
 		, REF1
 		, REF2
 		, REF3
 		, REF4
 		, REF5
-		, SORT
-		, USE_YN
+		, MEMO
 		, CREATER
 		, CREATE_DT
 		, CHANGER
@@ -25,14 +26,15 @@
 	)VALUES(
 		#{COMPANY}
 		,#{PRE_CD}
+		,#{LOCALE_CD}
 		,#{CODE}
+		,#{CODE_NM}
 		,#{REF1}
 		,#{REF2}
 		,#{REF3}
 		,#{REF4}
 		,#{REF5}
-		,#{SORT}
-		,#{USE_YN}
+		,#{MEMO}
 		,#{CREATER}
 		,#{CREATE_DT}
 		,#{CHANGER}
@@ -43,28 +45,29 @@
 	
 	</insert>
 	
-	<update id="update" parameterType="sysCode">
-	/*	SysCode.update	*/
-	UPDATE  SYS_CODE
-	SET		REF1	= #{REF1}
-			, REF2	= #{REF2}
-			, REF3	= #{REF3}
-			, REF4	= #{REF4}
-			, REF5	= #{REF5}
-			, SORT	= #{SORT}
-			, USE_YN	= #{USE_YN}
+	<update id="update" parameterType="sysCodeLocale">
+	/*	SysCodeLocale.update	*/
+	UPDATE  SYS_CODE_LOCALE
+	SET		CODE_NM		= #{CODE_NM}
+			, REF1		= #{REF1}
+			, REF2		= #{REF2}
+			, REF3		= #{REF3}
+			, REF4		= #{REF4}
+			, REF5		= #{REF5}
+			, MEMO		= #{MEMO}
 			, CREATER	= #{CREATER}
 			, CREATE_DT	= #{CREATE_DT}
 			, CHANGER	= #{CHANGER}
 			, CHANGE_DT	= #{CHANGE_DT}
 			, CHANGE_IP	= #{CHANGE_IP}
-	WHERE	COMPANY	= #{COMPANY}
-	AND		PRE_CD	= #{PRE_CD}
-	AND		CODE	= #{CODE}
+	WHERE	COMPANY		= #{COMPANY}
+	AND		PRE_CD		= #{PRE_CD}
+	AND		LOCALE_CD	= #{LOCALE_CD}
+	AND		CODE		= #{CODE}
 	</update>
 	
 	<select id="select" parameterType="paramMap" resultType="resultMap">
-	/*	SysCode.selectList	*/
+	/*	SysCodeLocale.select	*/
 		SELECT	A.COMPANY
 				,A.PRE_CD
 				,B.LOCALE_CD
@@ -98,11 +101,17 @@
 							,A.CHANGE_DT
 							,A.CHANGE_IP
 					FROM	SYS_CODE_LOCALE A
-					WHERE	A.PRE_CD = #{PRE_CD}
+					WHERE	1=1
+					<if test="!(PRE_CD == ''	||	PRE_CD == null)">
+					AND		A.PRE_CD = #{PRE_CD}
+					</if>
 					AND		A.CODE!='0000000000'
 					
 				) B ON(B.COMPANY= A.COMPANY AND B.PRE_CD = A.PRE_CD AND B.CODE = A.CODE)
-		WHERE	A.PRE_CD = #{PRE_CD}
+		WHERE	1=1
+		<if test="!(PRE_CD == ''	||	PRE_CD == null)">
+		AND		A.PRE_CD = #{PRE_CD}
+		</if>
 		AND		A.CODE!='0000000000'
 	</select>
 </mapper> 

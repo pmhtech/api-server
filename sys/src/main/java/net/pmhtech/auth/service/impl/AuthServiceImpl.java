@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-
+import net.pmhtech.sys.service.SysCodeLocaleService;
 import net.pmhtech.sys.service.SysCodeService;
 import net.pmhtech.sys.service.SysMenuService;
 import net.pmhtech.user.dao.UserMstDAO;
@@ -25,8 +25,10 @@ public class AuthServiceImpl implements AuthService{
 	@Resource(name="userMstDAO")
 	private UserMstDAO userMstDAO;
 	
-	@Resource(name="sysCodeService")
-	private SysCodeService sysCodeService;
+	
+	
+	@Resource(name="sysCodeLocaleService")
+	private SysCodeLocaleService sysCodeLocaleService;
 	
 	@Resource(name="sysMenuService")
 	private SysMenuService sysMenuService;
@@ -58,7 +60,7 @@ public class AuthServiceImpl implements AuthService{
 		List<Map<String,?>> userMstList = new ArrayList<Map<String,?>>();
 		userMstList.add(userMst);
 		
-		Map<String,?> sysCodeGroup = sysCodeService.selectSysCodeGroup(paramMap);
+		Map<String,?> sysCodeGroup = sysCodeLocaleService.selectSysCodeMap(paramMap);
 		List<Map<String,?>> sysMenuList = sysMenuService.selectList(paramMap);
 		
 		
