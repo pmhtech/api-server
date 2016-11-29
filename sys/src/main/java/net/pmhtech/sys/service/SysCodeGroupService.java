@@ -11,7 +11,7 @@ import net.pmhtech.sys.domain.SysCodeGroup;
 
 public interface SysCodeGroupService {
 	
-	public int createSysCodeGroup(SysCodeGroup sysCodeGroup, List<Map<String,?>> listSysCodeLocale) throws Exception;
+	public int createSysCodeGroup(SysCodeGroup sysCodeGroup, SysCode sysCodeVO, List<Map<String,?>> listSysCodeLocale) throws Exception;
 	public int modifySysCodeGroup(SysCodeGroup sysCodeGroup, List<Map<String,?>> listSysCodeLocale) throws Exception;
 	
 	public List<Map<String,?>> select(Map<String,?> paramMap) throws Exception;

@@ -67,6 +67,7 @@
 				,B.CODE_NM
 				,A.REF1_CONFIG
 				,A.REF2_CONFIG
+				,A.REF3_CONFIG
 				,A.REF4_CONFIG
 				,A.REF5_CONFIG
 				,A.USE_YN

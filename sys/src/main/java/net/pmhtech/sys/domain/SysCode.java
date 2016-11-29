@@ -10,7 +10,7 @@ public class SysCode implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 9027954994054193319L;
-	
+	private String COMPANY; // 회사코
 	private String PRE_CD;	//기준코드	Primary Key
 	private String CODE;	//코드	Primary Key
 	private String CODE_NM;	//코드명	
@@ -29,6 +29,13 @@ public class SysCode implements Serializable{
 	private String CHANGE_IP;	//변경IP	
 	
 	
+	
+	public String getCOMPANY() {
+		return COMPANY;
+	}
+	public void setCOMPANY(String cOMPANY) {
+		COMPANY = cOMPANY;
+	}
 	public String getPRE_CD() {
 		return PRE_CD;
 	}

@@ -9,7 +9,13 @@
 						http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
 						http://www.springframework.org/schema/tx
 						http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
-		
+	
+	
+	<!-- Transaction Manager -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceSpied" />
+    </bean>
+    	
 	<!-- 
 		AOP 기본 
 		1. Cross-Cutting ( 횡단관심사)
@@ -29,7 +35,7 @@
 	-->
 	
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
+		<tx:attributes> 
 		
 		<!-- 
 			해당 PointCut에서 실행되는 행위(BeHavior를 기술한다.)
@@ -41,7 +47,11 @@
 		-->
 		
 			<!--  여기에 추가로 rollBack 이 되지 말아야할 Exception을 추가로 기입하면 된다.	-->
-			<tx:method name="*" rollback-for="Exception" propagation="NESTED"/>
+			<!--  <tx:method name="*" rollback-for="Exception" propagation="NESTED"/>-->
+			
+			<tx:method name="create*" propagation="REQUIRED" 	rollback-for="Exception"/>
+            <tx:method name="modify*" propagation="REQUIRED" 	rollback-for="Exception"/>
+            <tx:method name="remove*" propagation="REQUIRED" 	rollback-for="Exception"/>
 		</tx:attributes>
 	</tx:advice>
 	
@@ -58,10 +68,7 @@
 				*Impl 은 파일명이   Impl로 끝나는 모든 클래스가 해당되고
 				*(..) 거기에 속한   모든 함수가 포함이 된다.
 	 	-->
-		<aop:pointcut id="requiredTx"	expression="execution(* com..service.impl.*Impl.create*(..)) 
-		|| execution(* com..service.impl.*Impl.create*(..))
-		|| execution(* com..service.impl.*Impl.create*(..))
-		" />
+		<aop:pointcut id="requiredTx"	expression="execution( public * net.pmhtech..service.impl.*Impl.*(..))" />
 		
 		<!-- 
 			즉 정리하자면

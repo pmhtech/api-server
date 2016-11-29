@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.BeanUtils;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +22,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponses;
+import net.pmhtech.sys.domain.SysCode;
 import net.pmhtech.sys.domain.SysCodeGroup;
 import net.pmhtech.sys.service.SysCodeGroupService;
 import net.pmhtech.sys.service.SysCodeLocaleService;
@@ -84,11 +85,21 @@ public class SysCodeController {
         
         
         SysCodeGroup sysCodeGroupVO = new SysCodeGroup();
-        BeanUtils.copyProperties(sysCodeGroup, sysCodeGroupVO);
+        SysCode sysCodeVO = new SysCode();
         
+        BeanUtils.copyProperties(sysCodeGroupVO, sysCodeGroupMap);
+        BeanUtils.copyProperties(sysCodeVO, sysCodeGroupMap);
+        
+        try{
         
         List<Map<String,?>> listSysCodeLocale = JsonConvertor.convertJsonToList(sysCodeLocales);
-		int result = sysCodeGroupService.createSysCodeGroup(sysCodeGroupVO,listSysCodeLocale);
+		System.out.println(sysCodeGroupService);
+		
+        int result = sysCodeGroupService.createSysCodeGroup(sysCodeGroupVO,sysCodeVO,listSysCodeLocale);
+        
+        }catch(Exception e ){
+        	e.printStackTrace();
+        }
         
         Map<String, String> datas = new HashMap<>();
         datas.put("hello", "spring");
@@ -106,8 +117,6 @@ public class SysCodeController {
         
         
         SysCodeGroup sysCodeGroupVO = new SysCodeGroup();
-        BeanUtils.copyProperties(sysCodeGroup, sysCodeGroupVO);
-        
         
         List<Map<String,?>> listSysCodeLocale = JsonConvertor.convertJsonToList(sysCodeLocales);
 		int result = sysCodeGroupService.modifySysCodeGroup(sysCodeGroupVO,listSysCodeLocale);
