@@ -46,21 +46,23 @@ public class SysCodeController {
 	@Resource(name="sysCodeLocaleService")
 	private SysCodeLocaleService sysCodeLocaleService;
 	   	
-	@ApiOperation(value = "공통코드그룹목록 조회", notes = "언어설정ddddddddd에 따른 공통코드그룹목록 조회")
+	@ApiOperation(value = "공통코드그룹목록 조회", notes = "공통코드그룹목록조회 ")
 	@RequestMapping(value="",method = RequestMethod.GET)
-    public @ResponseBody Map<String,?> selectSysCodeGroup(
+    public @ResponseBody Map<String,?> selectSysCodeGroupList(
     		HttpServletRequest request, HttpServletResponse response) throws Exception {
         Map<String,Object> returnMap = new HashMap<String,Object>();
 		Map<String,Object > paramMap = new HashMap<String,Object>();
-        List<Map<String,?>> sysCodeList = sysCodeGroupService.select(paramMap); 
+        List<Map<String,?>> sysCodeGroups = sysCodeGroupService.selectList(paramMap); 
+        List<Map<String,?>> sysCodeLocales = sysCodeLocaleService.selectLocaleComment(paramMap);
         System.out.println(sysCodeGroupService);
-        returnMap.put("sysCodeGroup", sysCodeList);
+        returnMap.put("sysCodeGroups", sysCodeGroups);
+        returnMap.put("sysCodeLocales", sysCodeLocales);
         return returnMap;
     }
    
-	@ApiOperation(value = "공통코드 상세조회", notes = "언어코드에 따른공통코드상세 조회")
+	@ApiOperation(value = "공통코드그룹 상세조회", notes = "공통코드그룹 코드리스트 조회")
 	@RequestMapping(value="/{PRE_CD}",method = RequestMethod.GET)
-    public @ResponseBody Map<String,?> selectSysCode(HttpServletRequest request, HttpServletResponse response,
+    public @ResponseBody Map<String,?> selectSysCodeGroup(HttpServletRequest request, HttpServletResponse response,
     		@ApiParam(value="코드그룹", name="PRE_CD", required=true) @PathVariable("PRE_CD") String PRE_CD
     		) throws Exception {
 		Map<String,Object> returnMap = new HashMap<String,Object>();
@@ -68,9 +70,26 @@ public class SysCodeController {
 	
 		paramMap.put("PRE_CD", PRE_CD);
 
-        List<Map<String,?>> sysCodeList = sysCodeService.select(paramMap); 
+        List<Map<String,?>> sysCodeList = sysCodeService.select(paramMap);
+        returnMap.put("sysCodes", sysCodeList);
+        return returnMap;
+    }
+	
+	@ApiOperation(value = "Locale별코드 상세조회", notes = "Locale별 코드리스트 조회")
+	@RequestMapping(value="/{PRE_CD}/{CODE}",method = RequestMethod.GET)
+    public @ResponseBody Map<String,?> selectSysCode(HttpServletRequest request, HttpServletResponse response,
+    		@ApiParam(value="코드그룹", name="PRE_CD", required=true) @PathVariable("PRE_CD") String PRE_CD,
+    		@ApiParam(value="코드", name="CODE", required=true) @PathVariable("CODE") String CODE
+    		) throws Exception {
+		Map<String,Object> returnMap = new HashMap<String,Object>();
+		Map<String,Object > paramMap = new HashMap<String,Object>();
+	
+		paramMap.put("PRE_CD", PRE_CD);
+		paramMap.put("CODE", CODE);
+
+       // List<Map<String,?>> sysCodeList = sysCodeLocaleService.select(paramMap);
         
-        returnMap.put("sysCode", sysCodeList);
+      //  returnMap.put("sysCode", sysCodeList);
         return returnMap;
     }
 	

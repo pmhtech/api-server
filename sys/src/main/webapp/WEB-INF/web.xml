@@ -2,17 +2,17 @@
 <web-app	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 			xmlns="http://java.sun.com/xml/ns/j2ee"
  			xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
-  			xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-app_2_4.xsd"
-			version="2.4">
+  			xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-app_3_0.xsd"
+			version="3.0">
  	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:pmhtech-servlet.xml
+	
 			classpath:pmhtech-restful.xml
-			classpath:pmhtech-views.xml	
+			classpath:pmhtech-views.xml
 			classpath:pmhtech-data.xml
 			classpath:pmhtech-data-mybatis.xml
-						
+			classpath:pmhtech-transaction.xml		
 		</param-value>
 	</context-param>
 	

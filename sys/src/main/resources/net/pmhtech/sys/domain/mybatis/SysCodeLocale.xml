@@ -66,13 +66,13 @@
 	AND		CODE		= #{CODE}
 	</update>
 	
-	<select id="select" parameterType="paramMap" resultType="resultMap">
-	/*	SysCodeLocale.select	*/
+	<select id="selectSysCodeMap" parameterType="paramMap" resultType="resultMap">
+	/*	SysCodeLocale."selectSysCodeMap"	*/
 		SELECT	A.COMPANY
 				,A.PRE_CD
 				,B.LOCALE_CD
-				,A.CODE
-				,B.CODE_NM
+				,IF(C.REF2 >'', C.REF2,A.CODE) AS CODE
+				,IF(C.REF2 >'', C.REF3,B.CODE_NM) AS CODE_NM
 				,A.REF1
 				,A.REF2
 				,A.REF4
@@ -101,17 +101,23 @@
 							,A.CHANGE_DT
 							,A.CHANGE_IP
 					FROM	SYS_CODE_LOCALE A
-					WHERE	1=1
-					<if test="!(PRE_CD == ''	||	PRE_CD == null)">
-					AND		A.PRE_CD = #{PRE_CD}
-					</if>
-					AND		A.CODE!='0000000000'
-					
+					WHERE	A.LOCALE_CD='KOR'					
 				) B ON(B.COMPANY= A.COMPANY AND B.PRE_CD = A.PRE_CD AND B.CODE = A.CODE)
-		WHERE	1=1
-		<if test="!(PRE_CD == ''	||	PRE_CD == null)">
-		AND		A.PRE_CD = #{PRE_CD}
-		</if>
-		AND		A.CODE!='0000000000'
+				LEFT OUTER JOIN SYS_CODE_LOCALE C ON(C.PRE_CD='COM_000005' AND C.CODE='ALL_GROUP' AND C.REF1 = A.CODE)
+		ORDER BY A.PRE_CD,A.SORT
+	</select>
+	
+	<select id="selectLocaleComment" parameterType="paramMap" resultType="resultMap">
+	/*	SysCodeLocale.selectLocaleComment	*/
+		SELECT	PRE_CD,
+				LOCALE_CD,
+				REF1,
+				REF2,
+				REF3,
+				REF4,
+				REF5
+		FROM	SYS_CODE_LOCALE
+		WHERE	CODE	='0000000000'
+		ORDER BY PRE_CD
 	</select>
 </mapper> 

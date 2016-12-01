@@ -58,8 +58,8 @@ public class SysCodeGroupServiceImpl implements SysCodeGroupService{
 	}
 
 	@Override
-	public List<Map<String, ?>> select(Map<String, ?> paramMap) throws Exception {
-		return sysCodeGroupDAO.select(paramMap);
+	public List<Map<String, ?>> selectList(Map<String, ?> paramMap) throws Exception {
+		return sysCodeGroupDAO.selectList(paramMap);
 	}
 
 	

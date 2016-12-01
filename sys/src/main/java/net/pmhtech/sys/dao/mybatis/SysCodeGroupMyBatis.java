@@ -31,8 +31,8 @@ public class SysCodeGroupMyBatis  implements SysCodeGroupDAO{
 	}
 
 	@Override
-	public List<Map<String, ?>> select(Map<String, ?> paramMap) throws Exception { 
-		return sqlSession.selectList("SysCodeGroup.select",paramMap);
+	public List<Map<String, ?>> selectList(Map<String, ?> paramMap) throws Exception { 
+		return sqlSession.selectList("SysCodeGroup.selectList",paramMap);
 	}
 
 

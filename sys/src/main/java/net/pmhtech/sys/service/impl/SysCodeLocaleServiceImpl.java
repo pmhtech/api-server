@@ -26,7 +26,7 @@ public class SysCodeLocaleServiceImpl implements SysCodeLocaleService{
 	public Map<String,?> selectSysCodeMap(Map<String, ?> paramMap) throws Exception {
 		
 		
-		List<Map<String,?>> sysCodeList =sysCodeLocaleDAO.select(paramMap);
+		List<Map<String,?>> sysCodeList =sysCodeLocaleDAO.selectSysCodeMap(paramMap);
 		List<Map<String,?>> tempList = new ArrayList<Map<String,?>>(); 
 		Map<String,List<?>> sysCodeMap = new HashMap<String,List<?>>();
 		
@@ -53,6 +53,11 @@ public class SysCodeLocaleServiceImpl implements SysCodeLocaleService{
 			}
 		}
 		return sysCodeMap;
+	}
+
+	@Override
+	public List<Map<String, ?>> selectLocaleComment(Map<String, ?> paramMap) throws Exception {
+		return sysCodeLocaleDAO.selectLocaleComment(paramMap);
 	}
 
 	

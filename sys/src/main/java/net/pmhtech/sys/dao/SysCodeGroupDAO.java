@@ -13,6 +13,6 @@ public interface SysCodeGroupDAO {
 
 	int insert(SysCodeGroup sysCodeGroup) throws Exception;
 	int update(SysCodeGroup sysCodeGroup) throws Exception;
-	List<Map<String,?>> select(Map<String,?> paramMap) throws Exception;
+	List<Map<String,?>> selectList(Map<String,?> paramMap) throws Exception;
 	
 }

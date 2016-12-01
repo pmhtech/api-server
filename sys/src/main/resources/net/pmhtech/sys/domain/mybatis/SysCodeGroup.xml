@@ -61,8 +61,8 @@
 	WHERE	PRE_CD	= #{PRE_CD}
 	</update>
 	
-	<select id="select" parameterType="paramMap" resultType="resultMap">
-	/*	SysCodeGroup.select	*/
+	<select id="selectList" parameterType="paramMap" resultType="resultMap">
+	/*	SysCodeGroup.selectList	*/
 		SELECT	A.PRE_CD
 				,B.CODE_NM
 				,A.REF1_CONFIG

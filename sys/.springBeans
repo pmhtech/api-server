@@ -16,6 +16,7 @@
 		<config>src/main/resources/pmhtech-views.xml</config>
 		<config>src/main/resources/pmhtech-data.xml</config>
 		<config>src/main/resources/pmhtech-data-mybatis.xml</config>
+		<config>src/main/resources/pmhtech-transaction.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

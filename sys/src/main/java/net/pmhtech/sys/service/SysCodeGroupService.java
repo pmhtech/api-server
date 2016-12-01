@@ -14,6 +14,6 @@ public interface SysCodeGroupService {
 	public int createSysCodeGroup(SysCodeGroup sysCodeGroup, SysCode sysCodeVO, List<Map<String,?>> listSysCodeLocale) throws Exception;
 	public int modifySysCodeGroup(SysCodeGroup sysCodeGroup, List<Map<String,?>> listSysCodeLocale) throws Exception;
 	
-	public List<Map<String,?>> select(Map<String,?> paramMap) throws Exception;
+	public List<Map<String,?>> selectList(Map<String,?> paramMap) throws Exception;
 	
 }
