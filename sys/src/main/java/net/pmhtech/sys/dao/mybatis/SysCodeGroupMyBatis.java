@@ -3,9 +3,11 @@ package net.pmhtech.sys.dao.mybatis;
 import java.util.List;
 import java.util.Map;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import net.pmhtech.configure.SysMyBatisDAO;
+
 import net.pmhtech.sys.dao.SysCodeDAO;
 import net.pmhtech.sys.dao.SysCodeGroupDAO;
 import net.pmhtech.sys.domain.SysCode;
@@ -13,21 +15,24 @@ import net.pmhtech.sys.domain.SysCodeGroup;
 
 
 @Repository("sysCodeGroupDAO")
-public class SysCodeGroupMyBatis extends SysMyBatisDAO implements SysCodeGroupDAO{
+public class SysCodeGroupMyBatis  implements SysCodeGroupDAO{
 
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
 	@Override
 	public int insert(SysCodeGroup sysCode) throws Exception {
-		return this.getSqlSession().update("SysCodeGroup.insert",sysCode);
+		return sqlSession.update("SysCodeGroup.insert",sysCode);
 	}
 
 	@Override
 	public int update(SysCodeGroup sysCode) throws Exception {
-		return this.getSqlSession().update("SysCodeGroup.update",sysCode);
+		return sqlSession.update("SysCodeGroup.update",sysCode);
 	}
 
 	@Override
 	public List<Map<String, ?>> select(Map<String, ?> paramMap) throws Exception { 
-		return this.getSqlSession().selectList("SysCodeGroup.select",paramMap);
+		return sqlSession.selectList("SysCodeGroup.select",paramMap);
 	}
 
 

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponses;
 import net.pmhtech.sys.domain.SysCode;
 import net.pmhtech.sys.domain.SysCodeGroup;
 import net.pmhtech.sys.service.SysCodeGroupService;
@@ -54,7 +53,7 @@ public class SysCodeController {
         Map<String,Object> returnMap = new HashMap<String,Object>();
 		Map<String,Object > paramMap = new HashMap<String,Object>();
         List<Map<String,?>> sysCodeList = sysCodeGroupService.select(paramMap); 
-        
+        System.out.println(sysCodeGroupService);
         returnMap.put("sysCodeGroup", sysCodeList);
         return returnMap;
     }
@@ -68,6 +67,7 @@ public class SysCodeController {
 		Map<String,Object > paramMap = new HashMap<String,Object>();
 	
 		paramMap.put("PRE_CD", PRE_CD);
+
         List<Map<String,?>> sysCodeList = sysCodeService.select(paramMap); 
         
         returnMap.put("sysCode", sysCodeList);

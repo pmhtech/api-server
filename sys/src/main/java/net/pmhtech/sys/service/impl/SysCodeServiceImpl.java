@@ -6,12 +6,14 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.pmhtech.sys.dao.SysCodeDAO;
 import net.pmhtech.sys.domain.SysCode;
 import net.pmhtech.sys.service.SysCodeService;
 
 @Service("sysCodeService")
+@Transactional
 public class SysCodeServiceImpl implements SysCodeService{
 
 	@Resource(name = "sysCodeDAO")
