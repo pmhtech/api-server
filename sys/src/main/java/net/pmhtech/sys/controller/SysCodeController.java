@@ -52,9 +52,14 @@ public class SysCodeController {
     		HttpServletRequest request, HttpServletResponse response) throws Exception {
         Map<String,Object> returnMap = new HashMap<String,Object>();
 		Map<String,Object > paramMap = new HashMap<String,Object>();
+		try{
+			System.out.println(sysCodeGroupService);
         List<Map<String,?>> sysCodeGroups = sysCodeGroupService.selectList(paramMap); 
-        System.out.println(sysCodeGroupService);
+        
         returnMap.put("sysCodeGroups", sysCodeGroups);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
         return returnMap;
     }
    
@@ -130,16 +135,29 @@ public class SysCodeController {
     		@RequestParam("sysCodeGroup") String sysCodeGroup,
     		@RequestParam("sysCodeLocales") String sysCodeLocales
     		) throws Exception {
-        Map<String,?> sysCodeGroupMap = JsonConvertor.convertJsonToMap(sysCodeGroup);
-        
-        
-        SysCodeGroup sysCodeGroupVO = new SysCodeGroup();
-        
-        List<Map<String,?>> listSysCodeLocale = JsonConvertor.convertJsonToList(sysCodeLocales);
-		int result = sysCodeGroupService.modifySysCodeGroup(sysCodeGroupVO,listSysCodeLocale);
-		Map<String, String> datas = new HashMap<>();
-        datas.put("hello", "spring");
-        return ResponseEntity.ok(datas);
+		  Map<String,?> sysCodeGroupMap = JsonConvertor.convertJsonToMap(sysCodeGroup);
+	        
+	        
+	        SysCodeGroup sysCodeGroupVO = new SysCodeGroup();
+	        SysCode sysCodeVO = new SysCode();
+	        
+	        BeanUtils.copyProperties(sysCodeGroupVO, sysCodeGroupMap);
+	        BeanUtils.copyProperties(sysCodeVO, sysCodeGroupMap);
+	        
+	        try{
+	        
+	        List<Map<String,?>> listSysCodeLocale = JsonConvertor.convertJsonToList(sysCodeLocales);
+			System.out.println(sysCodeGroupService);
+			
+	        int result = sysCodeGroupService.modifySysCodeGroup(sysCodeGroupVO,sysCodeVO,listSysCodeLocale);
+	        
+	        }catch(Exception e ){
+	        	e.printStackTrace();
+	        }
+	        
+	        Map<String, String> datas = new HashMap<>();
+	        datas.put("hello", "spring");
+	        return ResponseEntity.ok(datas);
     }
 	
 	@ApiOperation(value = "공통코드 추가", notes = "공통코드 추가")

@@ -51,9 +51,17 @@ public class SysCodeGroupServiceImpl implements SysCodeGroupService{
 	}
 
 	@Override
-	public int modifySysCodeGroup(SysCodeGroup sysCodeGroup, List<Map<String, ?>> listSysCodeLocale) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int modifySysCodeGroup(SysCodeGroup sysCodeGroup, SysCode sysCodeVO,List<Map<String, ?>> listSysCodeLocale) throws Exception {
+		sysCodeGroupDAO.update(sysCodeGroup);
+		sysCodeDAO.update(sysCodeVO);
+		
+		int count = 0;
+		for(Map<String,?> hashMap : listSysCodeLocale){
+			SysCodeLocale tempVO = new SysCodeLocale();
+			BeanUtils.copyProperties(tempVO, hashMap);
+			count+=sysCodeLocaleDAO.update(tempVO);
+		}
+		return count;
 	}
 
 	@Override
@@ -61,7 +69,7 @@ public class SysCodeGroupServiceImpl implements SysCodeGroupService{
 		
 		List<Map<String, ?>> sysCodeGroups =  sysCodeGroupDAO.selectList(paramMap);
 		List<Map<String, ?>> localeList =  sysCodeGroupDAO.selectLocaleList(paramMap);
-		
+	
 		for(Map hashMap : sysCodeGroups){
 			String PRE_CD = (String) hashMap.get("PRE_CD");
 			List<Map<String, ?>> tempList = CollectionUtils.getMatchedKey(localeList, "PRE_CD", PRE_CD);
