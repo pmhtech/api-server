@@ -53,10 +53,8 @@ public class SysCodeController {
         Map<String,Object> returnMap = new HashMap<String,Object>();
 		Map<String,Object > paramMap = new HashMap<String,Object>();
         List<Map<String,?>> sysCodeGroups = sysCodeGroupService.selectList(paramMap); 
-        List<Map<String,?>> sysCodeLocales = sysCodeLocaleService.selectLocaleComment(paramMap);
         System.out.println(sysCodeGroupService);
         returnMap.put("sysCodeGroups", sysCodeGroups);
-        returnMap.put("sysCodeLocales", sysCodeLocales);
         return returnMap;
     }
    
@@ -70,7 +68,7 @@ public class SysCodeController {
 	
 		paramMap.put("PRE_CD", PRE_CD);
 
-        List<Map<String,?>> sysCodeList = sysCodeService.select(paramMap);
+        List<Map<String,?>> sysCodeList = sysCodeService.selectList(paramMap);
         returnMap.put("sysCodes", sysCodeList);
         return returnMap;
     }

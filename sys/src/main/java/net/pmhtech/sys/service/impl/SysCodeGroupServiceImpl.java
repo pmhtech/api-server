@@ -21,8 +21,7 @@ import net.pmhtech.sys.domain.SysCode;
 import net.pmhtech.sys.domain.SysCodeGroup;
 import net.pmhtech.sys.domain.SysCodeLocale;
 import net.pmhtech.sys.service.SysCodeGroupService;
-
-import net.pmhtech.user.exception.UserNotFoundException;
+import net.pmhtech.util.CollectionUtils;
 
 @Service("sysCodeGroupService")
 public class SysCodeGroupServiceImpl implements SysCodeGroupService{
@@ -59,7 +58,16 @@ public class SysCodeGroupServiceImpl implements SysCodeGroupService{
 
 	@Override
 	public List<Map<String, ?>> selectList(Map<String, ?> paramMap) throws Exception {
-		return sysCodeGroupDAO.selectList(paramMap);
+		
+		List<Map<String, ?>> sysCodeGroups =  sysCodeGroupDAO.selectList(paramMap);
+		List<Map<String, ?>> localeList =  sysCodeGroupDAO.selectLocaleList(paramMap);
+		
+		for(Map hashMap : sysCodeGroups){
+			String PRE_CD = (String) hashMap.get("PRE_CD");
+			List<Map<String, ?>> tempList = CollectionUtils.getMatchedKey(localeList, "PRE_CD", PRE_CD);
+			hashMap.put("LANGUAGE", tempList);
+		}
+		return sysCodeGroups;
 	}
 
 	

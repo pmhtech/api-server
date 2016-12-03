@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import net.pmhtech.sys.dao.SysCodeDAO;
 import net.pmhtech.sys.domain.SysCode;
 import net.pmhtech.sys.service.SysCodeService;
+import net.pmhtech.util.CollectionUtils;
 
 @Service("sysCodeService")
 @Transactional
@@ -32,7 +33,18 @@ public class SysCodeServiceImpl implements SysCodeService{
 	}
 	
 	@Override
-	public List<Map<String, ?>> select(Map<String, ?> paramMap) throws Exception {
-		return sysCodeDAO.select(paramMap);
+	public List<Map<String, ?>> selectList(Map<String, ?> paramMap) throws Exception {
+		
+		List<Map<String, ?>> sysCodes =  sysCodeDAO.selectList(paramMap);
+		List<Map<String, ?>> localeList =  sysCodeDAO.selectLocaleList(paramMap);
+		
+		for(Map hashMap : sysCodes){
+			String CODE = (String) hashMap.get("CODE");
+			List<Map<String, ?>> tempList = CollectionUtils.getMatchedKey(localeList, "CODE", CODE);
+			hashMap.put("LANGUAGE", tempList);
+		}
+	
+		
+		return sysCodes;
 	}
 }

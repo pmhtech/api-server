@@ -14,6 +14,6 @@ public interface SysCodeService {
 	public int createSysCode(SysCode sysCode, List<Map<String,?>> listSysCodeLocale) throws Exception;
 	public int modifySysCode(SysCode sysCode, List<Map<String,?>> listSysCodeLocale) throws Exception;
 	
-	public List<Map<String,?>> select(Map<String,?> paramMap) throws Exception;
+	public List<Map<String,?>> selectList(Map<String,?> paramMap) throws Exception;
 	
 }

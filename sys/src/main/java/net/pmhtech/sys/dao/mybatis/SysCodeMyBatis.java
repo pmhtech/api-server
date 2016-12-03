@@ -29,7 +29,11 @@ public class SysCodeMyBatis implements SysCodeDAO{
 	}
 
 	@Override
-	public List<Map<String, ?>> select(Map<String, ?> paramMap) throws Exception { 
-		return sqlSession.selectList("SysCode.select",paramMap);
+	public List<Map<String, ?>> selectList(Map<String, ?> paramMap) throws Exception { 
+		return sqlSession.selectList("SysCode.selectList",paramMap);
+	}
+	@Override
+	public List<Map<String, ?>> selectLocaleList(Map<String, ?> paramMap) throws Exception { 
+		return sqlSession.selectList("SysCode.selectLocaleList",paramMap);
 	}
 }

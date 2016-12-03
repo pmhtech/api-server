@@ -107,17 +107,32 @@
 		ORDER BY A.PRE_CD,A.SORT
 	</select>
 	
-	<select id="selectLocaleComment" parameterType="paramMap" resultType="resultMap">
-	/*	SysCodeLocale.selectLocaleComment	*/
-		SELECT	PRE_CD,
-				LOCALE_CD,
-				REF1,
-				REF2,
-				REF3,
-				REF4,
-				REF5
-		FROM	SYS_CODE_LOCALE
-		WHERE	CODE	='0000000000'
-		ORDER BY PRE_CD
+	<select id="selectLocaleList" parameterType="paramMap" resultType="resultMap">
+	/*	SysCodeGroup.selectLocaleList	*/
+		SELECT A.COMPANY,
+				A.PRE_CD,
+				B.LOCALE_CD,
+				A.CODE,
+				B.CODE_NM,
+				A.REF1,
+				A.REF2,
+				A.REF3,
+				A.REF4,
+				A.REF5,
+				A.SORT,
+				B.MEMO,
+				A.CREATER,
+				A.CREATE_DT,
+				A.CHANGER,
+				A.CHANGE_DT,
+				A.CHANGE_IP 
+		FROM	SYS_CODE A,
+				SYS_CODE_LOCALE B
+		WHERE	A.COMPANY	= B.COMPANY
+		AND		A.PRE_CD	= B.PRE_CD
+		AND		A.CODE		= B.CODE
+		AND		A.PRE_CD = #{PRE_CD}
+		AND		A.CODE!='0000000000'
+		ORDER BY A.PRE_CD , A.SORT
 	</select>
 </mapper> 

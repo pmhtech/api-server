@@ -3,18 +3,14 @@ package net.pmhtech.sys.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import net.pmhtech.sys.dao.SysCodeDAO;
 import net.pmhtech.sys.dao.SysCodeLocaleDAO;
-import net.pmhtech.sys.domain.SysCode;
 import net.pmhtech.sys.service.SysCodeLocaleService;
-import net.pmhtech.sys.service.SysCodeService;
 
 @Service("sysCodeLocaleService")
 public class SysCodeLocaleServiceImpl implements SysCodeLocaleService{
@@ -53,12 +49,5 @@ public class SysCodeLocaleServiceImpl implements SysCodeLocaleService{
 			}
 		}
 		return sysCodeMap;
-	}
-
-	@Override
-	public List<Map<String, ?>> selectLocaleComment(Map<String, ?> paramMap) throws Exception {
-		return sysCodeLocaleDAO.selectLocaleComment(paramMap);
-	}
-
-	
+	}	
 }

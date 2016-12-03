@@ -35,5 +35,11 @@ public class SysCodeGroupMyBatis  implements SysCodeGroupDAO{
 		return sqlSession.selectList("SysCodeGroup.selectList",paramMap);
 	}
 
+	@Override
+	public List<Map<String, ?>> selectLocaleList(Map<String, ?> paramMap) throws Exception {
+		return sqlSession.selectList("SysCodeGroup.selectLocaleList",paramMap);
+	}
+	
+
 
 }

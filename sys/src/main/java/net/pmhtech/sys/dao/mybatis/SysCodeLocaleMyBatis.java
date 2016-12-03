@@ -36,7 +36,7 @@ public class SysCodeLocaleMyBatis  implements SysCodeLocaleDAO{
 	}
 
 	@Override
-	public List<Map<String, ?>> selectLocaleComment(Map<String, ?> paramMap) throws Exception {
-		return sqlSession.selectList("SysCodeLocale.selectLocaleComment",paramMap);
+	public List<Map<String, ?>> selectLocaleList(Map<String, ?> paramMap) throws Exception {
+		return sqlSession.selectList("SysCodeLocale.selectLocaleList",paramMap);
 	}
 }
