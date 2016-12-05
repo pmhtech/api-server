@@ -52,14 +52,12 @@ public class SysCodeController {
     		HttpServletRequest request, HttpServletResponse response) throws Exception {
         Map<String,Object> returnMap = new HashMap<String,Object>();
 		Map<String,Object > paramMap = new HashMap<String,Object>();
-		try{
-			System.out.println(sysCodeGroupService);
+
+		System.out.println(sysCodeGroupService);
         List<Map<String,?>> sysCodeGroups = sysCodeGroupService.selectList(paramMap); 
         
         returnMap.put("sysCodeGroups", sysCodeGroups);
-		}catch(Exception ex){
-			ex.printStackTrace();
-		}
+
         return returnMap;
     }
    
@@ -112,16 +110,12 @@ public class SysCodeController {
         BeanUtils.copyProperties(sysCodeGroupVO, sysCodeGroupMap);
         BeanUtils.copyProperties(sysCodeVO, sysCodeGroupMap);
         
-        try{
+        
         
         List<Map<String,?>> listSysCodeLocale = JsonConvertor.convertJsonToList(sysCodeLocales);
 		System.out.println(sysCodeGroupService);
 		
         int result = sysCodeGroupService.createSysCodeGroup(sysCodeGroupVO,sysCodeVO,listSysCodeLocale);
-        
-        }catch(Exception e ){
-        	e.printStackTrace();
-        }
         
         Map<String, String> datas = new HashMap<>();
         datas.put("hello", "spring");
@@ -144,16 +138,13 @@ public class SysCodeController {
 	        BeanUtils.copyProperties(sysCodeGroupVO, sysCodeGroupMap);
 	        BeanUtils.copyProperties(sysCodeVO, sysCodeGroupMap);
 	        
-	        try{
+	        
 	        
 	        List<Map<String,?>> listSysCodeLocale = JsonConvertor.convertJsonToList(sysCodeLocales);
 			System.out.println(sysCodeGroupService);
 			
 	        int result = sysCodeGroupService.modifySysCodeGroup(sysCodeGroupVO,sysCodeVO,listSysCodeLocale);
 	        
-	        }catch(Exception e ){
-	        	e.printStackTrace();
-	        }
 	        
 	        Map<String, String> datas = new HashMap<>();
 	        datas.put("hello", "spring");
