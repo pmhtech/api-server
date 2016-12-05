@@ -13,7 +13,7 @@
 	
 	<!-- Transaction Manager -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSourceSpied" />
+        <property name="dataSource" ref="dataSource" />
     </bean>
     	
 	<!-- 
@@ -49,15 +49,14 @@
 			<!--  여기에 추가로 rollBack 이 되지 말아야할 Exception을 추가로 기입하면 된다.	-->
 			<!--  <tx:method name="*" rollback-for="Exception" propagation="NESTED"/>-->
 			
-			<tx:method name="create*" propagation="REQUIRED" 	rollback-for="Exception"/>
-            <tx:method name="modify*" propagation="REQUIRED" 	rollback-for="Exception"/>
-            <tx:method name="remove*" propagation="REQUIRED" 	rollback-for="Exception"/>
+			
+            <tx:method name="*" propagation="REQUIRED" 	rollback-for="Exception"/>
 		</tx:attributes>
 	</tx:advice>
 	
 	
 	
-	<aop:config>
+	<aop:config proxy-target-class="true" >
 		<!-- 
 			3.	Point-Cut(포인트컷)  언제 이것들을 설정하는지에 대한 설정이다.
 				RunTime 시에 각 @Service 에 시작기전 AOP 설정이 먼저 시작된다. 아래는 포인트컷 설정(언제 AOP가 시작되는지에 대한 설정)
@@ -77,11 +76,5 @@
 		 -->
 		<aop:advisor advice-ref="txAdvice"	pointcut-ref="requiredTx" />
 	</aop:config>
-	
-	<!--
-		Spring Core에 있는 Aop Proxying 을 이용해서 설정했다.
-		그 밖에 AspectJ를 이용해서 설정이 가능하다.  
-	 -->
-	<tx:annotation-driven proxy-target-class="true"/>
 
 </beans>
