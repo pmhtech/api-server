@@ -80,8 +80,8 @@
 				,B.CHANGER
 				,B.CHANGE_DT
 				,B.CHANGE_IP
-		FROM	SYS_CODE A
-				LEFT OUTER JOIN(
+		FROM	SYS_CODE A,
+				(
 					SELECT	A.COMPANY
 							,A.PRE_CD
 							,A.CODE
@@ -99,11 +99,19 @@
 							,A.CHANGE_IP
 					FROM	SYS_CODE_LOCALE A
 					WHERE	A.PRE_CD = #{PRE_CD}
+					AND		A.LOCALE_CD IN(
+									SELECT	REF1 FROM SYS_CODE
+									WHERE	PRE_CD='COM_000003' 
+									AND		CODE ='DEFAULT'
+					)
 					AND		A.CODE!='0000000000'
 					
-				) B ON(B.COMPANY= A.COMPANY AND B.PRE_CD = A.PRE_CD AND B.CODE = A.CODE)
-		WHERE	A.PRE_CD = #{PRE_CD}
-		AND		A.CODE!='0000000000'
+				) B
+		WHERE	A.COMPANY	= B.COMPANY
+		AND		A.PRE_CD	= B.PRE_CD
+		AND		A.CODE		= B.CODE
+		AND		A.PRE_CD 	= #{PRE_CD}
+		ORDER BY	A.PRE_CD ,A.SORT
 	</select>
 	
 	<select id="selectLocaleList" parameterType="paramMap" resultType="resultMap">
