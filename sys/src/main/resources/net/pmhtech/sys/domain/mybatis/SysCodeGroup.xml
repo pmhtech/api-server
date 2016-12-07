@@ -84,7 +84,7 @@
 					WHERE CODE ='0000000000'
 					AND LOCALE_CD IN(
 									SELECT	REF1 FROM SYS_CODE
-									WHERE	PRE_CD='COM_000003' 
+									WHERE	PRE_CD='COM_000002' 
 									AND		CODE ='DEFAULT'
 					)	
 				)B ON(B.PRE_CD = A.PRE_CD)

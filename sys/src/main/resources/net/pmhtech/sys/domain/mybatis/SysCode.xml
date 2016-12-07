@@ -101,7 +101,7 @@
 					WHERE	A.PRE_CD = #{PRE_CD}
 					AND		A.LOCALE_CD IN(
 									SELECT	REF1 FROM SYS_CODE
-									WHERE	PRE_CD='COM_000003' 
+									WHERE	PRE_CD='COM_000002' 
 									AND		CODE ='DEFAULT'
 					)
 					AND		A.CODE!='0000000000'
