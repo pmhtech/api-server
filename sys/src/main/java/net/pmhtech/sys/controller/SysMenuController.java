@@ -17,7 +17,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import net.pmhtech.sys.service.SysMenuService;
+import net.pmhtech.sys.menu.service.SysMenuService;
 import net.pmhtech.util.JsonConvertor;
 
 @Api(value = "SysMenuController", description = "SysMenu", produces = "application/json")

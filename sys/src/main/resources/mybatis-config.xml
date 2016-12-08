@@ -10,10 +10,12 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias alias="sysCode"			type="net.pmhtech.sys.domain.SysCode"/>
-		<typeAlias alias="sysCodeGroup"		type="net.pmhtech.sys.domain.SysCodeGroup"/>
-		<typeAlias alias="sysCodeLocale"	type="net.pmhtech.sys.domain.SysCodeLocale"/>
-		<typeAlias alias="sysMenu"			type="net.pmhtech.sys.domain.SysMenu"/>
+		<typeAlias alias="sysCode"			type="net.pmhtech.sys.code.domain.SysCode"/>
+		<typeAlias alias="sysCodeGroup"		type="net.pmhtech.sys.code.domain.SysCodeGroup"/>
+		<typeAlias alias="sysCodeLocale"	type="net.pmhtech.sys.code.domain.SysCodeLocale"/>
+		
+		<typeAlias alias="sysMenu"			type="net.pmhtech.sys.menu.domain.SysMenu"/>
+		
 		<typeAlias alias="userMst"			type="net.pmhtech.user.domain.UserMst"/>
 		
 		<typeAlias alias="resultMap"		type="java.util.HashMap"/>
@@ -21,11 +23,14 @@
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="net/pmhtech/sys/domain/mybatis/SysCode.xml"/>
-		<mapper resource="net/pmhtech/sys/domain/mybatis/SysCodeGroup.xml"/>
-		<mapper resource="net/pmhtech/sys/domain/mybatis/SysCodeLocale.xml"/>
+		<mapper resource="net/pmhtech/sys/code/domain/mybatis/SysCode.xml"/>
+		<mapper resource="net/pmhtech/sys/code/domain/mybatis/SysCodeGroup.xml"/>
+		<mapper resource="net/pmhtech/sys/code/domain/mybatis/SysCodeLocale.xml"/>
+		
+		<mapper resource="net/pmhtech/sys/menu/domain/mybatis/SysMenu.xml"/>
+		
 		<mapper resource="net/pmhtech/user/domain/mybatis/UserMst.xml"/>
-		<mapper resource="net/pmhtech/sys/domain/mybatis/SysMenu.xml"/>
+		
 		
 	</mappers> 
 </configuration> 

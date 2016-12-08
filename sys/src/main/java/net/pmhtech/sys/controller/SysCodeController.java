@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import net.pmhtech.sys.domain.SysCode;
-import net.pmhtech.sys.domain.SysCodeGroup;
-import net.pmhtech.sys.service.SysCodeGroupService;
-import net.pmhtech.sys.service.SysCodeLocaleService;
-import net.pmhtech.sys.service.SysCodeService;
+import net.pmhtech.sys.code.domain.SysCode;
+import net.pmhtech.sys.code.domain.SysCodeGroup;
+import net.pmhtech.sys.code.service.SysCodeGroupService;
+import net.pmhtech.sys.code.service.SysCodeLocaleService;
+import net.pmhtech.sys.code.service.SysCodeService;
 import net.pmhtech.util.JsonConvertor;
 
 
