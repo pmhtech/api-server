@@ -74,6 +74,8 @@
 				,A.REF2
 				,A.REF4
 				,A.REF5
+				,A.SORT
+				,A.USE_YN
 				,B.MEMO
 				,B.CREATER
 				,B.CREATE_DT
@@ -127,6 +129,7 @@
 				A.REF4,
 				A.REF5,
 				A.SORT,
+				A.USE_YN,
 				B.MEMO,
 				A.CREATER,
 				A.CREATE_DT,

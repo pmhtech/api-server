@@ -119,6 +119,7 @@
 				A.REF3,
 				A.REF4,
 				A.REF5,
+				A.USE_YN,
 				A.SORT,
 				B.MEMO,
 				A.CREATER,

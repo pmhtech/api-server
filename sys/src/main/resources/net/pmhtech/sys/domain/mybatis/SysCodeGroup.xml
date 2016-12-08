@@ -103,6 +103,8 @@
 				B.REF4,
 				B.REF5,
 				B.MEMO,
+				A.SORT,
+				A.USE_YN,
 				A.CREATER,
 				A.CREATE_DT,
 				A.CHANGER,
