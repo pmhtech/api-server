@@ -3,7 +3,7 @@
 
 <mapper namespace="SysFile">
 
-	<insert id="insert" parameterType="sysFileVO">
+	<insert id="insert" parameterType="sysFile">
 	/*	SysFile.insert	*/
 		INSERT INTO SYS_FILE(
 			COMPANY
@@ -45,7 +45,7 @@
 			, #{CREATE_IP}
 		FROM DUAL
 	</insert>
-	<update id="updateTempFile" parameterType="sysFileVO">
+	<update id="updateTempFile" parameterType="sysFile">
 		/*	SysFile.updateTempFile	*/
 		UPDATE	SYS_FILE
 		SET		,COMPANY	= #{COMPANY}
@@ -72,7 +72,7 @@
 		AND		TABLE_NAME	= #{TABLE_NAME}
 	</update>
 	
-	<update id="update" parameterType="sysFileVO">
+	<update id="update" parameterType="sysFile">
 		/*	SysFile.update	*/
 		UPDATE	SYS_FILE
 		SET		,COMPANY	= #{COMPANY}

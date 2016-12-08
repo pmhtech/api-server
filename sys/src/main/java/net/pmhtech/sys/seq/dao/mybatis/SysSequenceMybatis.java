@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import net.pmhtech.sys.seq.dao.SysSequenceDAO;
 import net.pmhtech.sys.seq.domain.SysSequence;
 
-@Repository
+@Repository("sysSequenceDAO")
 public class SysSequenceMybatis implements SysSequenceDAO {
 	
 	@Autowired

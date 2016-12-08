@@ -14,11 +14,6 @@ public class SysCode implements Serializable{
 	private String PRE_CD;	//기준코드	Primary Key
 	private String CODE;	//코드	Primary Key
 	private String CODE_NM;	//코드명	
-	private String REF1;	//참조1	
-	private String REF2;	//참조2	
-	private String REF3;	//참조3	
-	private String REF4;	//참조4	
-	private String REF5;	//참조5	
 	private int SORT;		//정렬순서	
 	private String USE_YN;	//사용유무	
 	private String MEMO;	//메모	
@@ -53,36 +48,6 @@ public class SysCode implements Serializable{
 	}
 	public void setCODE_NM(String cODE_NM) {
 		CODE_NM = cODE_NM;
-	}
-	public String getREF1() {
-		return REF1;
-	}
-	public void setREF1(String rEF1) {
-		REF1 = rEF1;
-	}
-	public String getREF2() {
-		return REF2;
-	}
-	public void setREF2(String rEF2) {
-		REF2 = rEF2;
-	}
-	public String getREF3() {
-		return REF3;
-	}
-	public void setREF3(String rEF3) {
-		REF3 = rEF3;
-	}
-	public String getREF4() {
-		return REF4;
-	}
-	public void setREF4(String rEF4) {
-		REF4 = rEF4;
-	}
-	public String getREF5() {
-		return REF5;
-	}
-	public void setREF5(String rEF5) {
-		REF5 = rEF5;
 	}
 	public int getSORT() {
 		return SORT;

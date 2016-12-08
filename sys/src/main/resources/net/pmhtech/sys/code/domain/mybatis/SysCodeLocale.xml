@@ -73,16 +73,11 @@
 				,B.LOCALE_CD
 				,IF(C.REF2 >'', C.REF2,A.CODE) AS CODE
 				,IF(C.REF2 >'', C.REF3,B.CODE_NM) AS CODE_NM
-				,A.REF1
-				,A.REF2
-				,A.REF4
-				,A.REF5
-				,B.MEMO
-				,B.CREATER
-				,B.CREATE_DT
-				,B.CHANGER
-				,B.CHANGE_DT
-				,B.CHANGE_IP
+				,B.REF1
+				,B.REF2
+				,B.REF2
+				,B.REF4
+				,B.REF5
 		FROM	SYS_CODE A
 				LEFT OUTER JOIN(
 					SELECT	A.COMPANY
@@ -92,14 +87,9 @@
 							,A.CODE_NM
 							,A.REF1
 							,A.REF2
+							,A.REF3
 							,A.REF4
 							,A.REF5
-							,A.MEMO
-							,A.CREATER
-							,A.CREATE_DT
-							,A.CHANGER
-							,A.CHANGE_DT
-							,A.CHANGE_IP
 					FROM	SYS_CODE_LOCALE A
 					WHERE	A.LOCALE_CD='KOR'					
 				) B ON(B.COMPANY= A.COMPANY AND B.PRE_CD = A.PRE_CD AND B.CODE = A.CODE)
@@ -114,11 +104,11 @@
 				B.LOCALE_CD,
 				A.CODE,
 				B.CODE_NM,
-				A.REF1,
-				A.REF2,
-				A.REF3,
-				A.REF4,
-				A.REF5,
+				B.REF1,
+				B.REF2,
+				B.REF3,
+				B.REF4,
+				B.REF5,
 				A.USE_YN,
 				A.SORT,
 				B.MEMO,

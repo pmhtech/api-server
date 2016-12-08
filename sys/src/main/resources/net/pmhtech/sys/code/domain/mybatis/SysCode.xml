@@ -10,11 +10,6 @@
 		COMPANY
 		, PRE_CD
 		, CODE
-		, REF1
-		, REF2
-		, REF3
-		, REF4
-		, REF5
 		, SORT
 		, USE_YN
 		, CREATER
@@ -26,11 +21,6 @@
 		#{COMPANY}
 		,#{PRE_CD}
 		,#{CODE}
-		,#{REF1}
-		,#{REF2}
-		,#{REF3}
-		,#{REF4}
-		,#{REF5}
 		,#{SORT}
 		,#{USE_YN}
 		,#{CREATER}
@@ -46,12 +36,7 @@
 	<update id="update" parameterType="sysCode">
 	/*	SysCode.update	*/
 	UPDATE  SYS_CODE
-	SET		REF1	= #{REF1}
-			, REF2	= #{REF2}
-			, REF3	= #{REF3}
-			, REF4	= #{REF4}
-			, REF5	= #{REF5}
-			, SORT	= #{SORT}
+	SET		SORT	= #{SORT}
 			, USE_YN	= #{USE_YN}
 			, CREATER	= #{CREATER}
 			, CREATE_DT	= #{CREATE_DT}
@@ -70,10 +55,10 @@
 				,B.LOCALE_CD
 				,A.CODE
 				,B.CODE_NM
-				,A.REF1
-				,A.REF2
-				,A.REF4
-				,A.REF5
+				,B.REF1
+				,B.REF2
+				,B.REF4
+				,B.REF5
 				,A.SORT
 				,A.USE_YN
 				,B.MEMO
@@ -102,7 +87,7 @@
 					FROM	SYS_CODE_LOCALE A
 					WHERE	A.PRE_CD = #{PRE_CD}
 					AND		A.LOCALE_CD IN(
-									SELECT	REF1 FROM SYS_CODE
+									SELECT	MAX(REF1) FROM SYS_CODE_LOCALE
 									WHERE	PRE_CD='COM_000002' 
 									AND		CODE ='DEFAULT'
 					)
@@ -123,11 +108,11 @@
 				B.LOCALE_CD,
 				A.CODE,
 				B.CODE_NM,
-				A.REF1,
-				A.REF2,
-				A.REF3,
-				A.REF4,
-				A.REF5,
+				B.REF1,
+				B.REF2,
+				B.REF3,
+				B.REF4,
+				B.REF5,
 				A.SORT,
 				A.USE_YN,
 				B.MEMO,

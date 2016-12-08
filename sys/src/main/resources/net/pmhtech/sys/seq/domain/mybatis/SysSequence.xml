@@ -3,7 +3,7 @@
 
 <mapper namespace="SysSequence">
 
-	<insert id="insert" parameterType="sysSequenceVO">
+	<insert id="insert" parameterType="sysSequence">
 	/*	SysSequence.insert	*/
 	
 	INSERT INTO SYS_SEQUENCE(

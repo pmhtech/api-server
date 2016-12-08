@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import net.pmhtech.sys.file.dao.SysFileDAO;
 import net.pmhtech.sys.file.domain.SysFile;
 
-@Repository
+@Repository("sysFileDAO")
 public class SysFileMyBatis implements SysFileDAO {
 
 	@Autowired

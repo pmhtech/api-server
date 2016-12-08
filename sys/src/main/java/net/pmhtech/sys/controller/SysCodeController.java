@@ -76,24 +76,6 @@ public class SysCodeController {
         return returnMap;
     }
 	
-	@ApiOperation(value = "Locale별코드 상세조회", notes = "Locale별 코드리스트 조회")
-	@RequestMapping(value="/{PRE_CD}/{CODE}",method = RequestMethod.GET)
-    public @ResponseBody Map<String,?> selectSysCode(HttpServletRequest request, HttpServletResponse response,
-    		@ApiParam(value="코드그룹", name="PRE_CD", required=true) @PathVariable("PRE_CD") String PRE_CD,
-    		@ApiParam(value="코드", name="CODE", required=true) @PathVariable("CODE") String CODE
-    		) throws Exception {
-		Map<String,Object> returnMap = new HashMap<String,Object>();
-		Map<String,Object > paramMap = new HashMap<String,Object>();
-	
-		paramMap.put("PRE_CD", PRE_CD);
-		paramMap.put("CODE", CODE);
-
-       // List<Map<String,?>> sysCodeList = sysCodeLocaleService.select(paramMap);
-        
-      //  returnMap.put("sysCode", sysCodeList);
-        return returnMap;
-    }
-	
 	@ApiOperation(value = "공통코드그룹 추가", notes = "공통코드그룹 추가")
 	@RequestMapping(value="/{PRE_CD}",method = RequestMethod.POST)
     public ResponseEntity<?> createSysCodeGroup(HttpServletRequest request, HttpServletResponse response,
@@ -153,23 +135,31 @@ public class SysCodeController {
 	
 	@ApiOperation(value = "공통코드 추가", notes = "공통코드 추가")
 	@RequestMapping(value="/{PRE_CD}/{CODE}",method = RequestMethod.POST)
-    public ResponseEntity<?> createSysCode(HttpServletRequest request, HttpServletResponse response,
-    		@ApiParam(value="코드그룹", name="PRE_CD", required=true) @PathVariable("PRE_CD") String PRE_CD,
-    		@ApiParam(value="코드", name="CODE", required=true) @PathVariable("CODE") String CODE
-    		) throws Exception {
-        Map<String, String> datas = new HashMap<>();
-        datas.put("hello", "spring");
-        return ResponseEntity.ok(datas);
+	@ResponseBody
+    public Map<String,?> createSysCode(HttpServletRequest request, HttpServletResponse response,
+    		@ApiParam(value="코드그룹", name="PRE_CD", required=true)	@PathVariable("PRE_CD") String PRE_CD,
+    		@ApiParam(value="코드", name="CODE", required=true)		@PathVariable("CODE") String CODE,
+    		@RequestParam("sysCodeLocales") String sysCodeLocales) throws Exception {
+        
+		Map<String,Object> returnMap = new HashMap<String,Object>();
+		List<Map<String,?>> listSysCodeLocale = JsonConvertor.convertJsonToList(sysCodeLocales);
+		sysCodeService.createSysCode(listSysCodeLocale);
+		
+      
+        return returnMap;
     }
 	
 	@ApiOperation(value = "공통코드 수정", notes = "공통코드 수정 ")
 	@RequestMapping(value="/{PRE_CD}/{CODE}",method = RequestMethod.PUT)
-    public ResponseEntity<?> modifySysCode(HttpServletRequest request, HttpServletResponse response,
-    		@ApiParam(value="코드그룹", name="PRE_CD", required=true) @PathVariable("PRE_CD") String PRE_CD,
-    		@ApiParam(value="코드", name="CODE", required=true) @PathVariable("CODE") String CODE
-    		) throws Exception {
-        Map<String, String> datas = new HashMap<>();
-        datas.put("hello", "spring");
-        return ResponseEntity.ok(datas);
+	@ResponseBody
+    public Map<String,?> modifySysCode(HttpServletRequest request, HttpServletResponse response,
+    		@ApiParam(value="코드그룹", name="PRE_CD", required=true)	@PathVariable("PRE_CD") String PRE_CD,
+    		@ApiParam(value="코드", name="CODE", required=true)		@PathVariable("CODE") String CODE,
+    		@RequestParam("sysCodeLocales") String sysCodeLocales) throws Exception {
+		Map<String,Object> returnMap = new HashMap<String,Object>();
+		List<Map<String,?>> listSysCodeLocale = JsonConvertor.convertJsonToList(sysCodeLocales);
+		sysCodeService.modifySysCode(listSysCodeLocale);
+		
+       return returnMap;
     }
 }
