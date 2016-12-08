@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysFile">
+
+	<insert id="insert" parameterType="sysFileVO">
+	/*	SysFile.insert	*/
+		INSERT INTO SYS_FILE(
+			COMPANY
+			,TABLE_NAME
+			,SEQ
+			,FILE_ID1
+			,FILE_ID2
+			,FILE_ID3
+			,FILE_ID4
+			,FILE_ID5
+			,TEMP_FILE_ID
+			,FILE_NAME
+			,FILE_ORI_NAME
+			,FILE_PATH
+			,FILE_SIZE
+			,CREATER
+			,CREATE_DT
+			,CHANGE_DT
+			,CREATE_IP
+		)SELECT
+			 #{COMPANY}
+			, #{TABLE_NAME}
+			,(	SELECT  IFNULL(MAX(SEQ),0)+1
+				FROM	 SYS_FILE
+			)
+			, #{FILE_ID1}
+			, #{FILE_ID2}
+			, #{FILE_ID3}
+			, #{FILE_ID4}
+			, #{FILE_ID5}
+			, #{TEMP_FILE_ID}
+			, #{FILE_NAME}
+			, #{FILE_ORI_NAME}
+			, #{FILE_PATH}
+			, #{FILE_SIZE}
+			, #{CREATER}
+			, SYSDATE()
+			, SYSDATE()
+			, #{CREATE_IP}
+		FROM DUAL
+	</insert>
+	<update id="updateTempFile" parameterType="sysFileVO">
+		/*	SysFile.updateTempFile	*/
+		UPDATE	SYS_FILE
+		SET		,COMPANY	= #{COMPANY}
+				,TABLE_NAME	= #{TABLE_NAME}
+		<if test="!( FILE_ID1 == ''	||	FILE_ID1 == null)">
+				,FILE_ID1	= #{FILE_ID1}
+		</if>
+		<if test="!( FILE_ID2 == ''	||	FILE_ID2 == null)">
+				,FILE_ID2	= #{FILE_ID2}
+		</if>
+		<if test="!( FILE_ID3 == ''	||	FILE_ID2 == null)">
+				,FILE_ID3	= #{FILE_ID3}
+		</if>
+		<if test="!( FILE_ID4 == ''	||	FILE_ID4 == null)">
+				,FILE_ID4	= #{FILE_ID4}
+		</if>
+		<if test="!( FILE_ID5 == ''	||	FILE_ID5 == null)">
+				,FILE_ID5	= #{FILE_ID5}
+		</if>
+				,TEMP_FILE_ID	= NULL
+				,CHANGE_DT	= SYS_DATE()
+		WHERE	COMPANY		= #{COMPANY}
+		AND		TEMP_FILE_ID	= #{TEMP_FILE_ID}
+		AND		TABLE_NAME	= #{TABLE_NAME}
+	</update>
+	
+	<update id="update" parameterType="sysFileVO">
+		/*	SysFile.update	*/
+		UPDATE	SYS_FILE
+		SET		,COMPANY	= #{COMPANY}
+				,SEQ		= #{SEQ}
+				,TABLE_NAME	= #{TABLE_NAME}
+				,FILE_ID1	= #{FILE_ID1}
+				,FILE_ID2	= #{FILE_ID2}
+				,FILE_ID3	= #{FILE_ID3}
+				,FILE_ID4	= #{FILE_ID4}
+				,FILE_ID5	= #{FILE_ID5}
+				,TEMP_FILE_ID	= #{TEMP_FILE_ID}
+				,FILE_NAME	= #{FILE_NAME}
+				,FILE_ORI_NAME	= #{FILE_ORI_NAME}
+				,FILE_PATH	= #{FILE_PATH}
+				,FILE_SIZE	= #{FILE_SIZE}
+				,CHANGE_DT	= SYS_DATE()
+		WHERE	COMPANY		= #{COMPANY}
+		AND		SEQ			= #{SEQ}
+		AND		TABLE_NAME	= #{TABLE_NAME}
+		AND		FILE_ID1	= #{FILE_ID1}
+		<if test="!( FILE_ID2 == ''	||	FILE_ID2 == null)">
+		AND		FILE_ID2	= #{FILE_ID2}
+		</if>
+		<if test="!( FILE_ID3 == ''	||	FILE_ID2 == null)">
+		AND		FILE_ID3	= #{FILE_ID3}
+		</if>
+		<if test="!( FILE_ID4 == ''	||	FILE_ID4 == null)">
+		AND		FILE_ID4	= #{FILE_ID4}
+		</if>
+		<if test="!( FILE_ID5 == ''	||	FILE_ID5 == null)">
+		AND		FILE_ID5	= #{FILE_ID5}
+		</if>
+		<if test="!(TEMP_FILE_ID == ''	||	TEMP_FILE_ID == null)">
+		AND		TEMP_FILE_ID	= #{TEMP_FILE_ID}
+		</if>
+	</update>
+
+	<select id="selectList" parameterType="paramMap" resultType="resultMap">
+	/*	SysFile.selectList	*/
+		SELECT	A.COMPANY
+				,A.SEQ
+				,A.TABLE_NAME
+				,A.FILE_ID1
+				,A.FILE_ID2
+				,A.FILE_ID3
+				,A.FILE_ID4
+				,A.FILE_ID5
+				,A.TEMP_FILE_ID
+				,A.FILE_NAME
+				,A.FILE_ORI_NAME
+				,A.FILE_PATH
+				,A.FILE_SIZE
+				,A.CREATER
+				,DATE_FORMAT(A.CREATE_DT, '%Y%m%d%H%i%s') AS CREATE_DT
+				,A.CREATE_IP
+		FROM	SYS_FILE A	
+		WHERE	COMPANY		= #{COMPANY}
+		<if test="!( SEQ == '' ||	SEQ == null)">
+		AND		SEQ			= #{SEQ}
+		</if>
+		<if test="!( TABLE_NAME == ''	||	TABLE_NAME == null)">
+		AND		TABLE_NAME	= #{TABLE_NAME}
+		</if>
+		<if test="!( FILE_ID1 == ''	||	FILE_ID1 == null)">
+		AND		FILE_ID1	= #{FILE_ID1}
+		</if>
+		<if test="!( FILE_ID2 == ''	||	FILE_ID2 == null)">
+		AND		FILE_ID2	= #{FILE_ID2}
+		</if>
+		<if test="!( FILE_ID3 == ''	||	FILE_ID3 == null)">
+		AND		FILE_ID3	= #{FILE_ID3}
+		</if>
+		<if test="!( FILE_ID4 == ''	||	FILE_ID4 == null)">
+		AND		FILE_ID4	= #{FILE_ID4}
+		</if>
+		<if test="!( FILE_ID5 == ''	||	FILE_ID5 == null)">
+		AND		FILE_ID5	= #{FILE_ID5}
+		</if>
+		<if test="!(TEMP_FILE_ID == ''	||	TEMP_FILE_ID == null)">
+		AND		TEMP_FILE_ID	= #{TEMP_FILE_ID}
+		</if>
+	</select>
+	
+	<delete id="delete"	parameterType="paramMap">
+	/*	SysFile.delete	*/
+		DELETE	FROM	SYS_FILE
+		WHERE	COMPANY		= #{COMPANY}
+		<if test="!( SEQ == '' ||	SEQ == null)">
+		AND		SEQ			= #{SEQ}
+		</if>
+		<if test="!(TEMP_FILE_ID == ''	||	TEMP_FILE_ID == null)">
+		AND		TEMP_FILE_ID	= #{TEMP_FILE_ID}
+		</if>
+	</delete>
+</mapper> 

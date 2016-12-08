@@ -7,9 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import net.pmhtech.sys.code.dao.SysCodeDAO;
 import net.pmhtech.sys.code.dao.SysCodeGroupDAO;
-import net.pmhtech.sys.code.domain.SysCode;
 import net.pmhtech.sys.code.domain.SysCodeGroup;
 
 
