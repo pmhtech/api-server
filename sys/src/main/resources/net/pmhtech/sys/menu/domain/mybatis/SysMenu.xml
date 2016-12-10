@@ -91,5 +91,9 @@
 			,A.CHANGE_DT
 			,A.CHANGE_IP
 	FROM	SYS_MENU A
+	WHERE	1=1
+	<if test="!( SYSTEM == null ||SYSTEM == 'ALL') ||SYSTEM == ''">
+	AND		SYSTEM	= #{SYSTEM}
+	</if>
 	</select>
 </mapper> 

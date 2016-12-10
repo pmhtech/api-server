@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -32,9 +33,9 @@ public class SysMenuController {
 	private SysMenuService sysMenuService;
    	
 	@ApiOperation(value = "기준정보그룹 조회", notes = "기준정보그룹 조회")
-	@RequestMapping(value="/{SYSTEM}",method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
     public Map<String,?> selectList(HttpServletRequest request, HttpServletResponse response,
-    		@ApiParam(value="시스템코드", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM
+    		@ApiParam(value="시스템코드", name="SYSTEM", required=true) @RequestParam("SYSTEM") String SYSTEM
     		) throws Exception {
         
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysMenuCode">
+
+	<insert id="insert" parameterType="sysMenuCode">
+	/*	SysMenuCode.insert	*/
+	
+	INSERT INTO SYS_CODE(
+		SYSTEM
+		,MENU_ID
+		,PRE_CD
+		,CREATER
+		,CREATE_DT
+		,CREATE_IP
+	
+	)VALUES(
+		#{SYSTEM}
+		,#{MENU_ID}
+		,#{PRE_CD}
+		,#{CREATER}
+		,#{CREATE_DT}
+		,#{CREATE_IP}
+	)
+	
+	</insert>
+	
+	<delete id="delete" parameterType="paramMap">
+	/*	SysMenuCode.delete	*/
+	DELETE FROM SYS_MENU
+	WHERE	SYSTEM		= #{SYSTEM}
+	AND		MENU_ID		= #{MENU_ID}
+	</delete>
+
+	<select id="selectList" parameterType="paramMap" resultType="resultMap">
+	/*	SysMenuCode.selectList	*/
+	SELECT	A.SYSTEM
+			,A.MENU_ID
+			,A.PRE_CD
+			,A.CREATER
+			,A.CREATE_DT
+			,A.CREATE_IP
+	FROM	SYS_MENU_CODE A
+	WHERE	A.SYSTEM	= #{SYSTEM}
+	AND		A.MENU_ID	= #{MENU_ID}
+	</select>
+</mapper> 
