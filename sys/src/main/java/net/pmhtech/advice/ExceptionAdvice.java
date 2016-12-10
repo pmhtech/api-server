@@ -27,9 +27,11 @@ public class ExceptionAdvice extends AbstractHandlerExceptionResolver{
         
 		e.printStackTrace();
 		
+		
 		ModelMap modelMap = new ModelMap();
 		modelMap.addAttribute("code", "DDD");
-		modelMap.addAttribute("reason",e.getMessage());
+		modelMap.addAttribute("title",req.getServletPath());
+		modelMap.addAttribute("message",e.getMessage());
 		modelMap.addAttribute("statusCode","DDDD");
 		return modelMap;
     }
@@ -42,7 +44,7 @@ public class ExceptionAdvice extends AbstractHandlerExceptionResolver{
 		e.printStackTrace();
 		ModelMap modelMap = new ModelMap();
 		modelMap.addAttribute("code", "DDD");
-		modelMap.addAttribute("reason",e.getMessage());
+		modelMap.addAttribute("message",e.getMessage());
 		modelMap.addAttribute("statusCode","DDDD");
 		return modelMap;
 		
@@ -56,7 +58,7 @@ public class ExceptionAdvice extends AbstractHandlerExceptionResolver{
 		e.printStackTrace();
 		ModelMap modelMap = new ModelMap();
 		modelMap.addAttribute("code", "DDD");
-		modelMap.addAttribute("reason",e.getMessage());
+		modelMap.addAttribute("message",e.getMessage());
 		modelMap.addAttribute("statusCode","DDDD");
 		return modelMap;
 		

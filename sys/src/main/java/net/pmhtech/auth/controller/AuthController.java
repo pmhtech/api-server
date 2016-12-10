@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-import net.pmhtech.auth.service.AuthService;
+import net.pmhtech.auth.service.LoginService;
 import net.pmhtech.util.JsonConvertor;
 
 @Api(value = "AuthController", description = "AuthController", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -28,7 +28,7 @@ import net.pmhtech.util.JsonConvertor;
 public class AuthController {
 
 	@Resource(name="authService")
-	private AuthService authService;
+	private LoginService authService;
 	
 	@ApiOperation(value = "사용자 로그인", notes = "사용자 로그")
     @ApiResponses(value = {
@@ -58,7 +58,7 @@ public class AuthController {
         return returnMap;
     }
 	
-	@RequestMapping(value="{USER_ID}/logout", method = RequestMethod.POST)
+	@RequestMapping(value="logout/{USER_ID}", method = RequestMethod.POST)
     public @ResponseBody Map<String,?> logout(HttpServletRequest request, 
 			HttpServletResponse response,
 			@PathVariable(value="USER_ID") String USER_ID) throws Exception {

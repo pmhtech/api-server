@@ -12,14 +12,14 @@ import org.springframework.stereotype.Service;
 import net.pmhtech.user.dao.UserMstDAO;
 import net.pmhtech.user.exception.UserNotFoundException;
 import net.pmhtech.user.exception.UserPasswordMismatchedException;
-import net.pmhtech.auth.service.AuthService;
+import net.pmhtech.auth.service.LoginService;
 import net.pmhtech.sys.code.service.SysCodeLocaleService;
 import net.pmhtech.sys.menu.service.SysMenuService;
 import net.pmhtech.util.PasswordEncoder;
 
 
 @Service("authService")
-public class AuthServiceImpl implements AuthService{
+public class LoginServiceImpl implements LoginService{
 
 	@Resource(name="userMstDAO")
 	private UserMstDAO userMstDAO;

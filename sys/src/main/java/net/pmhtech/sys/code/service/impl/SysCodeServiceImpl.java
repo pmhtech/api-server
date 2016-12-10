@@ -34,16 +34,19 @@ public class SysCodeServiceImpl implements SysCodeService{
 		
 		
 		Iterator<Map<String, ?>> iter =listSysCodeLocale.iterator();
+		SysCode sysCode = new SysCode();
+		
+		BeanUtils.copyProperties(sysCode, listSysCodeLocale.get(0));
+		sysCodeDAO.insert(sysCode);
 		
 		while(iter.hasNext()){
 			Map<String,?> map = iter.next();
-			SysCode sysCode = new SysCode();
+			
 			SysCodeLocale sysCodeLocale= new SysCodeLocale();
 			
-			BeanUtils.copyProperties(sysCode, map);
+			
 			BeanUtils.copyProperties(sysCodeLocale, map);
 			
-			sysCodeDAO.insert(sysCode);
 			sysCodeLocaleDAO.insert(sysCodeLocale);
 		}
 		
@@ -55,17 +58,20 @@ public class SysCodeServiceImpl implements SysCodeService{
 	@Override
 	public int modifySysCode(List<Map<String, ?>> listSysCodeLocale) throws Exception {
 		
+		
+		
+		SysCode sysCode = new SysCode();
+		BeanUtils.copyProperties(sysCode, listSysCodeLocale.get(0));
+		sysCodeDAO.update(sysCode);
+		
 		Iterator<Map<String, ?>> iter =listSysCodeLocale.iterator();
 		
 		while(iter.hasNext()){
 			Map<String,?> map = iter.next();
-			SysCode sysCode = new SysCode();
 			SysCodeLocale sysCodeLocale= new SysCodeLocale();
 			
-			BeanUtils.copyProperties(sysCode, map);
-			BeanUtils.copyProperties(sysCodeLocale, map);
 			
-			sysCodeDAO.update(sysCode);
+			BeanUtils.copyProperties(sysCodeLocale, map);
 			sysCodeLocaleDAO.update(sysCodeLocale);
 		}
 		
