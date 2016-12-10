@@ -21,6 +21,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import net.pmhtech.sys.menu.service.SysMenuCodeService;
 import net.pmhtech.sys.menu.service.SysMenuService;
 import net.pmhtech.util.JsonConvertor;
 
@@ -31,8 +32,13 @@ public class SysMenuController {
 
 	@Resource(name="sysMenuService")
 	private SysMenuService sysMenuService;
+	
+	@Resource(name="sysMenuCodeService")
+	private SysMenuCodeService sysMenuCodeService;
+	
+	
    	
-	@ApiOperation(value = "기준정보그룹 조회", notes = "기준정보그룹 조회")
+	@ApiOperation(value = "메뉴정보 조회", notes = "기준정보그룹 조회")
 	@RequestMapping(method = RequestMethod.GET)
     public Map<String,?> selectList(HttpServletRequest request, HttpServletResponse response,
     		@ApiParam(value="시스템코드", name="SYSTEM", required=true) @RequestParam("SYSTEM") String SYSTEM
@@ -42,7 +48,9 @@ public class SysMenuController {
 		Map<String,Object > paramMap = new HashMap<String,Object>();
 		paramMap.put("SYSTEM", SYSTEM);
 		
-        List<Map<String,?>> sysMenus = sysMenuService.selectList(paramMap); 
+        List<Map<String,?>> sysMenus = sysMenuService.selectList(paramMap);
+        
+        
         
         
         Map<String,Object> returnMap = new HashMap<String,Object>();
@@ -50,12 +58,12 @@ public class SysMenuController {
 
         return returnMap;
     }
-   
-   @ApiOperation(value = "기준정보 상세조회", notes = "기준정보 상세조회")
+	
+	@ApiOperation(value = "메뉴조회", notes = "기준정보 상세조회")
    @RequestMapping(value="/{SYSTEM}/{MENU_ID}",method = RequestMethod.GET)
-   public Map<String,?> createSysMenu(HttpServletRequest request, HttpServletResponse response,
+   public Map<String,?> select(HttpServletRequest request, HttpServletResponse response,
    		@ApiParam(value="시스템코드", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
-   		@ApiParam(value="시스템코드", name="MENU_ID", required=true) @PathVariable("MENU_ID") String MENU_ID
+   		@ApiParam(value="메뉴ID", name="MENU_ID", required=true) @PathVariable("MENU_ID") String MENU_ID
    		) throws Exception {
        
 		
@@ -64,12 +72,10 @@ public class SysMenuController {
 		paramMap.put("SYSTEM", SYSTEM);
 		paramMap.put("MENU_ID", MENU_ID);
 		
-       List<Map<String,?>> sysMenus = sysMenuService.createSysMenu(null); 
-       
+       List<Map<String,?>> sysMenuCodes = sysMenuCodeService.selectList(paramMap); 
        
        Map<String,Object> returnMap = new HashMap<String,Object>();
-       returnMap.put("sysMenus", sysMenus);
-
+       returnMap.put("sysMenuCodes", sysMenuCodes);
        return returnMap;
    }
 }

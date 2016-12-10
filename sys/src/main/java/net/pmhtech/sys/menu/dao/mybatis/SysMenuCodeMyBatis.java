@@ -27,11 +27,11 @@ public class SysMenuCodeMyBatis  implements SysMenuCodeDAO{
 
 	@Override
 	public int delete(Map<String, ?> paramMap) throws Exception {
-		return sqlSession.delete("sysMenuCode.delete",paramMap);
+		return sqlSession.delete("SysMenuCode.delete",paramMap);
 	}
 
 	@Override
 	public List<Map<String, ?>> selectList(Map<String, ?> paramMap) throws Exception { 
-		return sqlSession.selectList("sysMenuCode.selectList",paramMap);
+		return sqlSession.selectList("SysMenuCode.selectList",paramMap);
 	}
 }

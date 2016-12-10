@@ -8,7 +8,6 @@ public class SysMenuCode implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -3972064358195090136L;
-	private String SYSTEM;		//시스템코드	Primary Key
 	private String MENU_ID;		//메뉴ID	Primary Key
 	private String PRE_CD;		//상위메뉴ID	
 	private String CREATER;		//생성자	
@@ -16,12 +15,6 @@ public class SysMenuCode implements Serializable{
 	private String CREATER_IP;	//변경IP	
 	
 	
-	public String getSYSTEM() {
-		return SYSTEM;
-	}
-	public void setSYSTEM(String sYSTEM) {
-		SYSTEM = sYSTEM;
-	}
 	public String getMENU_ID() {
 		return MENU_ID;
 	}

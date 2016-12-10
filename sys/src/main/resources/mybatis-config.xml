@@ -15,7 +15,7 @@
 		<typeAlias alias="sysCodeLocale"	type="net.pmhtech.sys.code.domain.SysCodeLocale"/>
 		
 		<typeAlias alias="sysMenu"			type="net.pmhtech.sys.menu.domain.SysMenu"/>
-		<typeAlias alias="sysMenu"			type="net.pmhtech.sys.menu.domain.SysMenuCode"/>
+		<typeAlias alias="sysMenuCode"			type="net.pmhtech.sys.menu.domain.SysMenuCode"/>
 		
 		<typeAlias alias="sysFile"			type="net.pmhtech.sys.file.domain.SysFile"/>
 		<typeAlias alias="sysSequence"		type="net.pmhtech.sys.seq.domain.SysSequence"/>
@@ -33,6 +33,7 @@
 		<mapper resource="net/pmhtech/sys/code/domain/mybatis/SysCodeGroup.xml"/>
 		<mapper resource="net/pmhtech/sys/code/domain/mybatis/SysCodeLocale.xml"/>
 		
+		<mapper resource="net/pmhtech/sys/menu/domain/mybatis/SysMenu.xml"/>
 		<mapper resource="net/pmhtech/sys/menu/domain/mybatis/SysMenuCode.xml"/>
 		
 		<mapper resource="net/pmhtech/sys/file/domain/mybatis/SysFile.xml"/>

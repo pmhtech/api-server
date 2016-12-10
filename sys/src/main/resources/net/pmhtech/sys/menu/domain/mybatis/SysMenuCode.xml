@@ -7,16 +7,14 @@
 	/*	SysMenuCode.insert	*/
 	
 	INSERT INTO SYS_CODE(
-		SYSTEM
-		,MENU_ID
+		MENU_ID
 		,PRE_CD
 		,CREATER
 		,CREATE_DT
 		,CREATE_IP
 	
 	)VALUES(
-		#{SYSTEM}
-		,#{MENU_ID}
+		#{MENU_ID}
 		,#{PRE_CD}
 		,#{CREATER}
 		,#{CREATE_DT}
@@ -27,21 +25,18 @@
 	
 	<delete id="delete" parameterType="paramMap">
 	/*	SysMenuCode.delete	*/
-	DELETE FROM SYS_MENU
-	WHERE	SYSTEM		= #{SYSTEM}
-	AND		MENU_ID		= #{MENU_ID}
+	DELETE	FROM	SYS_MENU
+	WHERE	MENU_ID		= #{MENU_ID}
 	</delete>
 
 	<select id="selectList" parameterType="paramMap" resultType="resultMap">
 	/*	SysMenuCode.selectList	*/
-	SELECT	A.SYSTEM
-			,A.MENU_ID
+	SELECT	A.MENU_ID
 			,A.PRE_CD
 			,A.CREATER
 			,A.CREATE_DT
 			,A.CREATE_IP
 	FROM	SYS_MENU_CODE A
-	WHERE	A.SYSTEM	= #{SYSTEM}
-	AND		A.MENU_ID	= #{MENU_ID}
+	WHERE	A.MENU_ID	= #{MENU_ID}
 	</select>
 </mapper> 
