@@ -11,4 +11,5 @@ public interface SysMenuService {
 	public int update(SysMenu sysMenu) throws Exception;
 	public int delete(Map<String,?> paramMap) throws Exception;
 	public List<Map<String,?>> selectList(Map<String,?> paramMap) throws Exception;
+	public List<Map<String, ?>> createSysMenu(SysMenu sysMenu)throws Exception;
 }

@@ -37,5 +37,11 @@ public class SysMenuServiceImpl implements SysMenuService{
 		return sysMenuDAO.selectList(paramMap);
 	}
 
+	@Override
+	public List<Map<String, ?>> createSysMenu(SysMenu sysMenu) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
