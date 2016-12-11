@@ -1,6 +1,7 @@
 package net.pmhtech.sys.menu.service.impl;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,14 @@ public class SysMenuServiceImpl implements SysMenuService{
 		for(Map hashMap : sysMenus){
 			String MENU_ID = (String) hashMap.get("MENU_ID");
 			List<Map<String, ?>> tempList = CollectionUtils.getMatchedKey(localeList, "MENU_ID", MENU_ID);
-			hashMap.put("LANGUAGE", tempList);
+			
+			Map<String,Object> localeMap = new HashMap<String,Object>();
+			
+			for(Map map : tempList){
+				localeMap.put((String) map.get("LOCALE_CD"),map);
+			}
+			hashMap.put("LANGUAGE", localeMap);
+			
 		}
 		return sysMenus;
 	}

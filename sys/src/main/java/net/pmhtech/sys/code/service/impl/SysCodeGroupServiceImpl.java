@@ -1,9 +1,8 @@
 package net.pmhtech.sys.code.service.impl;
 
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,8 +10,6 @@ import javax.annotation.Resource;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import net.pmhtech.sys.code.dao.SysCodeDAO;
 import net.pmhtech.sys.code.dao.SysCodeGroupDAO;
@@ -73,7 +70,13 @@ public class SysCodeGroupServiceImpl implements SysCodeGroupService{
 		for(Map hashMap : sysCodeGroups){
 			String PRE_CD = (String) hashMap.get("PRE_CD");
 			List<Map<String, ?>> tempList = CollectionUtils.getMatchedKey(localeList, "PRE_CD", PRE_CD);
-			hashMap.put("LANGUAGE", tempList);
+			
+			Map<String,Object> localeMap = new HashMap<String,Object>();
+			
+			for(Map map : tempList){
+				localeMap.put((String) map.get("LOCALE_CD"),map);
+			}
+			hashMap.put("LANGUAGE", localeMap);
 		}
 		return sysCodeGroups;
 	}
