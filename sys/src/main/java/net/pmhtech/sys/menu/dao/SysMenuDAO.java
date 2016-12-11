@@ -11,5 +11,7 @@ public interface SysMenuDAO {
 	int update(SysMenu sysMenu) throws Exception;
 	int delete(Map<String,?> paramMap) throws Exception;
 	List<Map<String,?>> selectList(Map<String,?> paramMap) throws Exception;
+	List<Map<String,?>> selectLocaleList(Map<String,?> paramMap) throws Exception;
+	
 	
 }

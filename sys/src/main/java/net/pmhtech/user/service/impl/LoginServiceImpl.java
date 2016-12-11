@@ -1,4 +1,4 @@
-package net.pmhtech.auth.service.impl;
+package net.pmhtech.user.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 import net.pmhtech.user.dao.UserMstDAO;
 import net.pmhtech.user.exception.UserNotFoundException;
 import net.pmhtech.user.exception.UserPasswordMismatchedException;
-import net.pmhtech.auth.service.LoginService;
+import net.pmhtech.user.service.LoginService;
 import net.pmhtech.sys.code.service.SysCodeLocaleService;
 import net.pmhtech.sys.menu.service.SysMenuService;
 import net.pmhtech.util.PasswordEncoder;
 
 
-@Service("authService")
+@Service("loginService")
 public class LoginServiceImpl implements LoginService{
 
 	@Resource(name="userMstDAO")

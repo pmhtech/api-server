@@ -77,23 +77,67 @@
 	SELECT	A.SYSTEM
 			,A.MENU_ID
 			,A.PRE_MENU_ID
-			,A.MENU_NM
+			,B.MENU_NM
 			,A.MENU_LVL
 			,A.CLASS_NM
 			,A.WIDGET_NM
 			,A.MENU_AUTH
 			,A.SORT
 			,A.USE_YN
-			,A.MEMO
+			,B.MEMO
 			,A.CREATER
 			,A.CREATE_DT
 			,A.CHANGER
 			,A.CHANGE_DT
 			,A.CHANGE_IP
 	FROM	SYS_MENU A
+			LEFT OUTER JOIN(
+							SELECT	A.SYSTEM
+									,A.LOCALE_CD
+									,A.MENU_ID
+									,A.MENU_NM
+									,A.MEMO
+							FROM	SYS_MENU_LOCALE A
+							WHERE	A.LOCALE_CD IN(
+												SELECT	MAX(REF1)
+												FROM	SYS_CODE_LOCALE
+												WHERE	PRE_CD='COM_000002'
+												AND		CODE = 'DEFAULT'
+							)
+			)B ON(B.SYSTEM = A.SYSTEM AND B.MENU_ID = A.MENU_ID)
 	WHERE	1=1
 	<if test="!( SYSTEM == null ||SYSTEM == 'ALL') ||SYSTEM == ''">
-	AND		SYSTEM	= #{SYSTEM}
+	AND		A.SYSTEM	= #{SYSTEM}
 	</if>
+	ORDER BY A.SORT
+	</select>
+	
+	<select id="selectLocaleList" parameterType="paramMap" resultType="resultMap">
+	/*	SysMenu.selectLocaleList	*/
+		SELECT	A.SYSTEM
+				,B.LOCALE_CD
+				,A.MENU_ID
+				,A.PRE_MENU_ID
+				,B.MENU_NM
+				,A.MENU_LVL
+				,A.CLASS_NM
+				,A.WIDGET_NM
+				,A.MENU_AUTH
+				,A.SORT
+				,A.USE_YN
+				,B.MEMO
+				,A.CREATER
+				,A.CREATE_DT
+				,A.CHANGER
+				,A.CHANGE_DT
+				,A.CHANGE_IP
+		FROM	SYS_MENU A,
+				SYS_MENU_LOCALE B
+		WHERE	A.SYSTEM = B.SYSTEM
+		AND		A.MENU_ID = B.MENU_ID
+		<if test="!( SYSTEM == null ||SYSTEM == 'ALL') ||SYSTEM == ''">
+		AND		A.SYSTEM	= #{SYSTEM}
+		</if>
+		ORDER BY A.SORT
 	</select>
 </mapper> 

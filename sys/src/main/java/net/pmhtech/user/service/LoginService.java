@@ -1,4 +1,4 @@
-package net.pmhtech.auth.service;
+package net.pmhtech.user.service;
 
 import java.util.List;
 import java.util.Map;

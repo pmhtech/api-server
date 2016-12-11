@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import net.pmhtech.sys.menu.dao.SysMenuCodeDAO;
-import net.pmhtech.sys.menu.dao.SysMenuDAO;
-import net.pmhtech.sys.menu.domain.SysMenu;
 import net.pmhtech.sys.menu.domain.SysMenuCode;
 
 
@@ -19,7 +17,7 @@ public class SysMenuCodeMyBatis  implements SysMenuCodeDAO{
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	@Override
 	public int insert(SysMenuCode sysMenuCode) throws Exception {
 		return sqlSession.update("SysMenuCode.insert",sysMenuCode);
@@ -27,11 +25,12 @@ public class SysMenuCodeMyBatis  implements SysMenuCodeDAO{
 
 	@Override
 	public int delete(Map<String, ?> paramMap) throws Exception {
-		return sqlSession.delete("SysMenuCode.delete",paramMap);
+		return sqlSession.delete("SysMenuCode.insert",paramMap);
 	}
-
+	
 	@Override
-	public List<Map<String, ?>> selectList(Map<String, ?> paramMap) throws Exception { 
+	public List<Map<String, ?>> selectList(Map<String, ?> paramMap) throws Exception {
 		return sqlSession.selectList("SysMenuCode.selectList",paramMap);
 	}
+
 }

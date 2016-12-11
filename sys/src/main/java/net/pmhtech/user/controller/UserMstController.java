@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +21,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import net.pmhtech.auth.service.LoginService;
 import net.pmhtech.user.domain.UserMst;
+import net.pmhtech.user.service.LoginService;
 import net.pmhtech.user.service.UserMstService;
 import net.pmhtech.util.JsonConvertor;
 
@@ -34,8 +35,8 @@ public class UserMstController {
 	@Resource(name="userMstService")
 	private UserMstService userMstService;
 	
-	@Resource(name="authService")
-	private LoginService authService;
+	@Resource(name="loginService")
+	private LoginService loginService;
 	
 	@RequestMapping(value="{USER_ID}", method = RequestMethod.POST)
     public @ResponseBody Map<String,?> insert(HttpServletRequest request, 
@@ -63,11 +64,12 @@ public class UserMstController {
     })
 	
 	
-	@RequestMapping(value="/login/{USER_ID}", method = RequestMethod.POST)
-    public @ResponseBody Map<String,?> login(HttpServletRequest request, 
-    										HttpServletResponse response,
-    										@PathVariable(value="USER_ID") String USER_ID) throws Exception {
+	@RequestMapping(value="{USER_ID}/login", method = RequestMethod.POST)
+    public @ResponseBody Map<String,?> login(HttpServletRequest request, HttpServletResponse response,
+    										@PathVariable(value="USER_ID") String USER_ID,
+    										@RequestParam("LoginData") String loginData) throws Exception {
         
+		
 		Map<String,?> returnMap = new HashMap<String,Object>();
 		String userId = (String) request.getSession().getAttribute("USER_ID");
 		
@@ -77,14 +79,13 @@ public class UserMstController {
 		if("".equals(userId)&& userId.equals(USER_ID)){
 			isLogined=true;
 		}
-		String dataJson = request.getParameter("dataJson");
-		Map<String,? > paramMap = JsonConvertor.convertJsonToMap(dataJson);
-		returnMap = authService.loginProcess(paramMap,isLogined);
+		Map<String,? > paramMap = JsonConvertor.convertJsonToMap(loginData);
+		returnMap = loginService.loginProcess(paramMap,isLogined);
 		request.getSession().setAttribute("USER_ID", paramMap.get("USER_ID"));
         return returnMap;
     }
 	
-	@RequestMapping(value="/logout{USER_ID}", method = RequestMethod.POST)
+	@RequestMapping(value="{USER_ID}/logout", method = RequestMethod.POST)
     public @ResponseBody Map<String,?> logout(HttpServletRequest request, 
 			HttpServletResponse response,
 			@PathVariable(value="USER_ID") String USER_ID) throws Exception {

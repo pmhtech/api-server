@@ -38,5 +38,10 @@ public class SysMenuMyBatis  implements SysMenuDAO{
 		return sqlSession.selectList("SysMenu.selectList",paramMap);
 	}
 
+	@Override
+	public List<Map<String, ?>> selectLocaleList(Map<String, ?> paramMap) throws Exception {
+		return sqlSession.selectList("SysMenu.selectLocaleList",paramMap);
+	}
+
 
 }

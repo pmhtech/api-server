@@ -5,11 +5,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import net.pmhtech.sys.menu.dao.SysMenuCodeDAO;
 import net.pmhtech.sys.menu.dao.SysMenuDAO;
+import net.pmhtech.sys.menu.dao.SysMenuLocaleDAO;
 import net.pmhtech.sys.menu.domain.SysMenu;
+import net.pmhtech.sys.menu.domain.SysMenuCode;
+import net.pmhtech.sys.menu.domain.SysMenuLocale;
 import net.pmhtech.sys.menu.service.SysMenuService;
+import net.pmhtech.util.CollectionUtils;
 
 @Service("sysMenuService")
 public class SysMenuServiceImpl implements SysMenuService{
@@ -17,31 +24,73 @@ public class SysMenuServiceImpl implements SysMenuService{
 	@Resource(name = "sysMenuDAO")
 	private SysMenuDAO sysMenuDAO;
 	
-	@Override
-	public int insert(SysMenu sysMenu) throws Exception {
-		return sysMenuDAO.insert(sysMenu);
-	}
-
-	@Override
-	public int update(SysMenu sysMenu) throws Exception {
-		return sysMenuDAO.update(sysMenu);
-	}
-
-	@Override
-	public int delete(Map<String, ?> paramMap) throws Exception {
-		return sysMenuDAO.delete(paramMap);
-	}
+	@Resource(name="sysMenuCodeDAO")
+	private SysMenuCodeDAO sysMenuCodeDAO;
+	
+	@Resource(name="sysMenuLocaleDAO")
+	private SysMenuLocaleDAO sysMenuLocaleDAO;
+	
 
 	@Override
 	public List<Map<String, ?>> selectList(Map<String, ?> paramMap) throws Exception {
-		return sysMenuDAO.selectList(paramMap);
+		
+		List<Map<String, ?>> sysMenus =  sysMenuDAO.selectList(paramMap);
+		List<Map<String, ?>> localeList =  sysMenuDAO.selectLocaleList(paramMap);
+		
+		for(Map hashMap : sysMenus){
+			String MENU_ID = (String) hashMap.get("MENU_ID");
+			List<Map<String, ?>> tempList = CollectionUtils.getMatchedKey(localeList, "MENU_ID", MENU_ID);
+			hashMap.put("LANGUAGE", tempList);
+		}
+		return sysMenus;
 	}
 
 	@Override
-	public List<Map<String, ?>> createSysMenu(SysMenu sysMenu) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public int createSysMenu(Map<String, ?> sysMenuMap, List<Map<String, ?>> listSysMenuLocales,
+		List<Map<String, ?>> listSysMenuCodes) throws Exception {
+		SysMenu sysMenu = new SysMenu();
+		BeanUtils.copyProperties(sysMenu, sysMenuMap);
+		
+		int count = sysMenuDAO.insert(sysMenu);
+		sysMenuCodeDAO.delete(sysMenuMap);
+		
+		for(Map<String,?> map : listSysMenuCodes){
+			SysMenuCode sysMenuCode = new SysMenuCode();
+			BeanUtils.copyProperties(sysMenuCode, map);
+			sysMenuCodeDAO.insert(sysMenuCode);
+		}
+		
+		for(Map<String,?> map : listSysMenuLocales){
+			SysMenuLocale sysMenuLocale = new SysMenuLocale();
+			BeanUtils.copyProperties(sysMenuLocale, map);
+			sysMenuLocaleDAO.insert(sysMenuLocale);
+		}
+		
+		return count;
 	}
-
 	
+
+	@Override
+	public int modifySysMenu(Map<String, ?> sysMenuMap, List<Map<String, ?>> listSysMenuLocales,
+			List<Map<String, ?>> listSysMenuCodes) throws Exception {
+		SysMenu sysMenu = new SysMenu();
+		BeanUtils.copyProperties(sysMenu, sysMenuMap);
+		
+		int count = sysMenuDAO.update(sysMenu);
+		sysMenuCodeDAO.delete(sysMenuMap);
+		
+		for(Map<String,?> map : listSysMenuCodes){
+			SysMenuCode sysMenuCode = new SysMenuCode();
+			BeanUtils.copyProperties(sysMenuCode, map);
+			sysMenuCodeDAO.insert(sysMenuCode);
+		}
+		
+		for(Map<String,?> map : listSysMenuLocales){
+			SysMenuLocale sysMenuLocale = new SysMenuLocale();
+			BeanUtils.copyProperties(sysMenuLocale, map);
+			sysMenuLocaleDAO.update(sysMenuLocale);
+		}
+		
+		return count;
+	}
 }

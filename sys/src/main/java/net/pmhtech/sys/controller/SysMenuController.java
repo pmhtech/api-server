@@ -78,4 +78,46 @@ public class SysMenuController {
        returnMap.put("sysMenuCodes", sysMenuCodes);
        return returnMap;
    }
+	
+	@ApiOperation(value = "메뉴조회", notes = "기준정보 상세조회")
+	@RequestMapping(value="/{SYSTEM}/{MENU_ID}",method = RequestMethod.POST)
+	public Map<String,?> createMenu(HttpServletRequest request, HttpServletResponse response,
+			@ApiParam(value="시스템코드", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
+	   		@ApiParam(value="메뉴ID", name="MENU_ID", required=true) @PathVariable("MENU_ID") String MENU_ID,
+	   		@ApiParam(value="메뉴", name="SysMenu", required=true) @RequestParam("SysMenu") String sysMenu,
+	   		@ApiParam(value="메뉴ID", name="SysMenuCodes", required=true) @RequestParam("SysMenuCodes") String sysMenuCodes,
+	   		@ApiParam(value="메뉴ID", name="SysMenuLocales", required=true) @RequestParam("SysMenuLocales") String sysMenuLocales
+	   		) throws Exception {
+	       
+			
+			Map<String,?> sysMenuMap = JsonConvertor.convertJsonToMap(sysMenu);
+			List<Map<String,?>> listSysMenuCodes = JsonConvertor.convertJsonToList(sysMenuCodes);
+			List<Map<String,?>> listSysMenuLocales = JsonConvertor.convertJsonToList(sysMenuLocales);
+			
+			int count = sysMenuService.createSysMenu(sysMenuMap,listSysMenuLocales,listSysMenuCodes); 
+	       
+	       Map<String,Object> returnMap = new HashMap<String,Object>();
+	       return returnMap;
+	}
+	
+	@ApiOperation(value = "메뉴조회", notes = "기준정보 상세조회")
+	@RequestMapping(value="/{SYSTEM}/{MENU_ID}",method = RequestMethod.PUT)
+	public Map<String,?> modifyMenu(HttpServletRequest request, HttpServletResponse response,
+			@ApiParam(value="시스템코드", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
+	   		@ApiParam(value="메뉴ID", name="MENU_ID", required=true) @PathVariable("MENU_ID") String MENU_ID,
+	   		@ApiParam(value="메뉴", name="SysMenu", required=true) @RequestParam("SysMenu") String sysMenu,
+	   		@ApiParam(value="메뉴ID", name="SysMenuCodes", required=true) @RequestParam("SysMenuCodes") String sysMenuCodes,
+	   		@ApiParam(value="메뉴ID", name="SysMenuLocales", required=true) @RequestParam("SysMenuLocales") String sysMenuLocales
+	   		) throws Exception {
+	       
+			
+			Map<String,?> sysMenuMap = JsonConvertor.convertJsonToMap(sysMenu);
+			List<Map<String,?>> listSysMenuCodes = JsonConvertor.convertJsonToList(sysMenuCodes);
+			List<Map<String,?>> listSysMenuLocales = JsonConvertor.convertJsonToList(sysMenuLocales);
+			
+			int count = sysMenuService.modifySysMenu(sysMenuMap,listSysMenuLocales,listSysMenuCodes); 
+	       
+	       Map<String,Object> returnMap = new HashMap<String,Object>();
+	       return returnMap;
+	}
 }

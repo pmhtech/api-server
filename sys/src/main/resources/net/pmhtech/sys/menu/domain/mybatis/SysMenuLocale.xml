@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysMenuLocale">
+
+	<insert id="insert" parameterType="sysMenuLocale">
+	/*	SysMenuLocale.insert	*/
+	
+	INSERT INTO SYS_CODE(
+		MENU_ID
+		,PRE_CD
+		,CREATER
+		,CREATE_DT
+		,CREATE_IP
+	
+	)VALUES(
+		#{MENU_ID}
+		,#{PRE_CD}
+		,#{CREATER}
+		,#{CREATE_DT}
+		,#{CREATE_IP}
+	)
+	
+	</insert>
+	
+	<update id="update" parameterType="sysMenuLocale">
+	/*	SysMenuLocale.update	*/
+	
+	UPDATE SYS_MENU_LOCALE
+	SET		MENU_NM		= #{MENU_NM}
+			,MEMO		= #{MEMO}
+			,CHANGER	= #{CHANGER}
+			,CHANGE_DT	= #{CHANGE_DT}
+			,CHANGE_IP	= #{CHANGE_IP}
+	WHERE	SYSTEM		= #{SYSTEM}
+	AND		LOCALE_CD	= #{LOCALE_CD}
+	AND		MENU_ID		= #{MENU_ID}
+	
+	</update>
+	
+	<delete id="delete" parameterType="paramMap">
+	/*	SysMenuLocale.delete	*/
+	DELETE	FROM	SYS_MENU
+	WHERE	MENU_ID		= #{MENU_ID}
+	</delete>
+
+	<select id="selectList" parameterType="paramMap" resultType="resultMap">
+	/*	SysMenuLocale.selectList	*/
+	SELECT	,A.SYSTEM
+			,A.LOCALE_CD
+			,A.MENU_ID
+			,A.MENU_NM
+			,A.MEMO
+			,A.CREATER
+			,A.CREATE_DT
+			,A.CHANGER
+			,A.CHANGE_DT
+			,A.CHANGE_IP
+	FROM	SYS_MENU_LOCALE A
+	WHERE	A.SYSTEM	=#{SYSTEM}
+	AND		A.LOCALE_CD	=#{LOCALE_CD}
+	AND		A.MENU_ID	=#{MENU_ID}
+	</select>
+</mapper> 
