@@ -75,7 +75,7 @@
 				,IF(C.REF2 >'', C.REF3,B.CODE_NM) AS CODE_NM
 				,B.REF1
 				,B.REF2
-				,B.REF2
+				,B.REF3
 				,B.REF4
 				,B.REF5
 		FROM	SYS_CODE A

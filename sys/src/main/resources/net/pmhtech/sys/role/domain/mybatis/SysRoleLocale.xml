@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysRoleLocale">
+
+	<insert id="insert" parameterType="sysRoleLocale">
+	/*	SysRoleLocale.insert	*/
+	
+	INSERT INTO SYS_ROLE_LOCALE(
+		ROLE_ID
+		,ROLE_NM
+		,LOCALE_CD
+		,USE_YN
+		,MEMO
+		,CREATER
+		,CREATE_DT
+		,CHANGER
+		,CHANGE_DT
+		,CHANGE_IP
+	)VALUES(
+		#{ROLE_ID}
+		,#{ROLE_NM}
+		,#{LOCALE_CD}
+		,#{USE_YN}
+		,#{MEMO}
+		,#{CREATER}
+		,#{CREATE_DT}
+		,#{CHANGER}
+		,#{CHANGE_DT}
+		,#{CHANGE_IP}
+	)
+	
+	
+	</insert>
+	
+	<update id="update" parameterType="sysCodeLocale">
+	/*	SysRoleLocale.update	*/
+	UPDATE  SYS_ROLE_LOCALE
+	SET		ROLE_ID	=#{ROLE_ID}
+			,ROLE_NM	=#{ROLE_NM}
+			,USE_YN		=#{USE_YN}
+			,MEMO		=#{MEMO}
+			,CHANGER	=#{CHANGER}
+			,CHANGE_DT	=#{CHANGE_DT}
+			,CHANGE_IP	=#{CHANGE_IP}
+	WHERE	ROLE_ID		=#{ROLE_ID}
+	</update>
+	
+	<select id="selectList" parameterType="paramMap" resultType="resultMap">
+	/*	SysRoleLocale.selectLocaleList	*/
+		SELECT A.COMPANY,
+				A.PRE_CD,
+				B.LOCALE_CD,
+				A.CODE,
+				B.CODE_NM,
+				B.REF1,
+				B.REF2,
+				B.REF3,
+				B.REF4,
+				B.REF5,
+				A.USE_YN,
+				A.SORT,
+				B.MEMO,
+				A.CREATER,
+				A.CREATE_DT,
+				A.CHANGER,
+				A.CHANGE_DT,
+				A.CHANGE_IP 
+		FROM	SYS_CODE A,
+				SYS_CODE_LOCALE B
+		WHERE	A.COMPANY	= B.COMPANY
+		AND		A.PRE_CD	= B.PRE_CD
+		AND		A.CODE		= B.CODE
+		AND		A.PRE_CD = #{PRE_CD}
+		AND		A.CODE!='0000000000'
+		ORDER BY A.PRE_CD , A.SORT
+	</select>
+</mapper> 

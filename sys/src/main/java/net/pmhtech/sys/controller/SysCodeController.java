@@ -46,7 +46,7 @@ public class SysCodeController {
 	@Resource(name="sysCodeLocaleService")
 	private SysCodeLocaleService sysCodeLocaleService;
 	   	
-	@ApiOperation(value = "공통코드그룹목록 조회", notes = "공통코드그룹목록조회 ")
+	@ApiOperation(value = "기준정보목록 조회", notes = "기준정보목록 조회 ")
 	@RequestMapping(value="",method = RequestMethod.GET)
     public @ResponseBody Map<String,?> selectSysCodeGroupList(
     		HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -61,7 +61,7 @@ public class SysCodeController {
         return returnMap;
     }
    
-	@ApiOperation(value = "공통코드그룹 상세조회", notes = "공통코드그룹 코드리스트 조회")
+	@ApiOperation(value = "기준정보 조회", notes = "기준정보 조회")
 	@RequestMapping(value="/{PRE_CD}",method = RequestMethod.GET)
     public @ResponseBody Map<String,?> selectSysCodeGroup(HttpServletRequest request, HttpServletResponse response,
     		@ApiParam(value="코드그룹", name="PRE_CD", required=true) @PathVariable("PRE_CD") String PRE_CD
@@ -76,7 +76,7 @@ public class SysCodeController {
         return returnMap;
     }
 	
-	@ApiOperation(value = "공통코드그룹 추가", notes = "공통코드그룹 추가")
+	@ApiOperation(value = "기준정보목록 추가", notes = "기준정보목록 추가")
 	@RequestMapping(value="/{PRE_CD}",method = RequestMethod.POST)
     public ResponseEntity<?> createSysCodeGroup(HttpServletRequest request, HttpServletResponse response,
     		@ApiParam(value="코드그룹명", name="PRE_CD", required=true) @PathVariable("PRE_CD") String PRE_CD,
@@ -104,7 +104,7 @@ public class SysCodeController {
         return ResponseEntity.ok(datas);
     }
 	
-	@ApiOperation(value = "공통코드그룹 수정", notes = "공통코드그룹 수정 ")
+	@ApiOperation(value = "기준정보목록 수정", notes = "기준정보목록 수정 ")
 	@RequestMapping(value="/{PRE_CD}",method = RequestMethod.PUT)
     public ResponseEntity<?> modifySysCodeGroup(HttpServletRequest request, HttpServletResponse response,
     		@ApiParam(value="코드그룹명", name="PRE_CD", required=true) @PathVariable("PRE_CD") String PRE_CD,
@@ -133,7 +133,7 @@ public class SysCodeController {
 	        return ResponseEntity.ok(datas);
     }
 	
-	@ApiOperation(value = "공통코드 추가", notes = "공통코드 추가")
+	@ApiOperation(value = "기준정보 추가", notes = "기준정보 추가")
 	@RequestMapping(value="/{PRE_CD}/{CODE}",method = RequestMethod.POST)
 	@ResponseBody
     public Map<String,?> createSysCode(HttpServletRequest request, HttpServletResponse response,
@@ -149,7 +149,7 @@ public class SysCodeController {
         return returnMap;
     }
 	
-	@ApiOperation(value = "공통코드 수정", notes = "공통코드 수정 ")
+	@ApiOperation(value = "기준정보 수정", notes = "기준정보 수정 ")
 	@RequestMapping(value="/{PRE_CD}/{CODE}",method = RequestMethod.PUT)
 	@ResponseBody
     public Map<String,?> modifySysCode(HttpServletRequest request, HttpServletResponse response,

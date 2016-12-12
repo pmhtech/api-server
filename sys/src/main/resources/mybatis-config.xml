@@ -18,6 +18,10 @@
 		<typeAlias alias="sysMenuCode"		type="net.pmhtech.sys.menu.domain.SysMenuCode"/>
 		<typeAlias alias="sysMenuLocale"	type="net.pmhtech.sys.menu.domain.SysMenuLocale"/>
 		
+		<typeAlias alias="sysRole"			type="net.pmhtech.sys.role.domain.SysRole"/>
+		<typeAlias alias="sysRoleAuth"		type="net.pmhtech.sys.role.domain.SysRoleAuth"/>
+		<typeAlias alias="sysRoleLocale"	type="net.pmhtech.sys.role.domain.SysRoleLocale"/>
+		
 		<typeAlias alias="sysFile"			type="net.pmhtech.sys.file.domain.SysFile"/>
 		<typeAlias alias="sysSequence"		type="net.pmhtech.sys.seq.domain.SysSequence"/>
 		
@@ -37,6 +41,10 @@
 		<mapper resource="net/pmhtech/sys/menu/domain/mybatis/SysMenu.xml"/>
 		<mapper resource="net/pmhtech/sys/menu/domain/mybatis/SysMenuCode.xml"/>
 		<mapper resource="net/pmhtech/sys/menu/domain/mybatis/SysMenuLocale.xml"/>
+		
+		<mapper resource="net/pmhtech/sys/role/domain/mybatis/SysRole.xml"/>
+		<mapper resource="net/pmhtech/sys/role/domain/mybatis/SysRoleAuth.xml"/>
+		<mapper resource="net/pmhtech/sys/role/domain/mybatis/SysRoleLocale.xml"/>
 		
 		<mapper resource="net/pmhtech/sys/file/domain/mybatis/SysFile.xml"/>
 		<mapper resource="net/pmhtech/sys/seq/domain/mybatis/SysSequence.xml"/>

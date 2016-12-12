@@ -26,10 +26,10 @@ import net.pmhtech.user.service.LoginService;
 import net.pmhtech.user.service.UserMstService;
 import net.pmhtech.util.JsonConvertor;
 
-@Api(value = "UserController", description = "USERS", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@Api(value = "사용자관리", description = "UserController", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RestController
 @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class UserMstController {
+public class UserController {
 
 
 	@Resource(name="userMstService")
@@ -38,6 +38,12 @@ public class UserMstController {
 	@Resource(name="loginService")
 	private LoginService loginService;
 	
+	
+	@ApiOperation(value = "사용자 추가", notes = "사용자 추가")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "success request"),
+            @ApiResponse(code = 204, message = "success request")
+    })
 	@RequestMapping(value="{USER_ID}", method = RequestMethod.POST)
     public @ResponseBody Map<String,?> insert(HttpServletRequest request, 
     										HttpServletResponse response,
@@ -57,7 +63,7 @@ public class UserMstController {
 		userMstService.insert(userMst);
 		return returnMap;
     }
-	@ApiOperation(value = "사용자 로그인", notes = "사용자 로그")
+	@ApiOperation(value = "사용자 로그인", notes = "사용자 로그인")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "success request"),
             @ApiResponse(code = 204, message = "success request")
@@ -85,6 +91,11 @@ public class UserMstController {
         return returnMap;
     }
 	
+	@ApiOperation(value = "사용자 로그아웃", notes = "사용자 로그인")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "success request"),
+            @ApiResponse(code = 204, message = "success request")
+    })
 	@RequestMapping(value="{USER_ID}/logout", method = RequestMethod.POST)
     public @ResponseBody Map<String,?> logout(HttpServletRequest request, 
 			HttpServletResponse response,

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysRoleAuth">
+
+	<insert id="insert" parameterType="sysRoleAuth">
+	/*	SysRoleAuth.insert	*/
+	
+	INSERT INTO SYS_ROLE_AUTH(
+		,USER_AUTH
+		,ROLE_ID
+		,CREATER
+		,CREATE_DT
+		,CREATE_IP
+	)VALUES(
+		,#{USER_AUTH}
+		,#{ROLE_ID}
+		,#{CREATER}
+		,#{CREATE_DT}
+		,#{CREATE_IP}
+	)
+	
+	
+	</insert>
+	<delete id="delete" parameterType="paramMap">
+	/*	SysRoleAuth.delete	*/
+	DELETE	FROM SYS_ROLE_AUTH
+	WHERE	USER_AUTH= #{USER_AUTH}
+		
+	</delete>
+	
+	<select id="selectList" parameterType="paramMap" resultType="resultMap">
+	/*	SysRoleAuth.selectList	*/
+		
+	</select>
+</mapper> 

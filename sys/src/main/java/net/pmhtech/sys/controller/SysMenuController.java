@@ -25,7 +25,7 @@ import net.pmhtech.sys.menu.service.SysMenuCodeService;
 import net.pmhtech.sys.menu.service.SysMenuService;
 import net.pmhtech.util.JsonConvertor;
 
-@Api(value = "SysMenuController", description = "SysMenu", produces = "application/json")
+@Api(value = "메뉴관리", description = "SysMenuController", produces = "application/json")
 @RestController
 @RequestMapping(value = "/sys/menus", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SysMenuController {
@@ -38,7 +38,7 @@ public class SysMenuController {
 	
 	
    	
-	@ApiOperation(value = "메뉴정보 조회", notes = "기준정보그룹 조회")
+	@ApiOperation(value = "메뉴목록 조회", notes = "메뉴목록 조회")
 	@RequestMapping(method = RequestMethod.GET)
     public Map<String,?> selectList(HttpServletRequest request, HttpServletResponse response,
     		@ApiParam(value="시스템코드", name="SYSTEM", required=true) @RequestParam("SYSTEM") String SYSTEM
@@ -59,7 +59,7 @@ public class SysMenuController {
         return returnMap;
     }
 	
-	@ApiOperation(value = "메뉴조회", notes = "기준정보 상세조회")
+	@ApiOperation(value = "메뉴에 사용되는 기준정보조회", notes = "메뉴에 사용되는 기준정보조회")
    @RequestMapping(value="/{SYSTEM}/{MENU_ID}",method = RequestMethod.GET)
    public Map<String,?> select(HttpServletRequest request, HttpServletResponse response,
    		@ApiParam(value="시스템코드", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
@@ -79,7 +79,7 @@ public class SysMenuController {
        return returnMap;
    }
 	
-	@ApiOperation(value = "메뉴조회", notes = "기준정보 상세조회")
+	@ApiOperation(value = "메뉴추가", notes = "메뉴추가")
 	@RequestMapping(value="/{SYSTEM}/{MENU_ID}",method = RequestMethod.POST)
 	public Map<String,?> createMenu(HttpServletRequest request, HttpServletResponse response,
 			@ApiParam(value="시스템코드", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
@@ -100,7 +100,7 @@ public class SysMenuController {
 	       return returnMap;
 	}
 	
-	@ApiOperation(value = "메뉴조회", notes = "기준정보 상세조회")
+	@ApiOperation(value = "메뉴수정", notes = "메뉴수정")
 	@RequestMapping(value="/{SYSTEM}/{MENU_ID}",method = RequestMethod.PUT)
 	public Map<String,?> modifyMenu(HttpServletRequest request, HttpServletResponse response,
 			@ApiParam(value="시스템코드", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
