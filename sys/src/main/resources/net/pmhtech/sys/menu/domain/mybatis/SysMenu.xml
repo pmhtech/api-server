@@ -10,7 +10,6 @@
 		SYSTEM
 		,MENU_ID
 		,PRE_MENU_ID
-		,MENU_NM
 		,MENU_LVL
 		,CLASS_NM
 		,WIDGET_NM
@@ -28,7 +27,6 @@
 		#{SYSTEM}
 		,#{MENU_ID}
 		,#{PRE_MENU_ID}
-		,#{MENU_NM}
 		,#{MENU_LVL}
 		,#{CLASS_NM}
 		,#{WIDGET_NM}
@@ -50,7 +48,6 @@
 	/*	SysMenu.update	*/
 	UPDATE  SYS_MENU
 	SET		PRE_MENU_ID	= #{PRE_MENU_ID}
-			,MENU_NM		= #{MENU_NM}
 			,MENU_LVL		= #{MENU_LVL}
 			,CLASS_NM		= #{CLASS_NM}
 			,WIDGET_NM		= #{WIDGET_NM}

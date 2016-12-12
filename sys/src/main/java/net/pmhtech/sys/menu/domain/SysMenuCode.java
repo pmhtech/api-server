@@ -12,7 +12,7 @@ public class SysMenuCode implements Serializable{
 	private String PRE_CD;		//상위메뉴ID	
 	private String CREATER;		//생성자	
 	private String CREATE_DT;	//생성시각	
-	private String CREATER_IP;	//변경IP	
+	private String CREATE_IP;	//변경IP	
 	
 	
 	public String getMENU_ID() {
@@ -39,11 +39,11 @@ public class SysMenuCode implements Serializable{
 	public void setCREATE_DT(String cREATE_DT) {
 		CREATE_DT = cREATE_DT;
 	}
-	public String getCREATER_IP() {
-		return CREATER_IP;
+	public String getCREATE_IP() {
+		return CREATE_IP;
 	}
-	public void setCREATER_IP(String cREATER_IP) {
-		CREATER_IP = cREATER_IP;
+	public void setCREATE_IP(String cREATE_IP) {
+		CREATE_IP = cREATE_IP;
 	}
 	
 	

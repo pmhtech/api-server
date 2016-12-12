@@ -25,7 +25,7 @@ public class SysMenuCodeMyBatis  implements SysMenuCodeDAO{
 
 	@Override
 	public int delete(Map<String, ?> paramMap) throws Exception {
-		return sqlSession.delete("SysMenuCode.insert",paramMap);
+		return sqlSession.delete("SysMenuCode.delete",paramMap);
 	}
 	
 	@Override

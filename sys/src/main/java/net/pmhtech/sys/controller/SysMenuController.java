@@ -84,9 +84,9 @@ public class SysMenuController {
 	public Map<String,?> createMenu(HttpServletRequest request, HttpServletResponse response,
 			@ApiParam(value="시스템코드", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
 	   		@ApiParam(value="메뉴ID", name="MENU_ID", required=true) @PathVariable("MENU_ID") String MENU_ID,
-	   		@ApiParam(value="메뉴", name="SysMenu", required=true) @RequestParam("SysMenu") String sysMenu,
-	   		@ApiParam(value="메뉴ID", name="SysMenuCodes", required=true) @RequestParam("SysMenuCodes") String sysMenuCodes,
-	   		@ApiParam(value="메뉴ID", name="SysMenuLocales", required=true) @RequestParam("SysMenuLocales") String sysMenuLocales
+	   		@ApiParam(value="메뉴", name="SysMenu", required=true) @RequestParam("sysMenu") String sysMenu,
+	   		@ApiParam(value="메뉴ID", name="SysMenuCodes", required=true) @RequestParam("sysMenuCodes") String sysMenuCodes,
+	   		@ApiParam(value="메뉴ID", name="SysMenuLocales", required=true) @RequestParam("sysMenuLocales") String sysMenuLocales
 	   		) throws Exception {
 	       
 			
@@ -105,9 +105,9 @@ public class SysMenuController {
 	public Map<String,?> modifyMenu(HttpServletRequest request, HttpServletResponse response,
 			@ApiParam(value="시스템코드", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
 	   		@ApiParam(value="메뉴ID", name="MENU_ID", required=true) @PathVariable("MENU_ID") String MENU_ID,
-	   		@ApiParam(value="메뉴", name="SysMenu", required=true) @RequestParam("SysMenu") String sysMenu,
-	   		@ApiParam(value="메뉴ID", name="SysMenuCodes", required=true) @RequestParam("SysMenuCodes") String sysMenuCodes,
-	   		@ApiParam(value="메뉴ID", name="SysMenuLocales", required=true) @RequestParam("SysMenuLocales") String sysMenuLocales
+	   		@ApiParam(value="메뉴", name="SysMenu", required=true) @RequestParam("sysMenu") String sysMenu,
+	   		@ApiParam(value="메뉴ID", name="SysMenuCodes", required=true) @RequestParam("sysMenuCodes") String sysMenuCodes,
+	   		@ApiParam(value="메뉴ID", name="SysMenuLocales", required=true) @RequestParam("sysMenuLocales") String sysMenuLocales
 	   		) throws Exception {
 	       
 			

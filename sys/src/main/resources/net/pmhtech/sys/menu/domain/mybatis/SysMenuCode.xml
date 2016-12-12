@@ -6,7 +6,7 @@
 	<insert id="insert" parameterType="sysMenuCode">
 	/*	SysMenuCode.insert	*/
 	
-	INSERT INTO SYS_CODE(
+	INSERT INTO SYS_MENU_CODE(
 		MENU_ID
 		,PRE_CD
 		,CREATER
@@ -25,7 +25,7 @@
 	
 	<delete id="delete" parameterType="paramMap">
 	/*	SysMenuCode.delete	*/
-	DELETE	FROM	SYS_MENU
+	DELETE	FROM	SYS_MENU_CODE
 	WHERE	MENU_ID		= #{MENU_ID}
 	</delete>
 
@@ -33,10 +33,24 @@
 	/*	SysMenuCode.selectList	*/
 	SELECT	A.MENU_ID
 			,A.PRE_CD
+			,B.CODE_NM
 			,A.CREATER
 			,A.CREATE_DT
 			,A.CREATE_IP
 	FROM	SYS_MENU_CODE A
+			LEFT OUTER JOIN (
+				SELECT	PRE_CD
+						,LOCALE_CD
+						,CODE_NM 
+				FROM	SYS_CODE_LOCALE
+				WHERE	CODE='0000000000'	
+				AND		LOCALE_CD IN (
+						SELECT MAX(REF1) 
+						FROM	SYS_CODE_LOCALE 
+						WHERE	PRE_CD='COM_000002'
+						AND		CODE='DEFAULT'
+				)
+			)B ON(B.PRE_CD = A.PRE_CD)
 	WHERE	A.MENU_ID	= #{MENU_ID}
 	</select>
 </mapper> 
