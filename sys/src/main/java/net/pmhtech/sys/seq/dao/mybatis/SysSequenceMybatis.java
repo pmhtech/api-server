@@ -17,7 +17,7 @@ public class SysSequenceMybatis implements SysSequenceDAO {
 	
 	
 	public int insert(SysSequence sysSequenceVO) throws Exception {
-		return sqlSession.update("SysSequence.insert", sysSequenceVO);
+		return  sqlSession.insert("SysSequence.insert", sysSequenceVO);
 	}
 	public String selectMaxSequence(Map<String,?> paramMap) throws Exception {
 		return sqlSession.selectOne("SysSequence.selectMaxSequence", paramMap);
