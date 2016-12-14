@@ -24,7 +24,10 @@ public class SysRoleMyBatis  implements SysRoleDAO{
 	public int insert(SysRole sysRole) throws Exception {
 		return sqlSession.update("SysRole.insert",sysRole);
 	}
-
+	@Override
+	public int update(SysRole sysRole) throws Exception {
+		return sqlSession.update("SysRole.update",sysRole);
+	}
 	@Override
 	public int delete(Map<String, ?> paramMap) throws Exception {
 		return sqlSession.delete("SysRole.delete",paramMap);
@@ -34,5 +37,12 @@ public class SysRoleMyBatis  implements SysRoleDAO{
 	public List<Map<String, ?>> selectList(Map<String, ?> paramMap) throws Exception {
 		return sqlSession.selectList("SysRole.selectList",paramMap);
 	}
+
+	@Override
+	public List<Map<String, ?>> selectLocaleList(Map<String, ?> paramMap) throws Exception {
+		return sqlSession.selectList("SysRole.selectLocaleList",paramMap);
+	}
+
+	
 
 }

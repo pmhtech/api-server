@@ -4,14 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import net.pmhtech.sys.role.domain.SysRole;
+import net.pmhtech.sys.role.domain.SysRolePage;
 
-public interface SysRoleDAO {
+public interface SysRolePageDAO {
 
-	int insert(SysRole sysRole) throws Exception; 
-	int update(SysRole sysRole) throws Exception; 
+	int insert(SysRolePage sysRolePage) throws Exception;
 	int delete(Map<String,?> paramMap) throws Exception;
 	List<Map<String,?>> selectList(Map<String,?> paramMap) throws Exception;
-	List<Map<String, ?>> selectLocaleList(Map<String, ?> paramMap) throws Exception;
-	
-	
 }

@@ -18,12 +18,19 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import net.pmhtech.sys.role.service.SysRoleService;
+import net.pmhtech.util.JsonConvertor;
 
 @Api(value = "권한관리", description = "SysRoleController", produces = "application/json")
 @RestController
 @RequestMapping(value = "/sys/roles", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SysRoleController {
 
+	@Resource(name="sysRoleService")
+	private SysRoleService sysRoleService;
+	
+	
+	
 	@ApiOperation(value = "메뉴권한그룹 조회", notes = "메뉴권한그룹 조회")
 	@RequestMapping(method = RequestMethod.GET)
     public Map<String,?> selectRole(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -46,16 +53,18 @@ public class SysRoleController {
 	@ApiOperation(value = "메뉴권한그룹 추가", notes = "메뉴권한그룹 추가")
 	@RequestMapping(value="/{SYSTEM}",method = RequestMethod.POST)
 	public Map<String,?> createRole(HttpServletRequest request, HttpServletResponse response,
-			@ApiParam(value="권한그룹ID", name="ROLE_ID", required=true) @PathVariable("ROLE_ID") String ROLE_ID,
-	   		@ApiParam(value="권한그룹", name="SysRoles", required=true) @RequestParam("SysRoles") String sysRoles,
-	   		@ApiParam(value="권한그룹상", name="SysRoleLocales", required=true) @RequestParam("SysRoleLocales") String sysRoleLocales
+			@ApiParam(value="권한그룹ID", name="SYSTEM", required=true) @PathVariable("SYSTEM") String ROLE_ID,
+	   		@ApiParam(value="권한그룹", name="SysRoles", required=true) @RequestParam("sysRole") String sysRole,
+	   		@ApiParam(value="권한그룹상", name="SysRoleLocales", required=true) @RequestParam("sysRoleLocales") String sysRoleLocales,
+	   		@ApiParam(value="권한그룹", name="SysRolePages", required=true) @RequestParam("sysRolePages") String sysRolePages
 	   		) throws Exception {
 	       
 			
-			//Map<String,?> sysMenuMap = JsonConvertor.convertJsonToMap(sysMenu);
-			//List<Map<String,?>> listSysMenuCodes = JsonConvertor.convertJsonToList(sysMenuCodes);
-			//List<Map<String,?>> listSysMenuLocales = JsonConvertor.convertJsonToList(sysMenuLocales);
+			Map<String,?> mapSysRole = JsonConvertor.convertJsonToMap(sysRole);
+			List<Map<String,?>> listSysRoleLocale = JsonConvertor.convertJsonToList(sysRoleLocales);
+			List<Map<String,?>> listSysRolePage = JsonConvertor.convertJsonToList(sysRolePages);
 			
+			sysRoleService.createSysRole(mapSysRole, listSysRoleLocale, listSysRolePage);
 		//	int count = sysMenuService.createSysMenu(sysMenuMap,listSysMenuLocales,listSysMenuCodes); 
 	       
 	       Map<String,Object> returnMap = new HashMap<String,Object>();

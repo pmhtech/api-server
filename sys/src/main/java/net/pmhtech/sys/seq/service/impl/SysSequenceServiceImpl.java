@@ -1,6 +1,5 @@
 package net.pmhtech.sys.seq.service.impl;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -39,7 +38,7 @@ public class SysSequenceServiceImpl implements SysSequenceService{
 	public String getSequence(SysRole sysRole) throws Exception {
 		SysSequence sysSequenceVO = new SysSequence();
 		sysSequenceVO.setCOMPANY("000000");
-		sysSequenceVO.setTABLE_NAME("SYS_FILE");
+		sysSequenceVO.setTABLE_NAME("SYS_ROLE");
 		sysSequenceVO.setCREATER(sysRole.getCREATER());
 		sysSequenceVO.setCREATE_IP(sysRole.getCREATE_IP());
 		

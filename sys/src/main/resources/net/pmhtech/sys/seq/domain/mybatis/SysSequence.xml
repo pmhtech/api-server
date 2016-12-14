@@ -4,31 +4,41 @@
 <mapper namespace="SysSequence">
 
 	<insert id="insert" parameterType="sysSequence">
-	/*	SysSequence.insert	*/
-	
-		<selectKey keyProperty="SEQ" resultType="int">
+		/*	SysSequence.insert	*/
 		INSERT INTO SYS_SEQUENCE(
 			COMPANY
 			,YEAR
 			,SEQ
+			,TABLE_PK
 			,TABLE_NAME
 			,CREATER
 			,CREATE_DT
 			,CREATE_IP
 		)
-		SELECT	#{COMPANY}
-				,'16'
-				,	SELECT	IFNULL(MAX(SEQ),0)+1
-					FROM	SYS_SEQUENCE
-					WHERE	COMPANY		= #{COMPANY}
-					AND		TABLE_NAME	= #{TABLE_NAME}
-				,#{TABLE_NAME}
-				,#{CREATER}
-				,#{CREATE_DT}
-				,#{CREATE_IP}
-		FROM	DUAL	
-		  SELECT SCOPE_IDENTITY()
-		</selectKey>	
+		SELECT #{COMPANY}
+			   ,A.YEAR
+			   ,A.SEQ
+			   ,CONCAT(A.PREFIX,A.YEAR,'_',A.SUFFIX) AS TABLE_PK
+			   ,#{TABLE_NAME}
+			   ,CREATER
+			   ,CREATE_DT
+			   ,CREATE_IP
+		 FROM(
+		 		SELECT	MAX(A.CODE) AS PREFIX,
+						'' AS YEAR,
+						B.SEQ,
+						LPAD(B.SEQ,MAX(A.REF3),'0') AS SUFFIX
+				FROM	SYS_CODE_LOCALE A
+						LEFT OUTER JOIN(
+									SELECT	IFNULL(MAX(A.SEQ),0)+1 AS SEQ
+									FROM	SYS_SEQUENCE A
+									WHERE	A.COMPANY		= #{COMPANY}
+									AND		A.TABLE_NAME	= #{TABLE_NAME}			
+						
+						)B ON(1=1)
+				WHERE	A.PRE_CD='SYS_000100'
+				AND		A.REF2=#{TABLE_NAME}
+		  ) A	
 	</insert>
 
 	<select id="selectMaxSequence" parameterType="paramMap" resultType="string">
