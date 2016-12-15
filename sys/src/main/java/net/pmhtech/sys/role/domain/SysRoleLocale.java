@@ -4,32 +4,33 @@ import java.io.Serializable;
 
 public class SysRoleLocale implements Serializable {
 	
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3875580186518789350L;
+	private static final long serialVersionUID = 2052464888476230342L;
+	private String SYSTEM;	//메모	Primary Key
 	private String ROLE_ID;	//메모	Primary Key
+	private String LOCALE_CD;	//다국어코드	Primary Key
 	private String ROLE_NM;	//권한명	
-	private String LOCALE_CD;	//다국어코드	
-	private String USE_YN;	//사용구분	
 	private String MEMO;	//메모	
 	private String CREATER;	//생성자	
 	private String CREATE_DT;	//생성시각	
 	private String CHANGER;	//변경자	
 	private String CHANGE_DT;	//변경시각	
-	private String CHANGE_IP;	//변경IP
+	private String CHANGE_IP;	//변경IP	
 	
+	public String getSYSTEM() {
+		return SYSTEM;
+	}
+	public void setSYSTEM(String sYSTEM) {
+		SYSTEM = sYSTEM;
+	}
 	public String getROLE_ID() {
 		return ROLE_ID;
 	}
 	public void setROLE_ID(String rOLE_ID) {
 		ROLE_ID = rOLE_ID;
-	}
-	public String getROLE_NM() {
-		return ROLE_NM;
-	}
-	public void setROLE_NM(String rOLE_NM) {
-		ROLE_NM = rOLE_NM;
 	}
 	public String getLOCALE_CD() {
 		return LOCALE_CD;
@@ -37,11 +38,11 @@ public class SysRoleLocale implements Serializable {
 	public void setLOCALE_CD(String lOCALE_CD) {
 		LOCALE_CD = lOCALE_CD;
 	}
-	public String getUSE_YN() {
-		return USE_YN;
+	public String getROLE_NM() {
+		return ROLE_NM;
 	}
-	public void setUSE_YN(String uSE_YN) {
-		USE_YN = uSE_YN;
+	public void setROLE_NM(String rOLE_NM) {
+		ROLE_NM = rOLE_NM;
 	}
 	public String getMEMO() {
 		return MEMO;
@@ -79,5 +80,7 @@ public class SysRoleLocale implements Serializable {
 	public void setCHANGE_IP(String cHANGE_IP) {
 		CHANGE_IP = cHANGE_IP;
 	}
+	
+	
 	
 }

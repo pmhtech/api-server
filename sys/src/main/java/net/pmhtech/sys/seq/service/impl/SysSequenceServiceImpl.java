@@ -40,16 +40,11 @@ public class SysSequenceServiceImpl implements SysSequenceService{
 		sysSequenceVO.setCOMPANY("000000");
 		sysSequenceVO.setTABLE_NAME("SYS_ROLE");
 		sysSequenceVO.setCREATER(sysRole.getCREATER());
-		sysSequenceVO.setCREATE_IP(sysRole.getCREATE_IP());
+		sysSequenceVO.setCREATE_IP(sysRole.getCHANGE_IP());
 		
-		String tablePK = sysSequenceDAO.insert(sysSequenceVO)+"";
-		System.out.println(tablePK);
-		
-		int i=0;
-		
-		if(i==0){
-			throw new Exception(tablePK);
-		}
+		sysSequenceDAO.insert(sysSequenceVO);
+		Map<String, ?> paramMap= BeanUtils.describe(sysSequenceVO);
+		String tablePK = sysSequenceDAO.selectMaxSequence(paramMap);
 		
 		return tablePK;
 		

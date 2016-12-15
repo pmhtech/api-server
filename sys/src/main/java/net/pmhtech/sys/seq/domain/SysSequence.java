@@ -6,36 +6,31 @@ public class SysSequence implements Serializable{
 
 	private static final long serialVersionUID = 8267293634086533581L;
 
-	private String COMPANY;	// 회사코드
-	private String TABLE_PK;	// 테이블 PK
-	private String SEQUENCE;	// 테이블 SEQ
-	private String TABLE_NAME;	// 테이블명
-	private String PK1;	// PK1
-	private String PK2;	// PK2
-	private String PK3;	// PK3
-	private String PK4;	// PK4
-	private String PK5;	// PK5
-	private String CREATER;	// 생성자
-	private String CREATE_DT;	// 생성시각
-	private String CREATE_IP;	// 생성IP
-	
+	private String COMPANY;	//회사코드	Primary Key
+	private String YEAR;	//회계년도	
+	private int SEQ;	//일련번호	Primary Key
+	private String TABLE_NAME;	//테이블명	Primary Key
+	private String TABLE_PK;	//테이블PK	
+	private String CREATER;	//생성자	
+	private String CREATE_DT;	//생성시각	
+	private String CREATE_IP;	//생성 IP	
 	public String getCOMPANY() {
 		return COMPANY;
 	}
 	public void setCOMPANY(String cOMPANY) {
 		COMPANY = cOMPANY;
 	}
-	public String getTABLE_PK() {
-		return TABLE_PK;
+	public String getYEAR() {
+		return YEAR;
 	}
-	public void setTABLE_PK(String tABLE_PK) {
-		TABLE_PK = tABLE_PK;
+	public void setYEAR(String yEAR) {
+		YEAR = yEAR;
 	}
-	public String getSEQUENCE() {
-		return SEQUENCE;
+	public int getSEQ() {
+		return SEQ;
 	}
-	public void setSEQUENCE(String sEQUENCE) {
-		SEQUENCE = sEQUENCE;
+	public void setSEQ(int sEQ) {
+		SEQ = sEQ;
 	}
 	public String getTABLE_NAME() {
 		return TABLE_NAME;
@@ -43,35 +38,11 @@ public class SysSequence implements Serializable{
 	public void setTABLE_NAME(String tABLE_NAME) {
 		TABLE_NAME = tABLE_NAME;
 	}
-	public String getPK1() {
-		return PK1;
+	public String getTABLE_PK() {
+		return TABLE_PK;
 	}
-	public void setPK1(String pK1) {
-		PK1 = pK1;
-	}
-	public String getPK2() {
-		return PK2;
-	}
-	public void setPK2(String pK2) {
-		PK2 = pK2;
-	}
-	public String getPK3() {
-		return PK3;
-	}
-	public void setPK3(String pK3) {
-		PK3 = pK3;
-	}
-	public String getPK4() {
-		return PK4;
-	}
-	public void setPK4(String pK4) {
-		PK4 = pK4;
-	}
-	public String getPK5() {
-		return PK5;
-	}
-	public void setPK5(String pK5) {
-		PK5 = pK5;
+	public void setTABLE_PK(String tABLE_PK) {
+		TABLE_PK = tABLE_PK;
 	}
 	public String getCREATER() {
 		return CREATER;

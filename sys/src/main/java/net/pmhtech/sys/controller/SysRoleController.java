@@ -33,19 +33,32 @@ public class SysRoleController {
 	
 	@ApiOperation(value = "메뉴권한그룹 조회", notes = "메뉴권한그룹 조회")
 	@RequestMapping(method = RequestMethod.GET)
-    public Map<String,?> selectRole(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String,?> selectSysRole(HttpServletRequest request, HttpServletResponse response
+    		) throws Exception {
         
 
 		Map<String,Object > paramMap = new HashMap<String,Object>();
-		
-		
-        //List<Map<String,?>> sysMenus = null
+		List<Map<String,?>> sysRoles = sysRoleService.selectSysRole(paramMap);
+		Map<String,Object> returnMap = new HashMap<String,Object>();
+        returnMap.put("sysRoles", sysRoles);
+
+        return returnMap;
+    }
+	
+	@ApiOperation(value = "메뉴권한그룹 조회", notes = "메뉴권한그룹 조회")
+	@RequestMapping(value="/{SYSTEM}/{ROLE_ID}",method = RequestMethod.GET)
+    public Map<String,?> selectSysRolePage(HttpServletRequest request, HttpServletResponse response,
+    		@ApiParam(value="시스템구분", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
+    		@ApiParam(value="시스템구분", name="ROLE_ID", required=true) @PathVariable("ROLE_ID") String ROLE_ID
+    		) throws Exception {
         
-        
-        
-        
-        Map<String,Object> returnMap = new HashMap<String,Object>();
-        //returnMap.put("sysMenus", sysMenus);
+
+		Map<String,Object > paramMap = new HashMap<String,Object>();
+		paramMap.put("SYSTEM", SYSTEM);
+		paramMap.put("ROLE_ID", ROLE_ID);
+		List<Map<String,?>> sysRolesPages = sysRoleService.selectSysRolePage(paramMap);
+		Map<String,Object> returnMap = new HashMap<String,Object>();
+        returnMap.put("sysRolePages", sysRolesPages);
 
         return returnMap;
     }
@@ -53,10 +66,10 @@ public class SysRoleController {
 	@ApiOperation(value = "메뉴권한그룹 추가", notes = "메뉴권한그룹 추가")
 	@RequestMapping(value="/{SYSTEM}",method = RequestMethod.POST)
 	public Map<String,?> createRole(HttpServletRequest request, HttpServletResponse response,
-			@ApiParam(value="권한그룹ID", name="SYSTEM", required=true) @PathVariable("SYSTEM") String ROLE_ID,
-	   		@ApiParam(value="권한그룹", name="SysRoles", required=true) @RequestParam("sysRole") String sysRole,
-	   		@ApiParam(value="권한그룹상", name="SysRoleLocales", required=true) @RequestParam("sysRoleLocales") String sysRoleLocales,
-	   		@ApiParam(value="권한그룹", name="SysRolePages", required=true) @RequestParam("sysRolePages") String sysRolePages
+			@ApiParam(value="시스템구분", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
+	   		@ApiParam(value="SysRole", name="SysRoles", required=true) @RequestParam("sysRole") String sysRole,
+	   		@ApiParam(value="SysRoleLocals", name="SysRoleLocales", required=true) @RequestParam("sysRoleLocales") String sysRoleLocales,
+	   		@ApiParam(value="SysRolePages", name="SysRolePages", required=true) @RequestParam("sysRolePages") String sysRolePages
 	   		) throws Exception {
 	       
 			
@@ -74,16 +87,18 @@ public class SysRoleController {
 	@ApiOperation(value = "메뉴권한그룹 수정", notes = "메뉴권한그룹 수정")
 	@RequestMapping(value="/{SYSTEM}/{ROLE_ID}",method = RequestMethod.PUT)
 	public Map<String,?> modifyRole(HttpServletRequest request, HttpServletResponse response,
-			@ApiParam(value="권한그룹ID", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
-			@ApiParam(value="권한그룹ID", name="ROLE_ID", required=true) @PathVariable("ROLE_ID") String ROLE_ID,
-	   		@ApiParam(value="메뉴ID", name="SysRole", required=true) @RequestParam("SysRole") String sysRoles,
-	   		@ApiParam(value="메뉴ID", name="SysRoleLocales", required=true) @RequestParam("SysRoleLocales") String sysRoleLocales
+			@ApiParam(value="시스템구분", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
+	   		@ApiParam(value="SysRole", name="SysRoles", required=true) @RequestParam("sysRole") String sysRole,
+	   		@ApiParam(value="SysRoleLocals", name="SysRoleLocales", required=true) @RequestParam("sysRoleLocales") String sysRoleLocales,
+	   		@ApiParam(value="SysRolePages", name="SysRolePages", required=true) @RequestParam("sysRolePages") String sysRolePages
 	   		) throws Exception {
 	       
 			
-			//Map<String,?> sysMenuMap = JsonConvertor.convertJsonToMap(sysMenu);
-			//List<Map<String,?>> listSysMenuCodes = JsonConvertor.convertJsonToList(sysMenuCodes);
-			//List<Map<String,?>> listSysMenuLocales = JsonConvertor.convertJsonToList(sysMenuLocales);
+		Map<String,?> mapSysRole = JsonConvertor.convertJsonToMap(sysRole);
+		List<Map<String,?>> listSysRoleLocale = JsonConvertor.convertJsonToList(sysRoleLocales);
+		List<Map<String,?>> listSysRolePage = JsonConvertor.convertJsonToList(sysRolePages);
+		
+		sysRoleService.modifySysRole(mapSysRole, listSysRoleLocale, listSysRolePage);
 			
 		//	int count = sysMenuService.createSysMenu(sysMenuMap,listSysMenuLocales,listSysMenuCodes); 
 	       

@@ -9,8 +9,8 @@
 			COMPANY
 			,YEAR
 			,SEQ
-			,TABLE_PK
 			,TABLE_NAME
+			,TABLE_PK
 			,CREATER
 			,CREATE_DT
 			,CREATE_IP
@@ -18,24 +18,46 @@
 		SELECT #{COMPANY}
 			   ,A.YEAR
 			   ,A.SEQ
-			   ,CONCAT(A.PREFIX,A.YEAR,'_',A.SUFFIX) AS TABLE_PK
 			   ,#{TABLE_NAME}
-			   ,CREATER
-			   ,CREATE_DT
-			   ,CREATE_IP
+			   ,CONCAT(A.PREFIX,A.TAX_YEAR,'-',A.SUFFIX) AS TABLE_PK
+			   ,#{CREATER}
+			   ,#{CREATE_DT}
+			   ,#{CREATE_IP}
 		 FROM(
-		 		SELECT	MAX(A.CODE) AS PREFIX,
-						'' AS YEAR,
-						B.SEQ,
-						LPAD(B.SEQ,MAX(A.REF3),'0') AS SUFFIX
+		 		SELECT	MAX(A.CODE) AS PREFIX
+						,C.TAX_YEAR AS YEAR
+						,IF(C.TAX_YEAR_YN='Y',SUBSTR(C.TAX_YEAR,3,4),'') AS TAX_YEAR
+						,C.TAX_MONTH
+						,C.TAX_YEAR_YN
+						,B.SEQ
+						,LPAD(B.SEQ,MAX(A.REF3),'0') AS SUFFIX
 				FROM	SYS_CODE_LOCALE A
 						LEFT OUTER JOIN(
-									SELECT	IFNULL(MAX(A.SEQ),0)+1 AS SEQ
-									FROM	SYS_SEQUENCE A
-									WHERE	A.COMPANY		= #{COMPANY}
-									AND		A.TABLE_NAME	= #{TABLE_NAME}			
-						
+							SELECT	IFNULL(MAX(A.SEQ),0)+1 AS SEQ
+							FROM	SYS_SEQUENCE A
+							WHERE	A.COMPANY		= #{COMPANY}
+							AND		A.TABLE_NAME	= #{TABLE_NAME}
 						)B ON(1=1)
+						LEFT OUTER JOIN (
+							SELECT 	A.DATE_YM
+									,IF(SUBSTR(A.DATE_YM,5)>=A.TAX_MONTH,SUBSTR(A.DATE_YM,1,4),SUBSTR(A.DATE_YM,1,4)-1) AS TAX_YEAR
+									,A.TAX_MONTH
+									,A.TAX_YEAR_YN
+							FROM (
+								 SELECT	MAX(A.REF1) AS TAX_MONTH
+								 		,B.TAX_YEAR_YN
+									 	,DATE_FORMAT(SYSDATE(),'%Y%m') AS DATE_YM
+								 FROM	SYS_CODE_LOCALE A
+								 		LEFT OUTER JOIN(
+								 				SELECT	MAX(REF1) AS TAX_YEAR_YN
+												FROM	SYS_CODE_LOCALE
+												WHERE	PRE_CD= 'SYS_000100'
+												AND		REF2 = #{TABLE_NAME}
+								 		)B ON(1=1)
+								 WHERE	A.PRE_CD='COM_000006'
+								 AND	A.CODE='DEFAULT'
+							)A
+						)C ON(1=1)
 				WHERE	A.PRE_CD='SYS_000100'
 				AND		A.REF2=#{TABLE_NAME}
 		  ) A	
@@ -43,6 +65,15 @@
 
 	<select id="selectMaxSequence" parameterType="paramMap" resultType="string">
 	/*	SysSequence.selectMaxSequence	*/
-		CONCAT(A.REF1,'_',LPAD(IFNULL(MAX(B.SEQUENCE),0)+1,6,'0')) AS TABLE_PK
+		SELECT	TABLE_PK
+		FROM	SYS_SEQUENCE
+		WHERE	(COMPANY,TABLE_NAME,SEQ)IN(
+				SELECT	COMPANY
+						,TABLE_NAME
+						,MAX(SEQ)
+				FROM	SYS_SEQUENCE
+				WHERE	COMPANY		=	#{COMPANY}
+				AND		TABLE_NAME	=	#{TABLE_NAME}
+		)
 	</select>
 </mapper> 

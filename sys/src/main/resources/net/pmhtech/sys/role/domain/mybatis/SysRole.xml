@@ -7,31 +7,99 @@
 	/*	SysRole.insert	*/
 	
 	INSERT INTO SYS_ROLE(
-		ROLE_ID
-		,MENU_ID
+		SYSTEM
+		,ROLE_ID
+		,MENU_AUTH
+		,SORT
+		,USE_YN
 		,CREATER
 		,CREATE_DT
+		,CHANGER
+		,CHANGE_DT
 		,CHANGE_IP
 	)VALUES(
-		#{ROLE_ID}
-		,#{MENU_ID}
+		#{SYSTEM}
+		,#{ROLE_ID}
+		,#{MENU_AUTH}
+		,#{SORT}
+		,#{USE_YN}
 		,#{CREATER}
 		,#{CREATE_DT}
+		,#{CHANGER}
+		,#{CHANGE_DT}
 		,#{CHANGE_IP}
 	)
 	</insert>
 	
+	<update id="update" parameterType="sysRole">
+	/*	SysRole.update	*/
 	
+	UPDATE	SYS_ROLE
+	SET		MENU_AUTH	=#{MENU_AUTH}
+			,SORT		=#{SORT}
+			,USE_YN		=#{USE_YN}
+			,CHANGER	=#{CHANGER}
+			,CHANGE_DT	=#{CHANGE_DT}
+			,CHANGE_IP	=#{CHANGE_IP}
+	WHERE	SYSTEM	=#{SYSTEM}
+	AND		ROLE_ID	=#{ROLE_ID}
+	</update>
 	
 	<delete id="delete" parameterType="paramMap">
 	/*	SysRole.delete	*/
 	DELETE	FROM SYS_ROLE
-	WHERE	ROLE_ID= #{ROLE_ID}
+	WHERE	SYSTEM	=#{SYSTEM}
+	AND		ROLE_ID	=#{ROLE_ID}
 		
 	</delete>
 	
 	<select id="selectList" parameterType="paramMap" resultType="resultMap">
 	/*	SysRole.selectList	*/
+	
+		SELECT	A.SYSTEM 
+				,A.ROLE_ID
+				,A.LOCALE_CD
+				,A.ROLE_NM
+				,B.MENU_AUTH
+				,B.SORT
+				,B.USE_YN
+				,A.MEMO
+				,A.CREATER
+				,A.CREATE_DT
+				,A.CHANGER
+				,A.CHANGE_DT
+				,A.CHANGE_IP
+		FROM	SYS_ROLE_LOCALE A,
+				SYS_ROLE B
+		WHERE	A.SYSTEM =B.SYSTEM
+		AND		A.ROLE_ID = B.ROLE_ID
+		AND		A.LOCALE_CD IN(
+			SELECT	MAX(REF1) AS LOCALE_CD
+			FROM		SYS_CODE_LOCALE
+			WHERE	PRE_CD='COM_000002'
+			AND		CODE='DEFAULT'
+		)
 		
+	</select>
+	
+	<select id="selectLocaleList" parameterType="paramMap" resultType="resultMap">
+	/*	SysRoleLocale.selectLocaleList	*/
+		SELECT	A.SYSTEM 
+				,A.ROLE_ID
+				,A.LOCALE_CD
+				,A.ROLE_NM
+				,B.MENU_AUTH
+				,B.SORT
+				,B.USE_YN
+				,A.MEMO
+				,A.CREATER
+				,A.CREATE_DT
+				,A.CHANGER
+				,A.CHANGE_DT
+				,A.CHANGE_IP
+		FROM	SYS_ROLE_LOCALE A,
+				SYS_ROLE B
+		WHERE	A.SYSTEM =B.SYSTEM
+		AND		A.ROLE_ID = B.ROLE_ID
 	</select>
 </mapper> 

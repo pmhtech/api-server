@@ -71,21 +71,20 @@ public class SysRoleServiceImpl implements SysRoleService{
 		String ROLE_ID = sysSequenceService.getSequence(sysRole);
 		
 		sysRole.setROLE_ID(ROLE_ID);
-		int count = sysRoleDAO.update(sysRole);
+		int count = sysRoleDAO.insert(sysRole);
 		
 		
 		for(Map<String,?> tempMap :listSysRoleLocale){
 			SysRoleLocale sysRoleLocale = new SysRoleLocale();
-			BeanUtils.copyProperties(sysRole, tempMap);
-	
-			sysRoleLocaleDAO.update(sysRoleLocale);
+			BeanUtils.copyProperties(sysRoleLocale, tempMap);
+			sysRoleLocale.setROLE_ID(ROLE_ID);
+			sysRoleLocaleDAO.insert(sysRoleLocale);
 		}
-		
-		sysRolePageDAO.delete(sysRoleMap);
 		
 		for(Map<String,?> tempMap :listSysRolePage){
 			SysRolePage sysRolePage = new SysRolePage();
-			BeanUtils.copyProperties(sysRole, tempMap);
+			BeanUtils.copyProperties(sysRolePage, tempMap);
+			sysRolePage.setROLE_ID(ROLE_ID);
 			sysRolePageDAO.insert(sysRolePage);
 		}
 		return count;
@@ -97,18 +96,19 @@ public class SysRoleServiceImpl implements SysRoleService{
 		SysRole sysRole = new SysRole();
 		BeanUtils.copyProperties(sysRole, sysRoleMap);
 		
-		int count = sysRoleDAO.insert(sysRole);
+		int count = sysRoleDAO.update(sysRole);
 		
 		
 		for(Map<String,?> tempMap :listSysRoleLocale){
 			SysRoleLocale sysRoleLocale = new SysRoleLocale();
 			BeanUtils.copyProperties(sysRole, tempMap);
-			sysRoleLocaleDAO.insert(sysRoleLocale);
+			sysRoleLocaleDAO.update(sysRoleLocale);
 		}
 		
+		sysRolePageDAO.delete(sysRoleMap);
 		for(Map<String,?> tempMap :listSysRolePage){
 			SysRolePage sysRolePage = new SysRolePage();
-			BeanUtils.copyProperties(sysRole, tempMap);
+			BeanUtils.copyProperties(sysRolePage, tempMap);
 			sysRolePageDAO.insert(sysRolePage);
 		}
 		return count;
