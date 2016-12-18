@@ -7,13 +7,15 @@
 	/*	SysRoleAuth.insert	*/
 	
 	INSERT INTO SYS_ROLE_AUTH(
-		,USER_AUTH
+		USER_AUTH
+		,SYSTEM
 		,ROLE_ID
 		,CREATER
 		,CREATE_DT
 		,CREATE_IP
 	)VALUES(
-		,#{USER_AUTH}
+		#{USER_AUTH}
+		,#{SYSTEM}
 		,#{ROLE_ID}
 		,#{CREATER}
 		,#{CREATE_DT}
@@ -22,15 +24,54 @@
 	
 	
 	</insert>
-	<delete id="delete" parameterType="paramMap">
+	<delete id="delete" parameterType="string">
 	/*	SysRoleAuth.delete	*/
 	DELETE	FROM SYS_ROLE_AUTH
-	WHERE	USER_AUTH= #{USER_AUTH}
+	WHERE	USER_AUTH= #{VALUE}
 		
 	</delete>
 	
 	<select id="selectList" parameterType="paramMap" resultType="resultMap">
 	/*	SysRoleAuth.selectList	*/
-		
+	
+		SELECT	A.SYSTEM 
+				,A.ROLE_ID
+				,C.USER_AUTH
+				,A.LOCALE_CD
+				,A.ROLE_NM
+				,B.MENU_AUTH
+				,B.SORT
+				,B.USE_YN
+				,A.MEMO
+				,A.CREATER
+				,A.CREATE_DT
+				,A.CHANGER
+				,A.CHANGE_DT
+				,A.CHANGE_IP
+		FROM	SYS_ROLE_LOCALE A,
+  				SYS_ROLE B,
+          		SYS_ROLE_AUTH C
+		WHERE	A.SYSTEM	= B.SYSTEM
+		AND		A.ROLE_ID	= B.ROLE_ID
+	    AND		A.SYSTEM	= C.SYSTEM
+	    AND		A.ROLE_ID	= C.ROLE_ID
+		AND		A.LOCALE_CD IN(
+				SELECT	MAX(REF1) AS LOCALE_CD
+				FROM		SYS_CODE_LOCALE
+				WHERE	PRE_CD='COM_000002'
+				AND		CODE='DEFAULT'
+			)
+		AND		C.USER_AUTH = #{USER_AUTH}
+	</select>
+	
+	<select id="selectPreview" parameterType ="list" resultType="resultMap">
+		SELECT  SYSTEM
+	        	,MENU_ID
+		FROM	 SYS_ROLE_PAGE
+		WHERE	ROLE_ID IN
+		<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+	    ${list[index]}
+		</foreach>
+		GROUP BY MENU_ID
 	</select>
 </mapper> 

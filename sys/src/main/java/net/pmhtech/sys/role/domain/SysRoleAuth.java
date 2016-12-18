@@ -7,17 +7,28 @@ public class SysRoleAuth implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -745629944156731969L;
+	private static final long serialVersionUID = -4121039773031736225L;
+	/**
+	 * 
+	 */
 	private String USER_AUTH;	//사용자권한	Primary Key
+	private String SYSTEM;	//사용자권한	Primary Key
 	private String ROLE_ID;		//권한ID	
 	private String CREATER;		//생성자	
 	private String CREATE_DT;	//생성시각	
 	private String CREATE_IP;	//변경IP	
+	
 	public String getUSER_AUTH() {
 		return USER_AUTH;
 	}
 	public void setUSER_AUTH(String uSER_AUTH) {
 		USER_AUTH = uSER_AUTH;
+	}
+	public String getSYSTEM() {
+		return SYSTEM;
+	}
+	public void setSYSTEM(String sYSTEM) {
+		SYSTEM = sYSTEM;
 	}
 	public String getROLE_ID() {
 		return ROLE_ID;

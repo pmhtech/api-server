@@ -26,10 +26,9 @@ public class SysRoleAuthMyBatis  implements SysRoleAuthDAO{
 		return sqlSession.update("SysRoleAuth.insert",sysRoleAuth);
 	}
 
-
 	@Override
-	public int delete(Map<String, ?> paramMap) throws Exception {
-		return sqlSession.delete("SysRoleAuth.insert",paramMap);
+	public int delete(String USER_AUTH) throws Exception {
+		return sqlSession.delete("SysRoleAuth.delete",USER_AUTH);
 	}
 
 	@Override
@@ -37,7 +36,9 @@ public class SysRoleAuthMyBatis  implements SysRoleAuthDAO{
 		return sqlSession.selectList("SysRoleAuth.selectList",paramMap);
 	}
 
-
-	
+	@Override
+	public List<Map<String, ?>> selectPreview(List<String> listString) throws Exception {
+		return sqlSession.selectList("SysRoleAuth.selectPreview",listString);
+	}
 
 }
