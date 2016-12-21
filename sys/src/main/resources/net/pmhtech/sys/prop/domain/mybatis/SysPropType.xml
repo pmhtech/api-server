@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysPropType">
+
+	<insert id="insert" parameterType="sysPropType">
+	/*	SysPropType.insert	*/
+	
+	INSERT INTO SYS_PROP_TYPE(
+		COMP_XTYPE
+		,XTYPE_NM
+		,CHANGE_FUNC
+		,DEFAULT_PROP
+		,CREATER
+		,CREATE_DT
+		,CHANGER
+		,CHANGE_DT
+		,CHANGE_IP
+	
+	)VALUES(
+		#{COMP_XTYPE}
+		,#{XTYPE_NM}
+		,#{CHANGE_FUNC}
+		,#{DEFAULT_PROP}
+		,#{CREATER}
+		,#{CREATE_DT}
+		,#{CHANGER}
+		,#{CHANGE_DT}
+		,#{CHANGE_IP}
+	)
+	
+	
+	</insert>
+	
+	<update id="update" parameterType="sysPropType">
+	/*	SysPropType.update	*/
+	UPDATE  SYS_PROP_TYPE
+	SET		COMP_XTYPE		= #{COMP_XTYPE}
+			,XTYPE_NM		= #{XTYPE_NM}
+			,CHANGE_FUNC	= #{CHANGE_FUNC}
+			,DEFAULT_PROP	= #{DEFAULT_PROP}
+			,CHANGER		= #{CHANGER}
+			,CHANGE_DT		= #{CHANGE_DT}
+			,CHANGE_IP		= #{CHANGE_IP}
+	WHERE	COMP_XTYPE		= #{COMP_XTYPE}
+	</update>
+	
+	<delete id="delete" parameterType="paramMap">
+	/*	SysPropType.delete	*/
+	DELETE	FROM SYS_PROP_TYPE
+	WHERE	COMP_XTYPE		= #{COMP_XTYPE}
+	</delete>
+
+	<select id="selectList" parameterType="paramMap" resultType="resultMap">
+	/*	SysPropType.selectList	*/
+	SELECT	,A.COMP_XTYPE
+			,A.XTYPE_NM
+			,A.CHANGE_FUNC
+			,A.DEFAULT_PROP
+			,A.CREATER
+			,A.CREATE_DT
+			,A.CHANGER
+			,A.CHANGE_DT
+			,A.CHANGE_IP
+	FROM	SYS_PROP_TYPE A
+	</select>
+</mapper> 

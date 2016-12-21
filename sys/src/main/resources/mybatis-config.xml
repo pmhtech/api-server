@@ -23,6 +23,9 @@
 		<typeAlias alias="sysRoleAuth"		type="net.pmhtech.sys.role.domain.SysRoleAuth"/>
 		<typeAlias alias="sysRoleLocale"	type="net.pmhtech.sys.role.domain.SysRoleLocale"/>
 		
+		<typeAlias alias="sysPropMsg"		type="net.pmhtech.sys.prop.domain.SysPropMsg"/>
+		<typeAlias alias="sysPropPage"		type="net.pmhtech.sys.prop.domain.SysPropPage"/>
+		<typeAlias alias="sysPropType"	type="net.pmhtech.sys.prop.domain.SysPropType"/>
 		
 		<typeAlias alias="sysFile"			type="net.pmhtech.sys.file.domain.SysFile"/>
 		<typeAlias alias="sysSequence"		type="net.pmhtech.sys.seq.domain.SysSequence"/>
@@ -46,8 +49,14 @@
 		
 		<mapper resource="net/pmhtech/sys/role/domain/mybatis/SysRole.xml"/>
 		<mapper resource="net/pmhtech/sys/role/domain/mybatis/SysRolePage.xml"/>
-		<mapper resource="net/pmhtech/sys/role/domain/mybatis/SysRoleLocale.xml"/>
 		<mapper resource="net/pmhtech/sys/role/domain/mybatis/SysRoleAuth.xml"/>
+		<mapper resource="net/pmhtech/sys/role/domain/mybatis/SysRoleLocale.xml"/>
+		
+		<mapper resource="net/pmhtech/sys/prop/domain/mybatis/SysPropMsg.xml"/>
+		<mapper resource="net/pmhtech/sys/prop/domain/mybatis/SysPropPage.xml"/>
+		<mapper resource="net/pmhtech/sys/prop/domain/mybatis/SysPropType.xml"/>
+		
+		
 		
 		
 		<mapper resource="net/pmhtech/sys/file/domain/mybatis/SysFile.xml"/>

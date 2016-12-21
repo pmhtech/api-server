@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysPropPage">
+
+	<insert id="insert" parameterType="sysPropPage">
+	/*	SysPropPage.insert	*/
+	
+	INSERT INTO SYS_PROP_PAGE(
+		SYSTEM
+		,MENU_ID
+		,LOCALE_CD
+		,SEQ
+		,DOM_QRY
+		,COMP_XTYPE
+		,PROP_TYPE
+		,PROP_VALUEE
+		,CREATER
+		,CREATE_DT
+		,CHANGER
+		,CHANGE_DT
+		,CHANGE_IP
+	
+	)VALUES(
+		#{SYSTEM}
+		,#{MENU_ID}
+		,#{LOCALE_CD}
+		,#{SEQ}
+		,#{DOM_QRY}
+		,#{COMP_XTYPE}
+		,#{PROP_TYPE}
+		,#{PROP_VALUEE}
+		,#{CREATER}
+		,#{CREATE_DT}
+		,#{CHANGER}
+		,#{CHANGE_DT}
+		,#{CHANGE_IP}
+	)
+	
+	
+	</insert>
+	
+	<update id="update" parameterType="sysPropPage">
+	/*	SysPropPage.update	*/
+	UPDATE  SYS_PROP_PAGE
+	SET		DOM_QRY	=#{DOM_QRY}
+			,COMP_XTYPE	=#{COMP_XTYPE}
+			,PROP_TYPE	=#{PROP_TYPE}
+			,PROP_VALUEE=#{PROP_VALUEE}
+			,CHANGER	=#{CHANGER}
+			,CHANGE_DT	=#{CHANGE_DT}
+			,CHANGE_IP	=#{CHANGE_IP}
+	WHERE	SYSTEM		=#{SYSTEM}
+	AND		MENU_ID		=#{MENU_ID}
+	AND		LOCALE_CD	=#{LOCALE_CD}
+	AND		SEQ			=#{SEQ}
+	</update>
+	
+	<delete id="delete" parameterType="paramMap">
+	/*	SysPropPage.delete	*/
+	DELETE FROM SYS_PROP_PAGE
+	WHERE	SYSTEM		= #{SYSTEM}
+	AND		MENU_ID		= #{MENU_ID}
+	</delete>
+
+	<select id="selectList" parameterType="paramMap" resultType="resultMap">
+	/*	SysPropPage.selectList	*/
+	SELECT	A.SYSTEM
+			,A.MENU_ID
+			,A.LOCALE_CD
+			,A.SEQ
+			,A.DOM_QRY
+			,A.COMP_XTYPE
+			,A.PROP_TYPE
+			,A.PROP_VALUEE
+			,A.CREATER
+			,A.CREATE_DT
+			,A.CHANGER
+			,A.CHANGE_DT
+			,A.CHANGE_IP
+	FROM	SYS_PROP_PAGE A
+	</select>
+</mapper> 

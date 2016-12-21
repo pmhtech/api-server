@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysPropMsg">
+
+	<insert id="insert" parameterType="sysPropMsg">
+	/*	SysPropMsg.insert	*/
+	
+	INSERT INTO SYS_PROP_MSG(
+		MSG_TYPE
+		,MSG_ID
+		,LOCALE_CD
+		,MSG_TITLE
+		,MSG_CONTENT
+		,CREATER
+		,CREATE_DT
+		,CHANGER
+		,CHANGE_DT
+		,CHANGE_IP
+	)VALUES(
+		#{MSG_TYPE}
+		,#{MSG_ID}
+		,#{LOCALE_CD}
+		,#{MSG_TITLE}
+		,#{MSG_CONTENT}
+		,#{CREATER}
+		,#{CREATE_DT}
+		,#{CHANGER}
+		,#{CHANGE_DT}
+		,#{CHANGE_IP}
+	)
+	
+	
+	</insert>
+	
+	<update id="update" parameterType="sysPropMsg">
+	/*	SysPropMsg.update	*/
+	UPDATE  SYS_PROP_MSG
+	SET		MSG_TITLE		=#{MSG_TITLE}
+			,MSG_CONTENT	=#{MSG_CONTENT}
+			,CREATER		=#{CREATER}
+			,CREATE_DT		=#{CREATE_DT}
+			,CHANGER		=#{CHANGER}
+			,CHANGE_DT		=#{CHANGE_DT}
+			,CHANGE_IP		=#{CHANGE_IP}
+	WHERE	MSG_TYPE		=#{MSG_TYPE}
+	AND		MSG_ID			=#{MSG_ID}
+	AND		LOCALE_CD		=#{LOCALE_CD}
+	</update>
+	
+	<delete id="delete" parameterType="paramMap">
+	/*	SysPropMsg.delete	*/
+	DELETE FROM SYS_PROP_MSG
+	WHERE	MSG_TYPE		=#{MSG_TYPE}
+	AND		MSG_ID			=#{MSG_ID}
+	</delete>
+
+	<select id="selectList" parameterType="paramMap" resultType="resultMap">
+	/*	SysPropMsg.selectList	*/
+		SELECT	A.MSG_TYPE
+				,A.MSG_ID
+				,A.LOCALE_CD
+				,A.MSG_TITLE
+				,A.MSG_CONTENT
+				,A.CREATER
+				,A.CREATE_DT
+				,A.CHANGER
+				,A.CHANGE_DT
+				,A.CHANGE_IP
+		FROM	SYS_PROP_MSG A
+	</select>
+</mapper> 
