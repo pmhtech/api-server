@@ -3,16 +3,18 @@ package net.pmhtech.sys.menu.domain;
 import java.io.Serializable;
 
 public class SysMenu implements Serializable{
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8897838665008156571L;
+	private static final long serialVersionUID = -455779432102828280L;
 	private String COMPANY;		//회사코드	
 	private String SYSTEM;		//시스템코드	Primary Key
 	private String MENU_ID;		//메뉴ID	Primary Key
 	private String PRE_MENU_ID;	//상위메뉴ID	
 	private String MENU_NM;		//메뉴명	
 	private int MENU_LVL;		//메뉴레벨	
+	private String SHORT_NM;	//메뉴단축명	
 	private String CLASS_NM;	//클래스명	
 	private String WIDGET_NM;	//위젯명	
 	private String MENU_AUTH;	//메뉴권한	
@@ -24,7 +26,6 @@ public class SysMenu implements Serializable{
 	private String CHANGER;		//변경자	
 	private String CHANGE_DT;	//변경시각	
 	private String CHANGE_IP;	//변경IP	
-	
 	public String getCOMPANY() {
 		return COMPANY;
 	}
@@ -60,6 +61,12 @@ public class SysMenu implements Serializable{
 	}
 	public void setMENU_LVL(int mENU_LVL) {
 		MENU_LVL = mENU_LVL;
+	}
+	public String getSHORT_NM() {
+		return SHORT_NM;
+	}
+	public void setSHORT_NM(String sHORT_NM) {
+		SHORT_NM = sHORT_NM;
 	}
 	public String getCLASS_NM() {
 		return CLASS_NM;
@@ -127,4 +134,6 @@ public class SysMenu implements Serializable{
 	public void setCHANGE_IP(String cHANGE_IP) {
 		CHANGE_IP = cHANGE_IP;
 	}
+	
+	
 }
