@@ -23,7 +23,7 @@ public class SysPropTypeMyBatis implements SysPropTypeDAO{
 
 	@Override
 	public int update(SysPropType sysPropType) throws Exception {
-		return sqlSession.update("SysPropType.insert",sysPropType);
+		return sqlSession.update("SysPropType.update",sysPropType);
 	}
 
 	@Override

@@ -7,10 +7,12 @@
 	/*	SysPropType.insert	*/
 	
 	INSERT INTO SYS_PROP_TYPE(
-		,XTYPE_NM
+		XTYPE_NM
 		,CLAZZ_NM
 		,CHANGE_FUNC
 		,PROPS
+		,SORT
+		,USE_YN
 		,CREATER
 		,CREATE_DT
 		,CHANGER
@@ -22,6 +24,8 @@
 		,#{CLAZZ_NM}
 		,#{CHANGE_FUNC}
 		,#{PROPS}
+		,#{SORT}
+		,#{USE_YN}
 		,#{CREATER}
 		,#{CREATE_DT}
 		,#{CHANGER}
@@ -38,6 +42,8 @@
 	SET		CLAZZ_NM	=#{CLAZZ_NM}
 			,CHANGE_FUNC=#{CHANGE_FUNC}
 			,PROPS		=#{PROPS}
+			,SORT		=#{SORT}
+			,USE_YN		=#{USE_YN}
 			,CREATER	=#{CREATER}
 			,CREATE_DT	=#{CREATE_DT}
 			,CHANGER	=#{CHANGER}
@@ -54,15 +60,18 @@
 
 	<select id="selectList" parameterType="paramMap" resultType="resultMap">
 	/*	SysPropType.selectList	*/
-	SELECT	,A.XTYPE_NM
+	SELECT	A.XTYPE_NM
 			,A.CLAZZ_NM
 			,A.CHANGE_FUNC
 			,A.PROPS
+			,A.SORT
+			,A.USE_YN
 			,A.CREATER
 			,A.CREATE_DT
 			,A.CHANGER
 			,A.CHANGE_DT
 			,A.CHANGE_IP
 	FROM	SYS_PROP_TYPE A
+	ORDER BY	A.SORT
 	</select>
 </mapper> 

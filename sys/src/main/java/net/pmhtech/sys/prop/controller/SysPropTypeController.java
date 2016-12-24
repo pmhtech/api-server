@@ -20,6 +20,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import net.pmhtech.sys.prop.service.SysPropTypeService;
+import net.pmhtech.util.JsonConvertor;
 
 @Api(value = "XType 관리", description = "SysPropTypeController", produces = "application/json")
 @RestController
@@ -31,8 +32,7 @@ public class SysPropTypeController {
    	
 	@ApiOperation(value = "메뉴목록 조회", notes = "메뉴목록 조회")
 	@RequestMapping(value="",method = RequestMethod.GET)
-    public Map<String,?> selectList(HttpServletRequest request, HttpServletResponse response,
-    		@ApiParam(value="시스템코드", name="SYSTEM", required=true) @RequestParam("SYSTEM") String SYSTEM
+    public Map<String,?> selectList(HttpServletRequest request, HttpServletResponse response
     		) throws Exception {
         
 
@@ -51,14 +51,13 @@ public class SysPropTypeController {
 	@ApiOperation(value = "메뉴추가", notes = "메뉴추가")
 	@RequestMapping(value="/{XTYPE_NM}",method = RequestMethod.POST)
 	public Map<String,?> createSysPropType(HttpServletRequest request, HttpServletResponse response,
-			@ApiParam(value="XType 명", name="XTYPE_NM", required=true) @PathVariable("XTYPE_NM") String XTYPE_NM
+			@ApiParam(value="XType 명", name="XTYPE_NM", required=true) @PathVariable("XTYPE_NM") String XTYPE_NM,
+			@ApiParam(value="XType 명", name="sysPropType", required=true) @RequestParam("sysPropType") String sysPropType
 	   		) throws Exception {
 	       
 			
-		Map<String,Object > paramMap = new HashMap<String,Object>();	
-		paramMap.put("XTYPE_NM", XTYPE_NM);
-	
-			int count = sysPropTypeService.createSysPropType(paramMap); 
+			Map<String,? > sysPropTypeMap = JsonConvertor.convertJsonToMap(sysPropType);
+			int count = sysPropTypeService.createSysPropType(sysPropTypeMap); 
 	       
 	       Map<String,Object> returnMap = new HashMap<String,Object>();
 	       return returnMap;
@@ -67,13 +66,13 @@ public class SysPropTypeController {
 	@ApiOperation(value = "메뉴수정", notes = "메뉴수정")
 	@RequestMapping(value="/{XTYPE_NM}",method = RequestMethod.PUT)
 	public Map<String,?> modifySysPropType(HttpServletRequest request, HttpServletResponse response,
-			@ApiParam(value="XType 명", name="XTYPE_NM", required=true) @PathVariable("XTYPE_NM") String XTYPE_NM
+			@ApiParam(value="XType 명", name="XTYPE_NM", required=true) @PathVariable("XTYPE_NM") String XTYPE_NM,
+			@ApiParam(value="XType 명", name="sysPropType", required=true) @RequestParam("sysPropType") String sysPropType
 	   		) throws Exception {
 	       
 			
-		Map<String,Object > paramMap = new HashMap<String,Object>();	
-		paramMap.put("XTYPE_NM", XTYPE_NM);
-		int count = sysPropTypeService.modifySysPropType(paramMap); 
+		Map<String,? > sysPropTypeMap = JsonConvertor.convertJsonToMap(sysPropType);
+		int count = sysPropTypeService.modifySysPropType(sysPropTypeMap); 
        
        Map<String,Object> returnMap = new HashMap<String,Object>();
        return returnMap;

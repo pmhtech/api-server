@@ -10,17 +10,18 @@ public class SysPropType implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4941417992539277860L;
+	private static final long serialVersionUID = 7921065983793240014L;
 	private String XTYPE_NM;	//Component XType	Primary Key
 	private String CLAZZ_NM;	//XType 설명	
 	private String CHANGE_FUNC;	//Label 변경함수	
 	private String PROPS;	//필드 기본속성값	
+	private int SORT;	//정렬순서	
+	private String USE_YN;	//사용유무	
 	private String CREATER;	//생성자	
 	private String CREATE_DT;	//생성시각	
 	private String CHANGER;	//변경자	
 	private String CHANGE_DT;	//변경시각	
 	private String CHANGE_IP;	//변경IP	
-	
 	public String getXTYPE_NM() {
 		return XTYPE_NM;
 	}
@@ -44,6 +45,18 @@ public class SysPropType implements Serializable{
 	}
 	public void setPROPS(String pROPS) {
 		PROPS = pROPS;
+	}
+	public int getSORT() {
+		return SORT;
+	}
+	public void setSORT(int sORT) {
+		SORT = sORT;
+	}
+	public String getUSE_YN() {
+		return USE_YN;
+	}
+	public void setUSE_YN(String uSE_YN) {
+		USE_YN = uSE_YN;
 	}
 	public String getCREATER() {
 		return CREATER;
@@ -75,5 +88,4 @@ public class SysPropType implements Serializable{
 	public void setCHANGE_IP(String cHANGE_IP) {
 		CHANGE_IP = cHANGE_IP;
 	}
-	
 }
