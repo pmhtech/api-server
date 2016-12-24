@@ -50,7 +50,10 @@
 			<!--  <tx:method name="*" rollback-for="Exception" propagation="NESTED"/>-->
 			
 			
-            <tx:method name="*" propagation="REQUIRED" 	rollback-for="Exception"/>
+            <tx:method name="create*" propagation="REQUIRED" 	rollback-for="Exception"/>
+            <tx:method name="mdoify*" propagation="REQUIRED" 	rollback-for="Exception"/>
+            <tx:method name="remove*" propagation="REQUIRED" 	rollback-for="Exception"/>
+            <tx:method name="remove*" propagation="REQUIRED" 	rollback-for="Exception"/>
 		</tx:attributes>
 	</tx:advice>
 	

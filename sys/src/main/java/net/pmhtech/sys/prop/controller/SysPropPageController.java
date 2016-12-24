@@ -26,7 +26,7 @@ import net.pmhtech.sys.menu.service.SysMenuService;
 import net.pmhtech.sys.prop.service.SysPropPageService;
 import net.pmhtech.util.JsonConvertor;
 
-@Api(value = "메뉴관리", description = "SysMenuController", produces = "application/json")
+@Api(value = "페이지 리소스관리 ", description = "SysPropPageController", produces = "application/json")
 @RestController
 @RequestMapping(value = "/sys/prop/pages", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SysPropPageController {

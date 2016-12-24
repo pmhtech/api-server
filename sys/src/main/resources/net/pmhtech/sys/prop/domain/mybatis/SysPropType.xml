@@ -7,10 +7,10 @@
 	/*	SysPropType.insert	*/
 	
 	INSERT INTO SYS_PROP_TYPE(
-		COMP_XTYPE
 		,XTYPE_NM
+		,CLAZZ_NM
 		,CHANGE_FUNC
-		,DEFAULT_PROP
+		,PROPS
 		,CREATER
 		,CREATE_DT
 		,CHANGER
@@ -18,10 +18,10 @@
 		,CHANGE_IP
 	
 	)VALUES(
-		#{COMP_XTYPE}
-		,#{XTYPE_NM}
+		#{XTYPE_NM}
+		,#{CLAZZ_NM}
 		,#{CHANGE_FUNC}
-		,#{DEFAULT_PROP}
+		,#{PROPS}
 		,#{CREATER}
 		,#{CREATE_DT}
 		,#{CHANGER}
@@ -35,28 +35,29 @@
 	<update id="update" parameterType="sysPropType">
 	/*	SysPropType.update	*/
 	UPDATE  SYS_PROP_TYPE
-	SET		COMP_XTYPE		= #{COMP_XTYPE}
-			,XTYPE_NM		= #{XTYPE_NM}
-			,CHANGE_FUNC	= #{CHANGE_FUNC}
-			,DEFAULT_PROP	= #{DEFAULT_PROP}
-			,CHANGER		= #{CHANGER}
-			,CHANGE_DT		= #{CHANGE_DT}
-			,CHANGE_IP		= #{CHANGE_IP}
-	WHERE	COMP_XTYPE		= #{COMP_XTYPE}
+	SET		CLAZZ_NM	=#{CLAZZ_NM}
+			,CHANGE_FUNC=#{CHANGE_FUNC}
+			,PROPS		=#{PROPS}
+			,CREATER	=#{CREATER}
+			,CREATE_DT	=#{CREATE_DT}
+			,CHANGER	=#{CHANGER}
+			,CHANGE_DT	=#{CHANGE_DT}
+			,CHANGE_IP	=#{CHANGE_IP}
+	WHERE	XTYPE_NM	=#{XTYPE_NM}
 	</update>
 	
 	<delete id="delete" parameterType="paramMap">
 	/*	SysPropType.delete	*/
 	DELETE	FROM SYS_PROP_TYPE
-	WHERE	COMP_XTYPE		= #{COMP_XTYPE}
+	WHERE	XTYPE_NM		= #{XTYPE_NM}
 	</delete>
 
 	<select id="selectList" parameterType="paramMap" resultType="resultMap">
 	/*	SysPropType.selectList	*/
-	SELECT	,A.COMP_XTYPE
-			,A.XTYPE_NM
+	SELECT	,A.XTYPE_NM
+			,A.CLAZZ_NM
 			,A.CHANGE_FUNC
-			,A.DEFAULT_PROP
+			,A.PROPS
 			,A.CREATER
 			,A.CREATE_DT
 			,A.CHANGER

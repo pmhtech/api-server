@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiParam;
 import net.pmhtech.sys.prop.service.SysPropMsgService;
 
 
-@Api(value = "메시지관리", description = "SysPropMsgController", produces = "application/json")
+@Api(value = "메시지 리소스 관리", description = "SysPropMsgController", produces = "application/json")
 @RestController
 @RequestMapping(value = "/sys/prop/msgs", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SysPropMsgController {
