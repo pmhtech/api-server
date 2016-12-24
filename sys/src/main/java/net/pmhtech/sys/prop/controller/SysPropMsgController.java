@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiParam;
 import net.pmhtech.sys.prop.service.SysPropMsgService;
 
 
-@Api(value = "메시지 리소스 관리", description = "SysPropMsgController", produces = "application/json")
+@Api(value = "리소스관리(메시지)", description = "SysPropMsgController", produces = "application/json")
 @RestController
 @RequestMapping(value = "/sys/prop/msgs", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SysPropMsgController {
@@ -29,7 +29,7 @@ public class SysPropMsgController {
 	@Resource(name="sysPropMsgService")
 	private SysPropMsgService sysPropMsgService;
    	
-	@ApiOperation(value = "메뉴목록 조회", notes = "메뉴목록 조회")
+	@ApiOperation(value = "메시지 조회", notes = "메시지 조회")
 	@RequestMapping(value="",method = RequestMethod.GET)
     public Map<String,?> selectList(HttpServletRequest request, HttpServletResponse response,
     		@ApiParam(value="시스템코드", name="SYSTEM", required=true) @RequestParam("SYSTEM") String SYSTEM
@@ -48,7 +48,7 @@ public class SysPropMsgController {
 	
 	
 	
-	@ApiOperation(value = "메뉴추가", notes = "메뉴추가")
+	@ApiOperation(value = "메시지 추가", notes = "메시지 추가")
 	@RequestMapping(value="/{MSG_TYPE}",method = RequestMethod.POST)
 	public Map<String,?> createSysPropMsg(HttpServletRequest request, HttpServletResponse response,
 			@ApiParam(value="메시지 타입", name="MSG_TYPE", required=true) @PathVariable("MSG_TYPE") String MSG_TYPE
@@ -63,7 +63,7 @@ public class SysPropMsgController {
 	       return returnMap;
 	}
 	
-	@ApiOperation(value = "메뉴수정", notes = "메뉴수정")
+	@ApiOperation(value = "메시지 수정", notes = "메시지 수정")
 	@RequestMapping(value="/{MSG_TYPE}/{MSG_ID}",method = RequestMethod.PUT)
 	public Map<String,?> modifySysPropMsg(HttpServletRequest request, HttpServletResponse response,
 			@ApiParam(value="메시지 타입", name="MSG_TYPE", required=true) @PathVariable("MSG_TYPE") String MSG_TYPE,
@@ -80,7 +80,7 @@ public class SysPropMsgController {
        return returnMap;
 	}
 	
-	@ApiOperation(value = "메뉴수정", notes = "메뉴수정")
+	@ApiOperation(value = "메시지 삭제", notes = "메시지 삭제")
 	@RequestMapping(value="/{MSG_TYPE}/{MSG_ID}",method = RequestMethod.DELETE)
 	public Map<String,?> removeSysPropMsg(HttpServletRequest request, HttpServletResponse response,
 			@ApiParam(value="메시지 타입", name="MSG_TYPE", required=true) @PathVariable("MSG_TYPE") String MSG_TYPE,

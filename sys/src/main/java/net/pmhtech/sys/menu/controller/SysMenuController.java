@@ -1,4 +1,4 @@
-package net.pmhtech.sys.controller;
+package net.pmhtech.sys.menu.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,13 +40,12 @@ public class SysMenuController {
    	
 	@ApiOperation(value = "메뉴목록 조회", notes = "메뉴목록 조회")
 	@RequestMapping(method = RequestMethod.GET)
-    public Map<String,?> selectList(HttpServletRequest request, HttpServletResponse response,
-    		@ApiParam(value="시스템코드", name="SYSTEM", required=true) @RequestParam("SYSTEM") String SYSTEM
+    public Map<String,?> selectList(HttpServletRequest request, HttpServletResponse response
     		) throws Exception {
         
 
 		Map<String,Object > paramMap = new HashMap<String,Object>();
-		paramMap.put("SYSTEM", SYSTEM);
+		
 		
         List<Map<String,?>> sysMenus = sysMenuService.selectList(paramMap);
         
