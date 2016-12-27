@@ -5,8 +5,6 @@ import java.util.Map;
 
 public interface SysPropPageService {
 
-	public int createSysPropPage(Map<String,?> paramMap) throws Exception;
-	public int modifySysPropPage(Map<String,?> paramMap) throws Exception;
-	public int removeSysPropPage(Map<String,?> paramMap) throws Exception;
-	public List<Map<String,?>> selectList(Map<String,?> paramMap) throws Exception;
+	public int createSysPropPage(Map<String, Object> paramMap, List<Map<String,?>> listSysPageLocale) throws Exception;
+	public Map<String,List<?>> selectList(Map<String,?> paramMap) throws Exception;
 }

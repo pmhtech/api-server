@@ -4,25 +4,26 @@ import java.io.Serializable;
 
 public class SysPropPage implements Serializable{
 	
+	
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5947301345531871118L;
-	
+	private static final long serialVersionUID = -3684217255775181708L;
 	private String SYSTEM;	//시스템코드	Primary Key
 	private String SHORT_NM;	//메뉴ID	Primary Key
 	private String LOCALE_CD;	//메뉴ID	Primary Key
 	private int SEQ;	//SEQ	Primary Key
+	private String MASTER_DOM;	//DomQuery	
+	private String DETAIL_DOM;	//DomQuery	
 	private String DOM_QRY;	//DomQuery	
-	private String COMP_XTYPE;	//Property Type	
-	private String PROP_TYPE;	//Property Type	
-	private String PROP_VALUEE;	//Property Value	
+	private String DOM_LABEL;	//Property Type	
+	private String DOM_TYPE;	//Property Type	
+	private String DOM_PROPS;	//Property Value	
+	private int SORT;	//	
 	private String CREATER;	//생성자	
 	private String CREATE_DT;	//생성시각	
-	private String CHANGER;	//변경자	
-	private String CHANGE_DT;	//변경시각	
-	private String CHANGE_IP;	//변경IP	
-	
+	private String CREATE_IP;	//변경IP	
 	public String getSYSTEM() {
 		return SYSTEM;
 	}
@@ -47,29 +48,47 @@ public class SysPropPage implements Serializable{
 	public void setSEQ(int sEQ) {
 		SEQ = sEQ;
 	}
+	public String getMASTER_DOM() {
+		return MASTER_DOM;
+	}
+	public void setMASTER_DOM(String mASTER_DOM) {
+		MASTER_DOM = mASTER_DOM;
+	}
+	public String getDETAIL_DOM() {
+		return DETAIL_DOM;
+	}
+	public void setDETAIL_DOM(String dETAIL_DOM) {
+		DETAIL_DOM = dETAIL_DOM;
+	}
 	public String getDOM_QRY() {
 		return DOM_QRY;
 	}
 	public void setDOM_QRY(String dOM_QRY) {
 		DOM_QRY = dOM_QRY;
 	}
-	public String getCOMP_XTYPE() {
-		return COMP_XTYPE;
+	public String getDOM_LABEL() {
+		return DOM_LABEL;
 	}
-	public void setCOMP_XTYPE(String cOMP_XTYPE) {
-		COMP_XTYPE = cOMP_XTYPE;
+	public void setDOM_LABEL(String dOM_LABEL) {
+		DOM_LABEL = dOM_LABEL;
 	}
-	public String getPROP_TYPE() {
-		return PROP_TYPE;
+	public String getDOM_TYPE() {
+		return DOM_TYPE;
 	}
-	public void setPROP_TYPE(String pROP_TYPE) {
-		PROP_TYPE = pROP_TYPE;
+	public void setDOM_TYPE(String dOM_TYPE) {
+		DOM_TYPE = dOM_TYPE;
 	}
-	public String getPROP_VALUEE() {
-		return PROP_VALUEE;
+	public String getDOM_PROPS() {
+		return DOM_PROPS;
 	}
-	public void setPROP_VALUEE(String pROP_VALUEE) {
-		PROP_VALUEE = pROP_VALUEE;
+	public void setDOM_PROPS(String dOM_PROPS) {
+		DOM_PROPS = dOM_PROPS;
+	}
+	public int getSORT() {
+		return SORT;
+	}
+	public void setSORT(int sORT) {
+		SORT = sORT;
 	}
 	public String getCREATER() {
 		return CREATER;
@@ -83,23 +102,11 @@ public class SysPropPage implements Serializable{
 	public void setCREATE_DT(String cREATE_DT) {
 		CREATE_DT = cREATE_DT;
 	}
-	public String getCHANGER() {
-		return CHANGER;
+	public String getCREATE_IP() {
+		return CREATE_IP;
 	}
-	public void setCHANGER(String cHANGER) {
-		CHANGER = cHANGER;
-	}
-	public String getCHANGE_DT() {
-		return CHANGE_DT;
-	}
-	public void setCHANGE_DT(String cHANGE_DT) {
-		CHANGE_DT = cHANGE_DT;
-	}
-	public String getCHANGE_IP() {
-		return CHANGE_IP;
-	}
-	public void setCHANGE_IP(String cHANGE_IP) {
-		CHANGE_IP = cHANGE_IP;
+	public void setCREATE_IP(String cREATE_IP) {
+		CREATE_IP = cREATE_IP;
 	}
 	
 	

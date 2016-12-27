@@ -8,76 +8,70 @@
 	
 	INSERT INTO SYS_PROP_PAGE(
 		SYSTEM
-		,MENU_ID
+		,SHORT_NM
 		,LOCALE_CD
 		,SEQ
+		,MASTER_DOM
+		,DETAIL_DOM
 		,DOM_QRY
-		,COMP_XTYPE
-		,PROP_TYPE
-		,PROP_VALUEE
+		,DOM_LABEL
+		,DOM_TYPE
+		,DOM_PROPS
+		,SORT
 		,CREATER
 		,CREATE_DT
-		,CHANGER
-		,CHANGE_DT
-		,CHANGE_IP
-	
-	)VALUES(
+		,CREATE_IP
+	)SELECT
 		#{SYSTEM}
-		,#{MENU_ID}
+		,#{SHORT_NM}
 		,#{LOCALE_CD}
-		,#{SEQ}
+		,(
+			SELECT	IFNULL(MAX(SEQ),0)+1 AS SEQ
+			FROM	SYS_PROP_PAGE
+			WHERE	SYSTEM		= #{SYSTEM}
+			AND		SHORT_NM 	= #{SHORT_NM}
+			AND		LOCALE_CD	= #{LOCALE_CD}
+		)
+		,#{MASTER_DOM}
+		,#{DETAIL_DOM}
 		,#{DOM_QRY}
-		,#{COMP_XTYPE}
-		,#{PROP_TYPE}
-		,#{PROP_VALUEE}
+		,#{DOM_LABEL}
+		,#{DOM_TYPE}
+		,#{DOM_PROPS}
+		,#{SORT}
 		,#{CREATER}
 		,#{CREATE_DT}
-		,#{CHANGER}
-		,#{CHANGE_DT}
-		,#{CHANGE_IP}
-	)
+		,#{CREATE_IP}
+	FROM DUAL
 	
 	
 	</insert>
-	
-	<update id="update" parameterType="sysPropPage">
-	/*	SysPropPage.update	*/
-	UPDATE  SYS_PROP_PAGE
-	SET		DOM_QRY	=#{DOM_QRY}
-			,COMP_XTYPE	=#{COMP_XTYPE}
-			,PROP_TYPE	=#{PROP_TYPE}
-			,PROP_VALUEE=#{PROP_VALUEE}
-			,CHANGER	=#{CHANGER}
-			,CHANGE_DT	=#{CHANGE_DT}
-			,CHANGE_IP	=#{CHANGE_IP}
-	WHERE	SYSTEM		=#{SYSTEM}
-	AND		MENU_ID		=#{MENU_ID}
-	AND		LOCALE_CD	=#{LOCALE_CD}
-	AND		SEQ			=#{SEQ}
-	</update>
 	
 	<delete id="delete" parameterType="paramMap">
 	/*	SysPropPage.delete	*/
 	DELETE FROM SYS_PROP_PAGE
 	WHERE	SYSTEM		= #{SYSTEM}
-	AND		MENU_ID		= #{MENU_ID}
+	AND		SHORT_NM	= #{SHORT_NM}
 	</delete>
 
 	<select id="selectList" parameterType="paramMap" resultType="resultMap">
 	/*	SysPropPage.selectList	*/
 	SELECT	A.SYSTEM
-			,A.MENU_ID
+			,A.SHORT_NM
 			,A.LOCALE_CD
 			,A.SEQ
+			,A.MASTER_DOM
+			,A.DETAIL_DOM
 			,A.DOM_QRY
-			,A.COMP_XTYPE
-			,A.PROP_TYPE
-			,A.PROP_VALUEE
+			,A.DOM_LABEL
+			,A.DOM_TYPE
+			,A.DOM_PROPS
+			,A.SORT
 			,A.CREATER
 			,A.CREATE_DT
-			,A.CHANGER
-			,A.CHANGE_DT
-			,A.CHANGE_IP
+			,A.CREATE_IP
 	FROM	SYS_PROP_PAGE A
+	WHERE	A.SYSTEM		= #{SYSTEM}
+	AND		A.SHORT_NM	= #{SHORT_NM}
 	</select>
 </mapper> 

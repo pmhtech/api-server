@@ -43,8 +43,9 @@ public class SysPropPageController {
         
 
 		Map<String,Object > paramMap = new HashMap<String,Object>();
-		
-        List<Map<String,?>> sysPropPages = sysPropPageService.selectList(paramMap);
+		paramMap.put("SYSTEM", SYSTEM);
+		paramMap.put("SHORT_NM", SHORT_NM);
+        Map<String,List<?>> sysPropPages = sysPropPageService.selectList(paramMap);
      
         Map<String,Object> returnMap = new HashMap<String,Object>();
         returnMap.put("sysPropPages", sysPropPages);
@@ -59,49 +60,18 @@ public class SysPropPageController {
 	public Map<String,?> createSysPropPage(HttpServletRequest request, HttpServletResponse response,
 			@ApiParam(value="시스템코드", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
     		@ApiParam(value="메뉴 ShortName", name="SHORT_NM", required=true) @PathVariable("SHORT_NM") String SHORT_NM,
-    		@ApiParam(value="sysPropPage", name="sysPropPage", required=true) @RequestParam("sysPropPage") String sysPropPage
+    		@ApiParam(value="sysPageLocales", name="sysPageLocales", required=true) @RequestParam("sysPageLocales") String sysPageLocales
 	   		) throws Exception {
 	       
 			
-			Map<String,Object > paramMap = new HashMap<String,Object>();
+			List<Map<String,?>> listSysPageLocale = JsonConvertor.convertJsonToList(sysPageLocales);
+			Map<String,Object> paramMap = new HashMap<String,Object>();
+			paramMap.put("SYSTEM", SYSTEM);
+			paramMap.put("SHORT_NM", SHORT_NM);
 			
-			int count = sysPropPageService.createSysPropPage(paramMap); 
+			int count = sysPropPageService.createSysPropPage(paramMap,listSysPageLocale); 
 	       
 	       Map<String,Object> returnMap = new HashMap<String,Object>();
 	       return returnMap;
 	}
-	/*
-	@ApiOperation(value = "메뉴수정", notes = "메뉴수정")
-	@RequestMapping(value="/{SYSTEM}/{SHORT_NM}",method = RequestMethod.PUT)
-	public Map<String,?> modifySysPropPage(HttpServletRequest request, HttpServletResponse response,
-			@ApiParam(value="시스템코드", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
-    		@ApiParam(value="시스템코드", name="SHORT_NM", required=true) @PathVariable("SHORT_NM") String SHORT_NM,
-    		@ApiParam(value="시스템코드", name="sysPropPage", required=true) @RequestParam("sysPropPage") String sysPropPage
-	   		) throws Exception {
-	       
-			
-		Map<String,Object > paramMap = new HashMap<String,Object>();	
-		int count = sysPropPageService.modifySysPropPage(paramMap); 
-       
-       Map<String,Object> returnMap = new HashMap<String,Object>();
-       return returnMap;
-	}
-	
-	@ApiOperation(value = "메뉴수정", notes = "메뉴수정")
-	@RequestMapping(value="/{SYSTEM}/{SHORT_NM}",method = RequestMethod.DELETE)
-	public Map<String,?> removeSysPropPage(HttpServletRequest request, HttpServletResponse response,
-			@ApiParam(value="시스템코드", name="SYSTEM", required=true) @PathVariable("SYSTEM") String SYSTEM,
-    		@ApiParam(value="시스템코드", name="SHORT_NM", required=true) @PathVariable("SHORT_NM") String SHORT_NM
-	   		) throws Exception {
-	       
-			
-		Map<String,Object > paramMap = new HashMap<String,Object>();	
-		paramMap.put("SYSTEM", SYSTEM);
-		paramMap.put("SHORT_NM", SHORT_NM);
-		int count = sysPropPageService.removeSysPropPage(paramMap); 
-       
-       Map<String,Object> returnMap = new HashMap<String,Object>();
-       return returnMap;
-	}
-	*/
 }

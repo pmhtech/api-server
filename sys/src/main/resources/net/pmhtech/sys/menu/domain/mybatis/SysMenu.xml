@@ -12,6 +12,7 @@
 		,PRE_MENU_ID
 		,MENU_LVL
 		,CLASS_NM
+		,SHORT_NM
 		,WIDGET_NM
 		,MENU_AUTH
 		,SORT
@@ -29,6 +30,7 @@
 		,#{PRE_MENU_ID}
 		,#{MENU_LVL}
 		,#{CLASS_NM}
+		,#{SHORT_NM}
 		,#{WIDGET_NM}
 		,#{MENU_AUTH}
 		,#{SORT}
@@ -50,6 +52,7 @@
 	SET		PRE_MENU_ID	= #{PRE_MENU_ID}
 			,MENU_LVL		= #{MENU_LVL}
 			,CLASS_NM		= #{CLASS_NM}
+			,SHORT_NM		= #{SHORT_NM}
 			,WIDGET_NM		= #{WIDGET_NM}
 			,MENU_AUTH		= #{MENU_AUTH}
 			,SORT			= #{SORT}
@@ -78,6 +81,7 @@
 			,A.MENU_LVL
 			,A.CLASS_NM
 			,A.WIDGET_NM
+			,A.SHORT_NM
 			,A.MENU_AUTH
 			,A.SORT
 			,A.USE_YN
