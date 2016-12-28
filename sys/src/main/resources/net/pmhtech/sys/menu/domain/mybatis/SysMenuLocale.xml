@@ -6,19 +6,28 @@
 	<insert id="insert" parameterType="sysMenuLocale">
 	/*	SysMenuLocale.insert	*/
 	
-	INSERT INTO SYS_CODE(
-		MENU_ID
-		,PRE_CD
+	INSERT INTO SYS_MENU_LOCALE(
+		SYSTEM
+		,LOCALE_CD
+		,MENU_ID
+		,MENU_NM
+		,MEMO
 		,CREATER
 		,CREATE_DT
-		,CREATE_IP
-	
+		,CHANGER
+		,CHANGE_DT
+		,CHANGE_IP
 	)VALUES(
-		#{MENU_ID}
-		,#{PRE_CD}
+		#{SYSTEM}
+		,#{LOCALE_CD}
+		,#{MENU_ID}
+		,#{MENU_NM}
+		,#{MEMO}
 		,#{CREATER}
 		,#{CREATE_DT}
-		,#{CREATE_IP}
+		,#{CHANGER}
+		,#{CHANGE_DT}
+		,#{CHANGE_IP}
 	)
 	
 	</insert>

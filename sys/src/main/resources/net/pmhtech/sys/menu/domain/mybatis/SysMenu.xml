@@ -6,7 +6,7 @@
 	<insert id="insert" parameterType="sysMenu">
 	/*	SysMenu.insert	*/
 	
-	INSERT INTO SYS_CODE(
+	INSERT INTO SYS_MENU(
 		SYSTEM
 		,MENU_ID
 		,PRE_MENU_ID
