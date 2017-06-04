@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="callSettersOnNulls" value="true"/>
+		<setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+	
+	<typeAliases>
+		<typeAlias alias="sysCode"			type="net.pmhtech.sys.code.domain.SysCode"/>
+		<typeAlias alias="sysCodeGroup"		type="net.pmhtech.sys.code.domain.SysCodeGroup"/>
+		<typeAlias alias="sysCodeLocale"	type="net.pmhtech.sys.code.domain.SysCodeLocale"/>
+		
+		<typeAlias alias="sysMenu"			type="net.pmhtech.sys.menu.domain.SysMenu"/>
+		<typeAlias alias="sysMenuCode"		type="net.pmhtech.sys.menu.domain.SysMenuCode"/>
+		<typeAlias alias="sysMenuLocale"	type="net.pmhtech.sys.menu.domain.SysMenuLocale"/>
+		
+		<typeAlias alias="sysRole"			type="net.pmhtech.sys.role.domain.SysRole"/>
+		<typeAlias alias="sysRolePage"		type="net.pmhtech.sys.role.domain.SysRolePage"/>
+		<typeAlias alias="sysRoleAuth"		type="net.pmhtech.sys.role.domain.SysRoleAuth"/>
+		<typeAlias alias="sysRoleLocale"	type="net.pmhtech.sys.role.domain.SysRoleLocale"/>
+		
+		<typeAlias alias="sysPropMsg"		type="net.pmhtech.sys.prop.domain.SysPropMsg"/>
+		<typeAlias alias="sysPropPage"		type="net.pmhtech.sys.prop.domain.SysPropPage"/>
+		<typeAlias alias="sysPropType"	type="net.pmhtech.sys.prop.domain.SysPropType"/>
+		
+		<typeAlias alias="sysFile"			type="net.pmhtech.sys.file.domain.SysFile"/>
+		<typeAlias alias="sysSequence"		type="net.pmhtech.sys.seq.domain.SysSequence"/>
+		
+
+		
+		<typeAlias alias="userMst"			type="net.pmhtech.user.domain.UserMst"/>
+		
+		<typeAlias alias="resultMap"		type="java.util.HashMap"/>
+		<typeAlias alias="paramMap"			type="java.util.HashMap"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="net/pmhtech/sys/code/domain/mybatis/SysCode.xml"/>
+		<mapper resource="net/pmhtech/sys/code/domain/mybatis/SysCodeGroup.xml"/>
+		<mapper resource="net/pmhtech/sys/code/domain/mybatis/SysCodeLocale.xml"/>
+		
+		<mapper resource="net/pmhtech/sys/menu/domain/mybatis/SysMenu.xml"/>
+		<mapper resource="net/pmhtech/sys/menu/domain/mybatis/SysMenuCode.xml"/>
+		<mapper resource="net/pmhtech/sys/menu/domain/mybatis/SysMenuLocale.xml"/>
+		
+		<mapper resource="net/pmhtech/sys/role/domain/mybatis/SysRole.xml"/>
+		<mapper resource="net/pmhtech/sys/role/domain/mybatis/SysRolePage.xml"/>
+		<mapper resource="net/pmhtech/sys/role/domain/mybatis/SysRoleAuth.xml"/>
+		<mapper resource="net/pmhtech/sys/role/domain/mybatis/SysRoleLocale.xml"/>
+		
+		<mapper resource="net/pmhtech/sys/prop/domain/mybatis/SysPropMsg.xml"/>
+		<mapper resource="net/pmhtech/sys/prop/domain/mybatis/SysPropPage.xml"/>
+		<mapper resource="net/pmhtech/sys/prop/domain/mybatis/SysPropType.xml"/>
+		
+		
+		
+		
+		<mapper resource="net/pmhtech/sys/file/domain/mybatis/SysFile.xml"/>
+		<mapper resource="net/pmhtech/sys/seq/domain/mybatis/SysSequence.xml"/>
+		
+		
+		
+		
+		
+		<mapper resource="net/pmhtech/user/domain/mybatis/UserMst.xml"/>
+		
+		
+	</mappers> 
+</configuration> 
