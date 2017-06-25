@@ -38,9 +38,17 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
     	<filter-name>httpPutFormContentFilter</filter-name>
     	<filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
 	</filter>
+	<filter>
+    <filter-name>bufferFilter</filter-name>
+    <filter-class>org.springframework.web.filter.ShallowEtagHeaderFilter</filter-class>
+</filter>
 	
 	<filter-mapping>
     	<filter-name>httpPutFormContentFilter</filter-name>
+    	<servlet-name>moniter</servlet-name>
+	</filter-mapping>
+	<filter-mapping>
+    	<filter-name>bufferFilter</filter-name>
     	<servlet-name>moniter</servlet-name>
 	</filter-mapping>
 	
