@@ -1,15 +1,19 @@
 package net.pmhtech.mon.conn.service.impl;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +26,7 @@ public class AfreecaConnector implements AbstractConnector{
 	@Override
 	public URL getURL(String keyword) throws Exception {
 
-		String callback="callbackFunc"; //JsonP callback 
+		String callback="jQuery110205080252609429698_1499437202636"; //JsonP callback 
 		String m ="liveSearch"; //검색카테고리 (실시간);
 		String v="1.0"; // 아프리카 API 버
 		String szType="json"; //결과값 데이터 타입
@@ -34,8 +38,9 @@ public class AfreecaConnector implements AbstractConnector{
 		
 		
 		
-		StringBuilder urlBuilder = new StringBuilder("http://sch.afreecatv.com/api.php");
-		urlBuilder.append("?" + URLEncoder.encode("callback","UTF-8") + "="+callback);
+	//	StringBuilder urlBuilder = new StringBuilder("http://sch.afreecatv.com/api.php");
+		StringBuilder urlBuilder = new StringBuilder("http://sch.afreecatv.com/api.php?callback=callBackFunc&m=liveSearch&v=1.0&szType=json&szOrder=&nPageNo=1&nListCnt=50&szKeyword=%EC%8A%A4%ED%83%80&onlyParent=1&_=1499437202662");
+		/*urlBuilder.append("?" + URLEncoder.encode("callback","UTF-8") + "="+callback);
 		urlBuilder.append("&" + URLEncoder.encode("m","UTF-8") + "="+m);
 		urlBuilder.append("&" + URLEncoder.encode("v","UTF-8") + "="+szType); //JSONP callback
 		urlBuilder.append("&" + URLEncoder.encode("szType","UTF-8") + "="+v); //JSONP callback
@@ -43,9 +48,10 @@ public class AfreecaConnector implements AbstractConnector{
 		urlBuilder.append("&" + URLEncoder.encode("nPageNo","UTF-8") + "="+nPageNo); //JSONP callback
 		urlBuilder.append("&" + URLEncoder.encode("nListCnt","UTF-8") + "="+nListCnt); //JSONP callback
 		urlBuilder.append("&" + URLEncoder.encode("szKeyword","UTF-8") + "="+szKeyword); //JSONP callback
-		urlBuilder.append("&" + URLEncoder.encode("onlyParent","UTF-8") + "="+onlyParent); //JSONP callback
-		
+		urlBuilder.append("&" + URLEncoder.encode("onlyParent","UTF-8") + "="+onlyParent); //JSONP callback*/
+		//http://sch.afreecatv.com/api.php?callback=callBackFunc&m=liveSearch&v=1.0&szType=json&szOrder=&nPageNo=1&nListCnt=50&szKeyword=%EC%8A%A4%ED%83%80&onlyParent=1&_=1499437202662
 	
+		System.out.println(urlBuilder.toString());
 		URL url = new URL(urlBuilder.toString());
 		
 		return url;
@@ -79,10 +85,29 @@ public class AfreecaConnector implements AbstractConnector{
 	        }
 	        
 	       String jsonStr = sb.substring(13,sb.length()-1);
-	       JSONObject jsonObj = (JSONObject) new JSONParser().parse(jsonStr);
-	      // var realbroad =jsonObj.get("REAL_BROAD");
-	       returnList = JsonConvertor.convertJsonToList(jsonObj.get("REAL_BROAD").toString());
+	       JSONObject jsonObj = new JSONObject(jsonStr);
 
+	       
+	       
+	       // 본방송 리스트
+	       JSONArray realBroads = jsonObj.getJSONArray("REAL_BROAD");
+	       
+	       for(int i=0;i<realBroads.length();i++){
+	    	   
+	    	  JSONObject temp = (JSONObject) realBroads.get(i);
+	    	  Map<String,Object> tempMap = new HashMap<String,Object>();  
+	    	  
+	    	  
+	    	  temp.get("total_view_cnt");
+	    	  
+	    	  
+	    	   System.out.println(temp);
+	    	   
+	       }
+	   
+
+	       
+	       //중계방 또는 도방
 	      
 	        
 		}finally{

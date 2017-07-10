@@ -28,7 +28,7 @@ public class MoniterServiceImpl implements MoniterService{
 	@Override
 	public void doLogging() throws Exception {
 
-		afreecaConnector.getRawDatas("스타");
+			afreecaConnector.getRawDatas("스타");
 		
 	}
 

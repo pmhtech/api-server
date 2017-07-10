@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SysCode">
+
+	<insert id="insert" parameterType="sysCode">
+	/*	SysCode.insert	*/
+	
+	INSERT INTO SYS_CODE(
+		COMPANY
+		, PRE_CD
+		, CODE
+		, SORT
+		, USE_YN
+		, CREATER
+		, CREATE_DT
+		, CHANGER
+		, CHANGE_DT
+		, CHANGE_IP
+	)VALUES(
+		#{COMPANY}
+		,#{PRE_CD}
+		,#{CODE}
+		,#{SORT}
+		,#{USE_YN}
+		,#{CREATER}
+		,#{CREATE_DT}
+		,#{CHANGER}
+		,#{CHANGE_DT}
+		,#{CHANGE_IP}
+	)
+	
+	
+	</insert>
+	
+	<update id="update" parameterType="sysCode">
+	/*	SysCode.update	*/
+	UPDATE  SYS_CODE
+	SET		SORT	= #{SORT}
+			, USE_YN	= #{USE_YN}
+			, CHANGER	= #{CHANGER}
+			, CHANGE_DT	= #{CHANGE_DT}
+			, CHANGE_IP	= #{CHANGE_IP}
+	WHERE	COMPANY	= #{COMPANY}
+	AND		PRE_CD	= #{PRE_CD}
+	AND		CODE	= #{CODE}
+	</update>
+	
+	<select id="selectList" parameterType="paramMap" resultType="resultMap">
+	/*	SysCode.selectList	*/
+		SELECT	A.COMPANY
+				,A.PRE_CD
+				,B.LOCALE_CD
+				,A.CODE
+				,B.CODE_NM
+				,B.REF1
+				,B.REF2
+				,B.REF4
+				,B.REF5
+				,A.SORT
+				,A.USE_YN
+				,B.MEMO
+				,B.CREATER
+				,B.CREATE_DT
+				,B.CHANGER
+				,B.CHANGE_DT
+				,B.CHANGE_IP
+		FROM	SYS_CODE A,
+				(
+					SELECT	A.COMPANY
+							,A.PRE_CD
+							,A.CODE
+							,A.LOCALE_CD
+							,A.CODE_NM
+							,A.REF1
+							,A.REF2
+							,A.REF4
+							,A.REF5
+							,A.MEMO
+							,A.CREATER
+							,A.CREATE_DT
+							,A.CHANGER
+							,A.CHANGE_DT
+							,A.CHANGE_IP
+					FROM	SYS_CODE_LOCALE A
+					WHERE	A.PRE_CD = #{PRE_CD}
+					AND		A.LOCALE_CD IN(
+									SELECT	MAX(REF1) FROM SYS_CODE_LOCALE
+									WHERE	PRE_CD='COM_000002' 
+									AND		CODE ='DEFAULT'
+					)
+					AND		A.CODE!='0000000000'
+					
+				) B
+		WHERE	A.COMPANY	= B.COMPANY
+		AND		A.PRE_CD	= B.PRE_CD
+		AND		A.CODE		= B.CODE
+		AND		A.PRE_CD 	= #{PRE_CD}
+		ORDER BY	A.PRE_CD ,A.SORT
+	</select>
+	
+	<select id="selectLocaleList" parameterType="paramMap" resultType="resultMap">
+	/*	SysCodeGroup.selectLocaleList	*/
+		SELECT A.COMPANY,
+				A.PRE_CD,
+				B.LOCALE_CD,
+				A.CODE,
+				B.CODE_NM,
+				B.REF1,
+				B.REF2,
+				B.REF3,
+				B.REF4,
+				B.REF5,
+				A.SORT,
+				A.USE_YN,
+				B.MEMO,
+				A.CREATER,
+				A.CREATE_DT,
+				A.CHANGER,
+				A.CHANGE_DT,
+				A.CHANGE_IP 
+		FROM	SYS_CODE A,
+				SYS_CODE_LOCALE B
+		WHERE	A.COMPANY	= B.COMPANY
+		AND		A.PRE_CD	= B.PRE_CD
+		AND		A.CODE		= B.CODE
+		AND		A.PRE_CD	= #{PRE_CD}
+		ORDER BY A.PRE_CD , A.SORT
+	</select>
+</mapper> 
