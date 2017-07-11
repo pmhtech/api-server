@@ -16,7 +16,7 @@
     <task:scheduler id="taskScheduler" pool-size="10" />
 
     <task:scheduled-tasks>
-        <task:scheduled method="getLiveData" ref="moniterSceduler" cron="0 0 7 * * ?"/> <!-- 초, 분, 시, 일, 월, 연 -->
+        <task:scheduled method="getLiveData" ref="moniterSceduler" cron="	0 0/1 * 1/1 * ? *"/> <!-- 초, 분, 시, 일, 월, 연 -->
     </task:scheduled-tasks>
     
 </beans>

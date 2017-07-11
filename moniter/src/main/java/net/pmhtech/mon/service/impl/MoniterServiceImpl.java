@@ -8,16 +8,20 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import net.pmhtech.mon.conn.service.AbstractConnector;
+import net.pmhtech.mon.dao.LogMstDAO;
+import net.pmhtech.mon.domain.LogMst;
 import net.pmhtech.mon.service.MoniterService;
 
 @Service("moniterService")
-
-
 public class MoniterServiceImpl implements MoniterService{
 
 	
 	@Resource(name="afreecaConnector")
 	private AbstractConnector afreecaConnector;
+	
+	
+	@Resource(name="logMstDAO")
+	private LogMstDAO logMstDAO;
 
 	@Override
 	public void startLogging() throws Exception {
@@ -27,9 +31,10 @@ public class MoniterServiceImpl implements MoniterService{
 
 	@Override
 	public void doLogging() throws Exception {
-
-			afreecaConnector.getRawDatas("스타");
-		
+		List<LogMst> listLogMst = afreecaConnector.getRawDatas("스타");
+		for(LogMst tempLogMst : listLogMst){
+			logMstDAO.insert(tempLogMst);
+		}
 	}
 
 	@Override

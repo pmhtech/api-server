@@ -7,12 +7,21 @@ public class LogMst implements Serializable {
 	private String LOG_TIME;	// 로그시각
 	private String PLF_GBN;	// 플랫폼 구분PRI
 	private String PLF_USER_ID;	// 플랫폼 사용자ID
+	private String TITLE; //방송제목
 	private String SNAPSHOT;	// 스냅샷경로
 	private String VIEW_CNT;	// 시청자수
 	private String CREATER;	// 생성자
 	private String CREATE_DT;	// 생성시각
 	private String CREATE_IP;	// 생성IP
 	
+	
+	
+	public String getTITLE() {
+		return TITLE;
+	}
+	public void setTITLE(String tITLE) {
+		TITLE = tITLE;
+	}
 	public String getPGM_ID() {
 		return PGM_ID;
 	}

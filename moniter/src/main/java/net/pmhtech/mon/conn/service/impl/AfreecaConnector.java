@@ -7,7 +7,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +21,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
 
 import net.pmhtech.mon.conn.service.AbstractConnector;
+import net.pmhtech.mon.domain.LogMst;
 import net.pmhtech.util.JsonConvertor;
 
 @Service("afreecaConnector")
@@ -26,7 +30,7 @@ public class AfreecaConnector implements AbstractConnector{
 	@Override
 	public URL getURL(String keyword) throws Exception {
 
-		String callback="jQuery110205080252609429698_1499437202636"; //JsonP callback 
+		String callback="callBackFunc"; //JsonP callback 
 		String m ="liveSearch"; //검색카테고리 (실시간);
 		String v="1.0"; // 아프리카 API 버
 		String szType="json"; //결과값 데이터 타입
@@ -38,17 +42,19 @@ public class AfreecaConnector implements AbstractConnector{
 		
 		
 		
-	//	StringBuilder urlBuilder = new StringBuilder("http://sch.afreecatv.com/api.php");
-		StringBuilder urlBuilder = new StringBuilder("http://sch.afreecatv.com/api.php?callback=callBackFunc&m=liveSearch&v=1.0&szType=json&szOrder=&nPageNo=1&nListCnt=50&szKeyword=%EC%8A%A4%ED%83%80&onlyParent=1&_=1499437202662");
-		/*urlBuilder.append("?" + URLEncoder.encode("callback","UTF-8") + "="+callback);
-		urlBuilder.append("&" + URLEncoder.encode("m","UTF-8") + "="+m);
-		urlBuilder.append("&" + URLEncoder.encode("v","UTF-8") + "="+szType); //JSONP callback
-		urlBuilder.append("&" + URLEncoder.encode("szType","UTF-8") + "="+v); //JSONP callback
-		urlBuilder.append("&" + URLEncoder.encode("szOrder","UTF-8") + "="+szOrder);
-		urlBuilder.append("&" + URLEncoder.encode("nPageNo","UTF-8") + "="+nPageNo); //JSONP callback
-		urlBuilder.append("&" + URLEncoder.encode("nListCnt","UTF-8") + "="+nListCnt); //JSONP callback
-		urlBuilder.append("&" + URLEncoder.encode("szKeyword","UTF-8") + "="+szKeyword); //JSONP callback
-		urlBuilder.append("&" + URLEncoder.encode("onlyParent","UTF-8") + "="+onlyParent); //JSONP callback*/
+		StringBuilder urlBuilder = new StringBuilder("http://sch.afreecatv.com/api.php");
+		urlBuilder.append("?" + URLEncoder.encode("callback","UTF-8") + "="+URLEncoder.encode(callback,"UTF-8"));
+		urlBuilder.append("&" + URLEncoder.encode("m","UTF-8") + "="+URLEncoder.encode(m,"UTF-8"));
+		urlBuilder.append("&" + URLEncoder.encode("v","UTF-8") + "="+URLEncoder.encode(v,"UTF-8")); //JSONP callback
+		urlBuilder.append("&" + URLEncoder.encode("szType","UTF-8") + "="+URLEncoder.encode(szType,"UTF-8")); //JSONP callback
+		urlBuilder.append("&" + URLEncoder.encode("szOrder","UTF-8") + "="+URLEncoder.encode(szOrder,"UTF-8"));
+		urlBuilder.append("&" + URLEncoder.encode("nPageNo","UTF-8") + "="+URLEncoder.encode(nPageNo,"UTF-8")); //JSONP callback
+		urlBuilder.append("&" + URLEncoder.encode("nListCnt","UTF-8") + "="+URLEncoder.encode(nListCnt,"UTF-8")); //JSONP callback
+		urlBuilder.append("&" + URLEncoder.encode("szKeyword","UTF-8") + "="+URLEncoder.encode(szKeyword,"UTF-8")); //JSONP callback
+		urlBuilder.append("&" + URLEncoder.encode("onlyParent","UTF-8") + "="+URLEncoder.encode(onlyParent,"UTF-8")); //JSONP callback
+		urlBuilder.append("&" + "_="+"1499437202662"); //JSONP callback
+		
+		
 		//http://sch.afreecatv.com/api.php?callback=callBackFunc&m=liveSearch&v=1.0&szType=json&szOrder=&nPageNo=1&nListCnt=50&szKeyword=%EC%8A%A4%ED%83%80&onlyParent=1&_=1499437202662
 	
 		System.out.println(urlBuilder.toString());
@@ -58,13 +64,13 @@ public class AfreecaConnector implements AbstractConnector{
 	}
 
 	@Override
-	public List<Map<String, Object>> getRawDatas(String keyword) throws Exception{
+	public List<LogMst> getRawDatas(String keyword) throws Exception{
 	
 		URL url = this.getURL(keyword);
 		BufferedReader rd  = null;
 		HttpURLConnection conn =null;
 		StringBuilder sb = new StringBuilder();
-		List<Map<String, Object>> returnList= new ArrayList<Map<String,Object>>();
+		List<LogMst> returnList= new ArrayList<LogMst>();
 		
 		try{
 			conn = (HttpURLConnection) url.openConnection();
@@ -92,17 +98,24 @@ public class AfreecaConnector implements AbstractConnector{
 	       // 본방송 리스트
 	       JSONArray realBroads = jsonObj.getJSONArray("REAL_BROAD");
 	       
+	       
+	       
+	       SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+	       Calendar cal = Calendar.getInstance();
+	       String logTime = formatter.format(cal.getTime());
 	       for(int i=0;i<realBroads.length();i++){
 	    	   
 	    	  JSONObject temp = (JSONObject) realBroads.get(i);
-	    	  Map<String,Object> tempMap = new HashMap<String,Object>();  
+	    	  LogMst tempLogMst = new LogMst();
 	    	  
-	    	  
-	    	  temp.get("total_view_cnt");
-	    	  
-	    	  
-	    	   System.out.println(temp);
-	    	   
+	    	  tempLogMst.setPGM_ID("1");
+	    	  tempLogMst.setPLF_GBN("1");
+	    	  tempLogMst.setLOG_TIME(logTime);
+	    	  tempLogMst.setTITLE(temp.get("broad_title").toString());
+	    	  tempLogMst.setPLF_USER_ID(temp.get("user_id").toString());
+	    	  tempLogMst.setVIEW_CNT(temp.get("total_view_cnt").toString());
+	    	  tempLogMst.setSNAPSHOT(temp.get("sn_url").toString());
+	    	  returnList.add(tempLogMst);
 	       }
 	   
 
@@ -121,7 +134,7 @@ public class AfreecaConnector implements AbstractConnector{
 	@Override
 	public Map<String, ?> getLiveDatas(String keyword) throws Exception {
 
-		List<Map<String,Object>> rawDataList = this.getRawDatas(keyword);
+		List<LogMst> rawDataList = this.getRawDatas(keyword);
 		
 		return null;
 	}

@@ -6,6 +6,10 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
  	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
+			
+			classpath:pmhtech-data.xml
+			classpath:pmhtech-data-mybatis.xml
+			classpath:pmhtech-scheduler.xml
 			classpath:pmhtech-restful.xml
 			classpath:pmhtech-views.xml
 		</param-value>
