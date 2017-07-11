@@ -7,7 +7,8 @@
 	/*	LogMst.insert	*/
 	
 	INSERT INTO LOG_MST(
-		PGM_ID
+		SEQ
+		,PGM_ID
 		,LOG_TIME
 		,PLF_GBN
 		,PLF_USER_ID
@@ -17,8 +18,12 @@
 		,CREATER
 		,CREATE_DT
 		,CREATE_IP
-	)VALUES(
-		#{PGM_ID}
+	)SELECT
+		(
+			SELECT  IFNULL(MAX(SEQ),0)+1 AS SEQ
+			FROM  LOG_MST
+		)
+		,#{PGM_ID}
 		,#{LOG_TIME}
 		,#{PLF_GBN}
 		,#{PLF_USER_ID}
@@ -28,6 +33,6 @@
 		,#{CREATER}
 		,#{CREATE_DT}
 		,#{CREATE_IP}
-	)
+	FROM DUAL
 	</insert>
 </mapper> 
