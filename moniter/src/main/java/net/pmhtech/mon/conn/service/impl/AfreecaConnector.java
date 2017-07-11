@@ -36,7 +36,7 @@ public class AfreecaConnector implements AbstractConnector{
 		String szType="json"; //결과값 데이터 타입
 		String szOrder = ""; //정렬순서
 		String nPageNo = "1"; //결과값 페이지 인덱
-		String nListCnt ="50"; //페이징사이즈
+		String nListCnt ="200"; //페이징사이즈
 		String szKeyword= keyword; //검색어
 		String onlyParent = "1"; //무슨뜻인지모름
 		
