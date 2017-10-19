@@ -30,18 +30,5 @@ public class MoniterController {
 		moniterService.doLogging();
 		
 		return null;
-    } 
-	@RequestMapping(value="/thing/valve/d15379a78eee48e1", method = RequestMethod.POST)
-    public @ResponseBody Map<String,Object> test(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		
-		System.out.println(request.getRemoteAddr());
-
-		Map<String,Object> map = new HashMap<String,Object>();
-		
-		map.put("water", "1");
-		
-		
-		return map;
-    } 
-    
+    }
 }

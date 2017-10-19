@@ -31,9 +31,29 @@ public class MoniterServiceImpl implements MoniterService{
 
 	@Override
 	public void doLogging() throws Exception {
-		List<LogMst> listLogMst = afreecaConnector.getRawDatas("종최 종족최강전");
+		List<LogMst> listLogMst = afreecaConnector.getRawDatas("KCM");
 		for(LogMst tempLogMst : listLogMst){
 			logMstDAO.insert(tempLogMst);
+		}
+		
+		List<LogMst> a = afreecaConnector.getRawDatas("종족 최강");
+		for(LogMst aa : a){
+			logMstDAO.insert(aa);
+		}
+		
+		List<LogMst> c = afreecaConnector.getRawDatas("종족");
+		for(LogMst cc : c){
+			logMstDAO.insert(cc);
+		}
+		
+		List<LogMst>  b = afreecaConnector.getRawDatas("종최");
+		for(LogMst bb : b){
+			logMstDAO.insert(bb);
+		}
+		
+		List<LogMst>  g = afreecaConnector.getRawDatas("나는김윤중");
+		for(LogMst gg : g){
+			logMstDAO.insert(gg);
 		}
 	}
 

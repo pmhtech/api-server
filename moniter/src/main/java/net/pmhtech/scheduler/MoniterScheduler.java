@@ -16,7 +16,7 @@ public class MoniterScheduler {
 	@Resource(name="moniterService")
 	private MoniterService moniterService;
 	
-	@Scheduled(fixedDelay=1000*60*5)
+	@Scheduled(fixedDelay=1000*60)
     public void getLiveData(){
 		try{
 			moniterService.doLogging();
